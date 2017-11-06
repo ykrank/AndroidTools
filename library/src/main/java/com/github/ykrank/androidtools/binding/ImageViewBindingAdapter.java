@@ -77,7 +77,7 @@ public final class ImageViewBindingAdapter {
         loadImage(imageView, url, thumbUrl, GlobalData.INSTANCE.getRecycleViewLoadingId(), GlobalData.INSTANCE.getRecycleViewErrorId());
     }
 
-    @BindingAdapter({"url", "thumbUrl", "recycleview_loading", "error"})
+    @BindingAdapter({"url", "thumbUrl", "loading", "error"})
     public static void loadImage(ImageView imageView, String url, @Nullable String thumbUrl, @DrawableRes int loading, @DrawableRes int error) {
         if (TextUtils.isEmpty(url)) {
             imageView.setImageResource(error);

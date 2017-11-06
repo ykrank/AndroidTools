@@ -1,7 +1,5 @@
 package com.github.ykrank.androidtools
 
-import com.github.ykrank.androidtools.util.ResourceUtil
-
 /**
  * Created by ykrank on 2017/11/5.
  */
@@ -16,16 +14,17 @@ object GlobalData {
      */
     fun init(appProvider: AppDataProvider) {
         this.provider = appProvider
+        initResource(appProvider)
     }
 
     private fun initResource(appProvider: AppDataProvider) {
-        val loadingId = ResourceUtil.getIdByName(appProvider.appR, "drawable", "recycleview_loading")
-        val errorId = ResourceUtil.getIdByName(appProvider.appR, "drawable", "recycleview_error_symbol")
-        if (loadingId != 0) {
-            recycleViewLoadingId = loadingId
+        recycleViewLoadingId = appProvider.recycleViewLoadingImgId
+        recycleViewErrorId = appProvider.recycleViewErrorImgId
+        if (recycleViewLoadingId == 0) {
+            recycleViewLoadingId = R.drawable.recycleview_loading
         }
-        if (errorId != 0) {
-            recycleViewErrorId = errorId
+        if (recycleViewErrorId == 0) {
+            recycleViewErrorId = R.drawable.recycleview_error_symbol
         }
     }
 }
