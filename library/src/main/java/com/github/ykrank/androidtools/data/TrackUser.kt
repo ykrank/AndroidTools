@@ -1,6 +1,6 @@
 package com.github.ykrank.androidtools.data
 
-interface User {
+interface TrackUser {
 
     var uid: String?
 

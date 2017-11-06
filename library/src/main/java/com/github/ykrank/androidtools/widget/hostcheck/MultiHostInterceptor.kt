@@ -12,7 +12,7 @@ import java.io.IOException
  * Created by ykrank on 2017/3/29.
  */
 
-class MultiHostInterceptor(private val baseHostUrl: BaseHostUrl, private val mergeHttpUrl: (originHttpUrl: HttpUrl, baseHostUrl: BaseHostUrl) -> HttpUrl) : Interceptor {
+class MultiHostInterceptor<T : BaseHostUrl>(private val baseHostUrl: T, private val mergeHttpUrl: (originHttpUrl: HttpUrl, baseHostUrl: T) -> HttpUrl) : Interceptor {
 
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {

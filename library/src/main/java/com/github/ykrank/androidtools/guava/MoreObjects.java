@@ -30,7 +30,7 @@ import static com.github.ykrank.androidtools.guava.Preconditions.checkNotNull;
  * Helper functions that operate on any {@code Object}, and are not already provided in
  * {@link java.util.Objects}.
  * <p>
- * <p>See the Guava User Guide on <a
+ * <p>See the Guava TrackUser Guide on <a
  * href="https://github.com/google/guava/wiki/CommonObjectUtilitiesExplained">writing
  * {@code Object} methods with {@code MoreObjects}</a>.
  *

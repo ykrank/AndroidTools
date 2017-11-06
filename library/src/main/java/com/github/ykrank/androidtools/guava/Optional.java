@@ -74,7 +74,7 @@ import static com.github.ykrank.androidtools.guava.Preconditions.checkNotNull;
  * <p><b>There are no plans to deprecate this class in the foreseeable future.</b> However, we do
  * gently recommend that you prefer the new, standard Java class whenever possible.
  *
- * <p>See the Guava User Guide article on <a
+ * <p>See the Guava TrackUser Guide article on <a
  * href="https://github.com/google/guava/wiki/UsingAndAvoidingNullExplained#optional">
  * using {@code Optional}</a>.
  *

@@ -33,7 +33,7 @@ import java.util.ArrayList;
 /**
  * Because we can't retain Fragments that are nested in other fragments.
  * So we adds tag to each Fragments in order to let host Fragment in ViewPager
- * know its target {@link me.ykrank.s1next.view.fragment.headless.DataRetainedFragment}.
+ * know its target {@link com.github.ykrank.androidtools.ui.internal.DataRetainedFragment}.
  * <p>
  * Forked from {@link android.support.v4.app.FragmentStatePagerAdapter}
  * Version: 25.3.0

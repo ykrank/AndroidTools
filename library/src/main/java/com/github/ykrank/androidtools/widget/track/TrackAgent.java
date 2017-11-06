@@ -6,7 +6,7 @@ import android.support.annotation.NonNull;
 
 import java.util.Map;
 
-import com.github.ykrank.androidtools.data.User;
+import com.github.ykrank.androidtools.data.TrackUser;
 
 /**
  * Created by ykrank on 2016/12/29.
@@ -15,7 +15,7 @@ import com.github.ykrank.androidtools.data.User;
 public interface TrackAgent {
     void init(Context context);
 
-    void setUser(@NonNull User user);
+    void setUser(@NonNull TrackUser user);
 
     void onResume(@NonNull Activity activity);
 

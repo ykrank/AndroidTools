@@ -4,7 +4,7 @@ import android.content.Context
 import android.os.HandlerThread
 import android.os.Looper
 import android.text.TextUtils
-import com.github.ykrank.androidtools.data.User
+import com.github.ykrank.androidtools.data.TrackUser
 import com.github.ykrank.androidtools.util.L
 import com.github.ykrank.androidtools.widget.track.event.TrackEvent
 import com.github.ykrank.androidtools.widget.track.event.page.*
@@ -24,7 +24,7 @@ class DataTrackAgent {
     private var looper: Looper? = null
     private val handlerMapper = ConcurrentHashMap<Class<out TrackEvent>, TrackHandler<out TrackEvent>>()
     private var defaultHandler: TrackHandler<TrackEvent>? = null
-    private var mUser: User? = null
+    private var mUser: TrackUser? = null
     private lateinit var agent: TrackAgent
 
     fun init(context: Context) {
@@ -44,7 +44,7 @@ class DataTrackAgent {
         regHandler(LocalFragmentEndEvent::class.java, LocalFragmentEndTrackHandler(agent))
     }
 
-    fun setUser(user: User) {
+    fun setUser(user: TrackUser) {
         if (mUser == null || !TextUtils.equals(mUser?.uid, user.uid)) {
             mUser = user
             agent.setUser(user)

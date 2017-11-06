@@ -68,7 +68,7 @@ import android.support.annotation.Nullable;
  * which are <i>not the caller's fault</i>. Doing so is <b>not recommended</b> because it is
  * misleading to future readers of the code and of stack traces. See
  * <a href="https://github.com/google/guava/wiki/ConditionalFailuresExplained">Conditional
- * failures explained</a> in the Guava User Guide for more advice.
+ * failures explained</a> in the Guava TrackUser Guide for more advice.
  *
  * <h3>{@code java.util.Objects.requireNonNull()}</h3>
  *
@@ -84,7 +84,7 @@ import android.support.annotation.Nullable;
  *
  * <h3>More information</h3>
  *
- * <p>See the Guava User Guide on
+ * <p>See the Guava TrackUser Guide on
  * <a href="https://github.com/google/guava/wiki/PreconditionsExplained">using {@code
  * Preconditions}</a>.
  *

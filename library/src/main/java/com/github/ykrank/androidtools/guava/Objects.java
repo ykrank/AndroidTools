@@ -29,7 +29,7 @@ import static com.github.ykrank.androidtools.guava.Preconditions.checkNotNull;
 /**
  * Helper functions that can operate on any {@code Object}.
  *
- * <p>See the Guava User Guide on <a
+ * <p>See the Guava TrackUser Guide on <a
  * href="https://github.com/google/guava/wiki/CommonObjectUtilitiesExplained">writing
  * {@code Object} methods with {@code Objects}</a>.
  *

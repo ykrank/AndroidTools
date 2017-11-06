@@ -18,6 +18,9 @@ import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.View;
 
+import com.github.ykrank.androidtools.GlobalData;
+import com.github.ykrank.androidtools.R;
+
 public final class ResourceUtil {
 
     private ResourceUtil() {
@@ -35,6 +38,98 @@ public final class ResourceUtil {
         TypedValue typedValue = new TypedValue();
         theme.resolveAttribute(resId, typedValue, true);
         return typedValue.resourceId;
+    }
+
+    /**
+     * 根据资源名称获取资源ID。如R.A.B
+     *
+     * @param r         主项目R文件的Class
+     * @param className A
+     * @param name      B
+     * @return
+     */
+    public static int getIdByName(Class r, String className, String name) {
+        int id = 0;
+
+        try {
+            Class[] classes = r.getClasses();
+            Class desireClass = null;
+
+            for (int i = 0; i < classes.length; ++i) {
+                if (classes[i].getName().split("\\$")[1].equals(className)) {
+                    desireClass = classes[i];
+                    break;
+                }
+            }
+
+            if (desireClass != null) {
+                id = desireClass.getField(name).getInt(desireClass);
+            }
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        } catch (SecurityException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+
+        return id;
+    }
+
+    public static int getIdByNameIncludeLib(String className, String name) {
+        int id = getIdByName(GlobalData.provider.getAppR(), className, name);
+        if (id == 0) {
+            return getIdByName(R.class, className, name);
+        }
+        return id;
+    }
+
+    /**
+     * 根据资源名称获取资源ID。如R.A.B
+     *
+     * @param r         主项目R文件的Class
+     * @param className A
+     * @param name      B
+     * @return
+     */
+    public static int[] getIdsByName(Class r, String className, String name) {
+        int[] ids = null;
+
+        try {
+            Class[] classes = r.getClasses();
+            Class desireClass = null;
+
+            for (int i = 0; i < classes.length; ++i) {
+                if (classes[i].getName().split("\\$")[1].equals(className)) {
+                    desireClass = classes[i];
+                    break;
+                }
+            }
+
+            if ((desireClass != null) && (desireClass.getField(name).get(desireClass)) != null && (desireClass.getField(name).get(desireClass).getClass().isArray())) {
+                ids = (int[]) desireClass.getField(name).get(desireClass);
+            }
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        } catch (SecurityException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+
+        return ids;
+    }
+
+    public static int[] getIdsByNameIncludeLib(String className, String name) {
+        int[] ids = getIdsByName(GlobalData.provider.getAppR(), className, name);
+        if (ids == null) {
+            return getIdsByName(R.class, className, name);
+        }
+        return ids;
     }
 
     @ColorInt

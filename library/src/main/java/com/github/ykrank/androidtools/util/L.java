@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.github.ykrank.androidtools.GlobalData;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.Logger;
@@ -21,20 +22,13 @@ public class L {
     static AtomicBoolean init = new AtomicBoolean(false);
     static boolean showLog = false;
 
-    private static String LOG_TAG;
-    private static boolean DEBUG;
-    private static String BUILD_TYPE;
-
-    public static void init(@NonNull Context context, String LOG_TAG, boolean DEBUG, String BUILD_TYPE) {
-        L.LOG_TAG = LOG_TAG;
-        L.DEBUG = DEBUG;
-        L.BUILD_TYPE = BUILD_TYPE;
+    public static void init(@NonNull Context context) {
         FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()
                 .showThreadInfo(true)  // (Optional) Whether to show thread info or not. Default true
                 .methodCount(0)         // (Optional) How many method line to show. Default 2
                 .methodOffset(7)        // (Optional) Hides internal method calls up to offset. Default 5
                 //.logStrategy(customLog) // (Optional) Changes the log strategy to print out. Default LogCat
-                .tag(LOG_TAG)   // (Optional) Global tag for every log. Default PRETTY_LOGGER
+                .tag(getLogTag())   // (Optional) Global tag for every log. Default PRETTY_LOGGER
                 .build();
 
         Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy) {
@@ -51,7 +45,7 @@ public class L {
 
     public static boolean showLog() {
         if (!init.get()) {
-            showLog = DEBUG || "alpha".equals(BUILD_TYPE);
+            showLog = GlobalData.provider.getDebug() || "alpha".equals(GlobalData.provider.getBuildType());
         }
         return showLog;
     }
@@ -64,7 +58,7 @@ public class L {
 
     public static void print(String msg) {
         if (showLog()) {
-            Log.d(LOG_TAG, msg);
+            Log.d(getLogTag(), msg);
         }
     }
 
@@ -72,6 +66,10 @@ public class L {
         if (showLog() && e != null) {
             e.printStackTrace();
         }
+    }
+
+    private static String getLogTag() {
+        return GlobalData.provider.getLogTag();
     }
 
     public static void d(String msg) {
@@ -123,7 +121,7 @@ public class L {
     }
 
     public static void e(String tag, String msg, Throwable tr) {
-        BuglyLog.e(LOG_TAG + tag, msg, tr);
+        BuglyLog.e(getLogTag() + tag, msg, tr);
         if (tr != null) {
             tr.printStackTrace();
         }
@@ -138,7 +136,7 @@ public class L {
 
     public static void report(Throwable tr, int severity) {
         CrashReport.postCatchedException(tr);
-        BuglyLog.e(LOG_TAG, "Report error", tr);
+        BuglyLog.e(getLogTag(), "Report error", tr);
     }
 
     public static void report(String msg, Throwable tr) {

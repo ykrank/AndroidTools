@@ -9,7 +9,7 @@ import com.tendcloud.tenddata.TCAgent;
 
 import java.util.Map;
 
-import com.github.ykrank.androidtools.data.User;
+import com.github.ykrank.androidtools.data.TrackUser;
 
 /**
  * Created by ykrank on 2016/12/28.
@@ -24,7 +24,7 @@ public class TalkingDataAgent implements TrackAgent {
         TCAgent.setReportUncaughtExceptions(false);
     }
 
-    public void setUser(@NonNull User user) {
+    public void setUser(@NonNull TrackUser user) {
         TCAgent.setGlobalKV("UserName", user.getName());
         TCAgent.setGlobalKV("Uid", user.getUid());
         TCAgent.setGlobalKV("Permission", String.valueOf(user.getPermission()));

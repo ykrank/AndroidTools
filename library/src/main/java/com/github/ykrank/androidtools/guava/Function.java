@@ -23,7 +23,7 @@ import android.support.annotation.Nullable;
  *
  * <p>The {@link Functions} class provides common functions and related utilites.
  *
- * <p>See the Guava User Guide article on <a href=
+ * <p>See the Guava TrackUser Guide article on <a href=
  * "https://github.com/google/guava/wiki/FunctionalExplained">the use of {@code
  * Function}</a>.
  *
