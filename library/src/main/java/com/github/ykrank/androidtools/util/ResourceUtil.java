@@ -153,12 +153,15 @@ public final class ResourceUtil {
         float sysFontScale = sysResources.getConfiguration().fontScale;
         config.fontScale = sysFontScale * scale;
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            return context.createConfigurationContext(config);
-        } else {
-            resources.updateConfiguration(config, displayMetrics);
-            return context;
-        }
+        resources.updateConfiguration(config, displayMetrics);
+        return context;
+        // TODO: 2017/11/11 This invalid in Version >= 8.0
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+//            return context.createConfigurationContext(config);
+//        } else {
+//            resources.updateConfiguration(config, displayMetrics);
+//            return context;
+//        }
     }
 
     /**
