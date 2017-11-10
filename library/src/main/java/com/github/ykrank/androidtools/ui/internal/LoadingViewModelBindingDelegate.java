@@ -4,7 +4,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.github.ykrank.androidtools.ui.adapter.BaseRecyclerViewAdapter;
+import com.github.ykrank.androidtools.ui.adapter.LibBaseRecyclerViewAdapter;
 import com.github.ykrank.androidtools.ui.vm.LoadingViewModel;
 
 
@@ -21,9 +21,9 @@ public interface LoadingViewModelBindingDelegate {
 
     /**
      * This {@link RecyclerView} should always set a
-     * {@link BaseRecyclerViewAdapter}
+     * {@link LibBaseRecyclerViewAdapter}
      * implementation, otherwise we can not use
-     * {@link BaseRecyclerViewAdapter#setHasProgress(boolean)}.
+     * {@link LibBaseRecyclerViewAdapter#setHasProgress(boolean)}.
      */
     RecyclerView getRecyclerView();
 

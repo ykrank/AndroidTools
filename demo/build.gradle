@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 26
 
@@ -11,6 +12,9 @@ android {
         versionCode 1
         versionName "1.0"
 
+    }
+    dataBinding {
+        enabled = true
     }
 
     buildTypes {
@@ -24,6 +28,18 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    flavorDimensions "market"
+    productFlavors {
+        play{
+            dimension "market"
+            manifestPlaceholders["APP_CHANNEL"] = "play.google.com"
+            versionNameSuffix '-play'
+        }
+        normal{
+            dimension "market"
+            manifestPlaceholders["APP_CHANNEL"] = "normal"
+        }
+    }
 }
 
 dependencies {
@@ -31,6 +47,8 @@ dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    kapt "com.android.databinding:compiler:$databinding_version"
+
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 }

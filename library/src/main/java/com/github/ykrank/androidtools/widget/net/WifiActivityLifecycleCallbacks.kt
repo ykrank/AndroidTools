@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
+import android.support.annotation.CallSuper
 
 
 open abstract class WifiActivityLifecycleCallbacks(val context: Context) : Application.ActivityLifecycleCallbacks {
@@ -21,14 +22,17 @@ open abstract class WifiActivityLifecycleCallbacks(val context: Context) : Appli
 
     abstract val wifiStateChangedCallback: ((Boolean) -> Unit)?
 
+    @CallSuper
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
         mExistCount++
     }
 
+    @CallSuper
     override fun onActivityStarted(activity: Activity) {
         mVisibleCount++
     }
 
+    @CallSuper
     override fun onActivityResumed(activity: Activity) {
         if (activity is WifiBroadcastReceiver.NeedMonitorWifi) {
             if (mNeedMonitorWifiActivityCount == 0) {
@@ -39,6 +43,7 @@ open abstract class WifiActivityLifecycleCallbacks(val context: Context) : Appli
         }
     }
 
+    @CallSuper
     override fun onActivityPaused(activity: Activity) {
         if (activity is WifiBroadcastReceiver.NeedMonitorWifi) {
             mNeedMonitorWifiActivityCount--
@@ -49,12 +54,14 @@ open abstract class WifiActivityLifecycleCallbacks(val context: Context) : Appli
         }
     }
 
+    @CallSuper
     override fun onActivityStopped(activity: Activity) {
         mVisibleCount--
     }
 
     override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle?) {}
 
+    @CallSuper
     override fun onActivityDestroyed(activity: Activity) {
         mExistCount--
     }

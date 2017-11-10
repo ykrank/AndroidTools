@@ -13,7 +13,6 @@ import android.support.annotation.AttrRes;
 import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.VectorEnabledTintResources;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.View;
@@ -140,30 +139,25 @@ public final class ResourceUtil {
 
     /**
      * Sets the scaling factor for fonts displayed on the display.
-     *
+     * After api 25, updateConfiguration not valid
      * @param scale the scaling factor.
      */
     @SuppressLint("RestrictedApi")
-    public static void setScaledDensity(Context context, float scale) {
+    public static Context setScaledDensity(Context context, float scale) {
         L.l("setScale:" + scale);
         Resources resources = context.getApplicationContext().getResources();
         DisplayMetrics displayMetrics = resources.getDisplayMetrics();
         Resources sysResources = Resources.getSystem();
 
-        float sysScaledDensity = sysResources.getDisplayMetrics().scaledDensity;
-        L.l("SysScaledDensity:" + sysScaledDensity);
-        L.l("AppScaledDensity:" + displayMetrics.scaledDensity);
-        displayMetrics.scaledDensity = sysScaledDensity * scale;
+        Configuration config = resources.getConfiguration();
+        float sysFontScale = sysResources.getConfiguration().fontScale;
+        config.fontScale = sysFontScale * scale;
 
-        //if use vector drawable, and SDK <= 20, use this to compat
-        if (VectorEnabledTintResources.shouldBeUsed()) {
-            Configuration config = resources.getConfiguration();
-            float sysFontScale = sysResources.getConfiguration().fontScale;
-            L.l("SysFontScale:" + sysFontScale);
-            L.l("AppFontScale:" + config.fontScale);
-            config.fontScale = sysFontScale * scale;
-            //noinspection deprecation
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            return context.createConfigurationContext(config);
+        } else {
             resources.updateConfiguration(config, displayMetrics);
+            return context;
         }
     }
 

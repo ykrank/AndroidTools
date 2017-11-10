@@ -4,7 +4,7 @@ import android.content.Context;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 
-import com.github.ykrank.androidtools.ui.adapter.BaseRecyclerViewAdapter;
+import com.github.ykrank.androidtools.ui.adapter.LibBaseRecyclerViewAdapter;
 import com.github.ykrank.androidtools.ui.adapter.delegate.item.ProgressItem;
 import com.github.ykrank.androidtools.ui.adapter.delegate.FooterProgressAdapterDelegate;
 
@@ -15,7 +15,7 @@ import com.github.ykrank.androidtools.ui.adapter.delegate.FooterProgressAdapterD
  * Created by ykrank on 2017/3/22.
  */
 
-public class SimpleRecycleViewAdapter extends BaseRecyclerViewAdapter {
+public class SimpleRecycleViewAdapter extends LibBaseRecyclerViewAdapter {
 
     public SimpleRecycleViewAdapter(@NonNull Context context, @LayoutRes int layoutRes) {
         this(context, layoutRes, null);

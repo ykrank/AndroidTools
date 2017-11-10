@@ -53,7 +53,7 @@ abstract class LibBaseFragment : Fragment() {
         }
     }
 
-    protected fun showShortSnackbar(text: CharSequence) {
+    protected fun showShortSnackbar(text: CharSequence?) {
         mCoordinatorLayoutAnchorDelegate?.showShortSnackbar(text)
     }
 

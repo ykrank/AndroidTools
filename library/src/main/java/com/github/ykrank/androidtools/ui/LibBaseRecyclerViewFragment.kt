@@ -38,7 +38,7 @@ abstract class LibBaseRecyclerViewFragment<D> : LibBaseFragment() {
     /**
      * We use retained Fragment to retain data when configuration changes.
      */
-    internal lateinit var retainedFragment: DataRetainedFragment<D>
+    protected lateinit var retainedFragment: DataRetainedFragment<D>
         private set
 
     private var mDisposable: Disposable? = null
@@ -51,15 +51,13 @@ abstract class LibBaseRecyclerViewFragment<D> : LibBaseFragment() {
      *
      * @return id
      */
-    val dataId: String?
-        get() = null
+    open val dataId: String? = null
 
     /**
      * whether use ?attr/cardViewContainerBackground to this fragment. if override [.getLoadingViewModelBindingDelegateImpl]
      * perhaps ignore this
      */
-    protected open val isCardViewContainer: Boolean
-        get() = false
+    protected open val isCardViewContainer: Boolean = false
 
     /**
      * Whether we are recycleview_loading data now.
@@ -102,7 +100,7 @@ abstract class LibBaseRecyclerViewFragment<D> : LibBaseFragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mLoadingViewModelBindingDelegate = getLoadingViewModelBindingDelegateImpl(inflater,
                 container)
         return mLoadingViewModelBindingDelegate.rootView
@@ -197,7 +195,7 @@ abstract class LibBaseRecyclerViewFragment<D> : LibBaseFragment() {
      * layout for [LoadingViewModelBindingDelegate].
      * run when [.onCreateView]
      */
-    open abstract fun getLoadingViewModelBindingDelegateImpl(inflater: LayoutInflater?,
+    open abstract fun getLoadingViewModelBindingDelegateImpl(inflater: LayoutInflater,
                                                              container: ViewGroup?): LoadingViewModelBindingDelegate
 
     /**
@@ -238,7 +236,7 @@ abstract class LibBaseRecyclerViewFragment<D> : LibBaseFragment() {
      * work.
      */
     @CallSuper
-    protected fun startPullToRefresh() {
+    protected open fun startPullToRefresh() {
         if (isPullUpToRefreshValid) {
             lastPullRefreshTime = SystemClock.elapsedRealtime()
             mLoadingViewModel.loading = LoadingViewModel.LOADING_PULL_UP_TO_REFRESH
@@ -300,7 +298,7 @@ abstract class LibBaseRecyclerViewFragment<D> : LibBaseFragment() {
      * further calls to [.onNext].
      */
     @CallSuper
-    internal open fun onError(throwable: Throwable) {
+    protected open fun onError(throwable: Throwable) {
         L.print(throwable)
         GlobalData.provider.errorParser?.let {
             if (isAdded && userVisibleHint) {
@@ -314,7 +312,7 @@ abstract class LibBaseRecyclerViewFragment<D> : LibBaseFragment() {
      * or [.onError] occurred during data recycleview_loading.
      */
     @CallSuper
-    internal open fun finallyDo() {
+    protected open fun finallyDo() {
         mLoadingViewModel.loading = LoadingViewModel.LOADING_FINISH
         retainedFragment.stale = true
         retainedFragment.id = dataId
@@ -327,7 +325,7 @@ abstract class LibBaseRecyclerViewFragment<D> : LibBaseFragment() {
             View.OnClickListener { startSwipeRefresh() })
     }
 
-    private fun showRetrySnackbar(@StringRes textResId: Int) {
+    protected fun showRetrySnackbar(@StringRes textResId: Int) {
         showRetrySnackbar(getString(textResId))
     }
 

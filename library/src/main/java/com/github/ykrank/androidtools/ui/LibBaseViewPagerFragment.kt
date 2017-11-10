@@ -57,14 +57,18 @@ abstract class LibBaseViewPagerFragment : LibBaseFragment(), PageJumpDialogFragm
 
     override fun onPrepareOptionsMenu(menu: Menu?) {
         super.onPrepareOptionsMenu(menu)
-        mMenuPageJump = menu?.findItem(R.id.menu_page_jump)
+        mMenuPageJump = findMenuPageJump(menu)
         preparePageJumpMenu()
+    }
+
+    open fun findMenuPageJump(menu: Menu?):MenuItem?{
+        return menu?.findItem(R.id.menu_page_jump)
     }
 
     @CallSuper
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.menu_page_jump -> {
+            mMenuPageJump?.itemId -> {
                 //do not show page jump dialog if total page below 1
                 if (mTotalPages <= 1) {
                     return true
@@ -138,19 +142,7 @@ abstract class LibBaseViewPagerFragment : LibBaseFragment(), PageJumpDialogFragm
     }
 
     protected open fun setTitleWithPosition(position: Int) {
-        val titleWithoutPosition = getTitleWithoutPosition()
-        if (titleWithoutPosition == null) {
-            activity.title = null
-            return
-        }
 
-        val titleWithPosition: String
-        if (ResourceUtil.isRTL(resources)) {
-            titleWithPosition = StringUtil.concatWithTwoSpaces(position + 1, titleWithoutPosition)
-        } else {
-            titleWithPosition = StringUtil.concatWithTwoSpaces(titleWithoutPosition, position + 1)
-        }
-        activity.title = titleWithPosition
     }
 
     protected open fun getTitleWithoutPosition(): CharSequence? {

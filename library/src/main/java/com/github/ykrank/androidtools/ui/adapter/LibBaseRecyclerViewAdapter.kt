@@ -12,11 +12,11 @@ import com.github.ykrank.androidtools.ui.adapter.delegate.item.ProgressItem
 import com.github.ykrank.androidtools.ui.adapter.model.SameItem
 import java.util.*
 
-abstract class BaseRecyclerViewAdapter(context: Context) : ListDelegationAdapter<MutableList<Any>>() {
+abstract class LibBaseRecyclerViewAdapter(context: Context) : ListDelegationAdapter<MutableList<Any>>() {
 
     init {
         setHasStableIds(false)
-        setItems(ArrayList<Any>())
+        items = arrayListOf()
         delegatesManager.addDelegate(VIEW_TYPE_PROGRESS, ProgressAdapterDelegate(context))
     }
 
