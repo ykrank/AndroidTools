@@ -259,7 +259,7 @@ abstract class LibBaseRecyclerViewFragment<D> : LibBaseFragment() {
         // when we start to loadViewPager new data
         mCoordinatorLayoutAnchorDelegate?.dismissSnackbarIfExist()
         RxJavaUtil.disposeIfNotNull(mDisposable)
-        mDisposable = getSourceObservable(loading)
+        mDisposable = getLibSourceObservable(loading)
                 .compose(RxJavaUtil.iOSingleTransformer())
                 .doAfterTerminate { this.finallyDo() }
                 .subscribe({ this.onNext(it) }, { this.onError(it) })
@@ -276,7 +276,7 @@ abstract class LibBaseRecyclerViewFragment<D> : LibBaseFragment() {
      * @return The data source [Observable].
      * @param loading
      */
-    protected abstract fun getSourceObservable(@LoadingViewModel.LoadingDef loading: Int): Single<D>
+    protected abstract fun getLibSourceObservable(@LoadingViewModel.LoadingDef loading: Int): Single<D>
 
     /**
      * Called when a data was emitted from [.getSourceObservable].

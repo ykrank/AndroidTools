@@ -23,8 +23,8 @@ public class SimpleRecycleViewAdapter extends LibBaseRecyclerViewAdapter {
 
     public SimpleRecycleViewAdapter(@NonNull Context context, @LayoutRes int layoutRes, BindViewHolderCallback bindViewHolderCallback) {
         super(context);
-        addAdapterDelegate(new SimpleAdapterDelegate(context, layoutRes, bindViewHolderCallback));
         addAdapterDelegate(new FooterProgressAdapterDelegate(context));
+        addAdapterDelegate(new SimpleAdapterDelegate(context, layoutRes, bindViewHolderCallback));
     }
 
 
