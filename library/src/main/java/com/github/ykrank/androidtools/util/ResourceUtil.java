@@ -144,24 +144,21 @@ public final class ResourceUtil {
      */
     @SuppressLint("RestrictedApi")
     public static Context setScaledDensity(Context context, float scale) {
-        L.l("setScale:" + scale);
-        Resources resources = context.getApplicationContext().getResources();
+        Resources resources = context.getResources();
         DisplayMetrics displayMetrics = resources.getDisplayMetrics();
         Resources sysResources = Resources.getSystem();
 
         Configuration config = resources.getConfiguration();
         float sysFontScale = sysResources.getConfiguration().fontScale;
-        config.fontScale = sysFontScale * scale;
-
-        resources.updateConfiguration(config, displayMetrics);
-        return context;
-        // TODO: 2017/11/11 This invalid in Version >= 8.0
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-//            return context.createConfigurationContext(config);
-//        } else {
-//            resources.updateConfiguration(config, displayMetrics);
-//            return context;
+//        if (config.fontScale != sysFontScale * scale) {
+            config.fontScale = sysFontScale * scale;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                return context.createConfigurationContext(config);
+            } else {
+                resources.updateConfiguration(config, displayMetrics);
+            }
 //        }
+        return context;
     }
 
     /**
