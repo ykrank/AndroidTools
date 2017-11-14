@@ -28,6 +28,5 @@ class SimpleAdapterDelegate internal constructor(context: Context, @param:Layout
         val binding = (holder as SimpleRecycleViewHolder<*>).binding
         binding.setVariable(GlobalData.provider.itemModelBRid, items[position])
         bindViewHolderCallback?.onBindViewHolder(position, binding)
-        binding.executePendingBindings()
     }
 }

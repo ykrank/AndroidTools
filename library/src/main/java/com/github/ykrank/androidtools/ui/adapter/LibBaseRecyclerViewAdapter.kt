@@ -4,6 +4,7 @@ import android.content.Context
 import android.support.v7.util.DiffUtil
 import com.github.ykrank.androidtools.GlobalData
 import com.github.ykrank.androidtools.guava.Preconditions
+import com.github.ykrank.androidtools.ui.adapter.delegate.FooterProgressAdapterDelegate
 import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
 import com.hannesdorfmann.adapterdelegates3.ListDelegationAdapter
 import com.github.ykrank.androidtools.ui.adapter.delegate.ProgressAdapterDelegate
@@ -18,6 +19,7 @@ abstract class LibBaseRecyclerViewAdapter(context: Context) : ListDelegationAdap
         setHasStableIds(false)
         items = arrayListOf()
         delegatesManager.addDelegate(VIEW_TYPE_PROGRESS, ProgressAdapterDelegate(context))
+        addAdapterDelegate(FooterProgressAdapterDelegate(context))
     }
 
     protected fun addAdapterDelegate(adapterDelegate: AdapterDelegate<MutableList<Any>>) {

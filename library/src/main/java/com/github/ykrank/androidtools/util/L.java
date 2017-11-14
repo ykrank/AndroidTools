@@ -52,6 +52,7 @@ public class L {
 
     public static void l(String msg) {
         if (showLog()) {
+            Log.i(getLogTag(), msg);
             BuglyLog.d("LogMsg", msg);
         }
     }
