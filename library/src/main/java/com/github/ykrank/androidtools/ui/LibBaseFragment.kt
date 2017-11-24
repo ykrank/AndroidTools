@@ -5,7 +5,6 @@ import android.support.annotation.StringRes
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.view.View
-import com.github.ykrank.androidtools.GlobalData
 import com.github.ykrank.androidtools.ui.internal.CoordinatorLayoutAnchorDelegate
 import com.github.ykrank.androidtools.util.ResourceUtil
 import java.lang.ref.WeakReference
@@ -16,6 +15,7 @@ import java.lang.ref.WeakReference
 abstract class LibBaseFragment : Fragment() {
     protected var mCoordinatorLayoutAnchorDelegate: CoordinatorLayoutAnchorDelegate? = null
     protected var mRetrySnackbar: WeakReference<Snackbar>? = null
+    protected var mUserVisibleHint = false
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -34,6 +34,7 @@ abstract class LibBaseFragment : Fragment() {
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)
+        mUserVisibleHint = isVisibleToUser
 
         // see http://stackoverflow.com/a/9779971
         if (isVisible && !isVisibleToUser) {
@@ -53,7 +54,7 @@ abstract class LibBaseFragment : Fragment() {
         }
     }
 
-    protected fun showShortSnackbar(text: CharSequence?) {
+    protected fun showShortSnackbar(text: CharSequence) {
         mCoordinatorLayoutAnchorDelegate?.showShortSnackbar(text)
     }
 
@@ -62,7 +63,7 @@ abstract class LibBaseFragment : Fragment() {
     }
 
     protected fun showShortText(@StringRes resId: Int) {
-        mCoordinatorLayoutAnchorDelegate?.showShortText(getString(resId))
+        mCoordinatorLayoutAnchorDelegate?.showToastText(getString(resId))
     }
 
     protected fun showLongSnackbar(@StringRes resId: Int) {

@@ -44,7 +44,6 @@ abstract class LibBaseRecyclerViewFragment<D> : LibBaseFragment() {
     private var mDisposable: Disposable? = null
     private var lastPullRefreshTime: Long = 0
     private var init = false
-    private var mUserVisibleHint = false
 
     /**
      * the id of DataRetainedFragment's data
@@ -107,9 +106,8 @@ abstract class LibBaseRecyclerViewFragment<D> : LibBaseFragment() {
     }
 
     @CallSuper
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         mLoadingViewModelBindingDelegate.swipeRefreshLayout.setOnRefreshListener(
                 { this.startSwipeRefresh() })
     }
@@ -124,7 +122,7 @@ abstract class LibBaseRecyclerViewFragment<D> : LibBaseFragment() {
         // Without this, we couldn't get its retained Fragment back.
         val dataRetainedFragmentTag = DataRetainedFragment.TAG + "_" +
                 Preconditions.checkNotNull(tag, "Must add a tag to " + this + ".")
-        val fragmentManager = fragmentManager
+        val fragmentManager = fragmentManager ?: return
         val fragment = fragmentManager.findFragmentByTag(dataRetainedFragmentTag)
         if (fragment == null) {
             retainedFragment = DataRetainedFragment()
@@ -172,7 +170,7 @@ abstract class LibBaseRecyclerViewFragment<D> : LibBaseFragment() {
     }
 
     @CallSuper
-    override fun onSaveInstanceState(outState: Bundle?) {
+    override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
 
         outState?.putParcelable(STATE_LOADING_VIEW_MODEL, mLoadingViewModel)
@@ -180,7 +178,6 @@ abstract class LibBaseRecyclerViewFragment<D> : LibBaseFragment() {
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)
-        mUserVisibleHint = isVisibleToUser
         if (isVisibleToUser && isVisible) {
             //Create but only init or Init but should refresh when reVisible
             if (!init || init && refreshWhenUserVisibleHint()) {
@@ -301,7 +298,8 @@ abstract class LibBaseRecyclerViewFragment<D> : LibBaseFragment() {
     protected open fun onError(throwable: Throwable) {
         L.print(throwable)
         GlobalData.provider.errorParser?.let {
-            if (isAdded && userVisibleHint) {
+            val context = context
+            if (context != null && isAdded && userVisibleHint) {
                 showRetrySnackbar(it.parse(context, throwable))
             }
         }
@@ -334,7 +332,7 @@ abstract class LibBaseRecyclerViewFragment<D> : LibBaseFragment() {
      * otherwise leads memory leak.
      */
     fun destroyRetainedFragment() {
-        fragmentManager.beginTransaction().remove(retainedFragment).commitNowAllowingStateLoss()
+        fragmentManager?.let { it.beginTransaction().remove(retainedFragment).commitNowAllowingStateLoss() }
     }
 
     companion object {

@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.app.ProgressDialog
 import android.os.Bundle
 import android.support.annotation.CallSuper
+import android.widget.Toast
 import com.github.ykrank.androidautodispose.AndroidRxDispose
 import com.github.ykrank.androidlifecycle.event.FragmentEvent
 import com.github.ykrank.androidtools.GlobalData
@@ -85,7 +86,7 @@ abstract class LibProgressDialogFragment<D> : LibBaseDialogFragment() {
      */
     protected open fun onError(throwable: Throwable) {
         GlobalData.provider.errorParser?.let {
-            showShortText(it.parse(context, throwable))
+            showToastText(it.parse(context, throwable))
         }
     }
 
@@ -97,10 +98,10 @@ abstract class LibProgressDialogFragment<D> : LibBaseDialogFragment() {
     }
 
     /**
-     * @see me.ykrank.s1next.view.activity.BaseActivity.showShortText
+     * @see CoordinatorLayoutAnchorDelegate#showToastText
      */
-    protected fun showShortText(text: CharSequence?) {
-        (activity as CoordinatorLayoutAnchorDelegate).showShortText(text)
+    protected fun showToastText(text: CharSequence, length: Int = Toast.LENGTH_SHORT) {
+        (activity as CoordinatorLayoutAnchorDelegate).showToastText(text, length)
     }
 
     protected abstract fun getProgressMessage(): CharSequence?

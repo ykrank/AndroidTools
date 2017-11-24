@@ -45,6 +45,7 @@ public class L {
 
     public static boolean showLog() {
         if (!init.get()) {
+            init.set(true);
             showLog = GlobalData.provider.getDebug() || "alpha".equals(GlobalData.provider.getBuildType());
         }
         return showLog;
@@ -150,6 +151,7 @@ public class L {
     }
 
     public static void leaveMsg(String tag, String msg) {
+        i(tag, msg);
         BuglyLog.i(tag, msg);
     }
 

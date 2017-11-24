@@ -12,7 +12,7 @@ abstract class CoordinatorLayoutAnchorDelegateBaseImpl(private val mCoordinatorL
 
     private val actLifeCallback = UiGlobalData.provider.actLifeCallback
 
-    override fun showShortText(text: CharSequence): Optional<Snackbar> {
+    override fun showToastText(text: CharSequence, length: Int): Optional<Snackbar> {
         if (actLifeCallback.isAppVisible) {
             return showShortSnackbar(text)
         } else {

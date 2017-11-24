@@ -15,6 +15,7 @@ import com.bumptech.glide.load.engine.bitmap_recycle.ArrayPool;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.List;
 
 import okio.BufferedSink;
@@ -26,6 +27,8 @@ import okio.Okio;
  */
 
 public class FileUtil {
+
+    static DecimalFormat df = new DecimalFormat("0.00");
 
     /**
      * get system download directory
@@ -122,5 +125,21 @@ public class FileUtil {
             default:
                 return null;
         }
+    }
+
+    public static String getPrintSize(long size) {
+        if (size < 1024) {
+            return String.valueOf(size) + "B";
+        }
+        size = size / 1024;
+        if (size < 1024) {
+            return String.valueOf(size) + "KB";
+        }
+        double dSize = size / 1024.0f;
+        if (dSize < 1024) {
+            return df.format(dSize) + "MB";
+        }
+        dSize = dSize / 1024.0f;
+        return df.format(dSize) + "GB";
     }
 }

@@ -8,8 +8,6 @@ import android.view.*
 import com.github.ykrank.androidtools.GlobalData
 import com.github.ykrank.androidtools.R
 import com.github.ykrank.androidtools.ui.dialog.PageJumpDialogFragment
-import com.github.ykrank.androidtools.util.ResourceUtil
-import com.github.ykrank.androidtools.util.StringUtil
 import com.github.ykrank.androidtools.widget.TagFragmentStatePagerAdapter
 
 /**
@@ -61,7 +59,7 @@ abstract class LibBaseViewPagerFragment : LibBaseFragment(), PageJumpDialogFragm
         preparePageJumpMenu()
     }
 
-    open fun findMenuPageJump(menu: Menu?):MenuItem?{
+    open fun findMenuPageJump(menu: Menu?): MenuItem? {
         return menu?.findItem(R.id.menu_page_jump)
     }
 
@@ -84,7 +82,9 @@ abstract class LibBaseViewPagerFragment : LibBaseFragment(), PageJumpDialogFragm
 
     protected open fun onError(throwable: Throwable) {
         GlobalData.provider.errorParser?.let {
-            showShortSnackbar(it.parse(context, throwable))
+            val context = context
+            if (context != null)
+                showShortSnackbar(it.parse(context, throwable))
         }
     }
 
@@ -110,7 +110,7 @@ abstract class LibBaseViewPagerFragment : LibBaseFragment(), PageJumpDialogFragm
             return
         }
         this.mTotalPages = totalPages
-        mViewPager.adapter.notifyDataSetChanged()
+        mViewPager.adapter?.notifyDataSetChanged()
         preparePageJumpMenu()
     }
 
@@ -124,7 +124,7 @@ abstract class LibBaseViewPagerFragment : LibBaseFragment(), PageJumpDialogFragm
         // don't use getChildFragmentManager()
         // because we can't retain Fragments (DataRetainedFragment)
         // that are nested in other fragments
-        mAdapter = getPagerAdapter(fragmentManager)
+        mAdapter = getPagerAdapter(fragmentManager!!)
         mViewPager.adapter = mAdapter
         mAdapter.notifyDataSetChanged()
     }

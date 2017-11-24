@@ -91,8 +91,8 @@ abstract class LibBaseActivity : AppCompatActivity(), CoordinatorLayoutAnchorDel
         Toast.makeText(this, resId, Toast.LENGTH_SHORT).show()
     }
 
-    override fun showShortText(text: CharSequence): Optional<Snackbar> {
-        return saveSnackbarWeakReference(mCoordinatorLayoutAnchorDelegate?.showShortText(text))
+    override fun showToastText(text: CharSequence, length: Int): Optional<Snackbar> {
+        return saveSnackbarWeakReference(mCoordinatorLayoutAnchorDelegate?.showToastText(text))
     }
 
     override fun showShortSnackbar(@StringRes resId: Int): Optional<Snackbar> {

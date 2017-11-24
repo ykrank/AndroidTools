@@ -19,7 +19,7 @@ abstract class LibBaseLoadMoreRecycleViewFragment<D> : LibBaseRecyclerViewFragme
 
     var pageNum = 1
         private set
-    private var mPageCount: Int = 0
+    protected var mPageCount: Int = 1
 
     protected abstract val recyclerViewAdapter: LibBaseRecyclerViewAdapter
 
@@ -33,7 +33,7 @@ abstract class LibBaseLoadMoreRecycleViewFragment<D> : LibBaseRecyclerViewFragme
         }
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
@@ -89,10 +89,10 @@ abstract class LibBaseLoadMoreRecycleViewFragment<D> : LibBaseRecyclerViewFragme
     }
 
     @CallSuper
-    override fun onSaveInstanceState(outState: Bundle?) {
+    override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
 
-        outState?.putInt(STATE_PAGE_NUM, pageNum)
+        outState.putInt(STATE_PAGE_NUM, pageNum)
     }
 
     protected open fun setTotalPages(pageCount: Int) {
