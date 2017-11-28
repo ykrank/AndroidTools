@@ -111,6 +111,7 @@
         <item name="titlePopWindowTextColor">@android:color/secondary_text_light</item>
 
         <item name="divideLineColor">@color/grey_500</item>
+        <item name="textColorError">@color/red_A400</item>
     </style>
 
     <style name="Origin.Theme.Light.Inverse">
@@ -152,5 +153,7 @@
         <item name="titlePopWindowTextColor">@android:color/secondary_text_dark</item>
 
         <item name="divideLineColor">@color/grey_700</item>
+
+        <item name="textColorError">@color/red_A400</item>
     </style>
 </resources>

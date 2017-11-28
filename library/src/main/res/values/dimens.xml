@@ -96,6 +96,7 @@
     <!-- standard metrics -->
     <dimen name="spacing_normal">8dp</dimen>
     <dimen name="spacing_micro">4dp</dimen>
+    <dimen name="spacing_mill">2dp</dimen>
     <dimen name="spacing_big">16dp</dimen>
     <dimen name="spacing_large">32dp</dimen>
     <dimen name="spacing_xlarge">48dp</dimen>
