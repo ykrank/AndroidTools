@@ -54,8 +54,8 @@ abstract class LibBaseFragment : Fragment() {
         }
     }
 
-    protected fun showShortSnackbar(text: CharSequence) {
-        mCoordinatorLayoutAnchorDelegate?.showShortSnackbar(text)
+    protected fun showShortSnackbar(text: CharSequence?) {
+        text?.let { mCoordinatorLayoutAnchorDelegate?.showShortSnackbar(it) }
     }
 
     protected fun showShortSnackbar(@StringRes resId: Int) {

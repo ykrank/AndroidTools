@@ -100,8 +100,8 @@ abstract class LibProgressDialogFragment<D> : LibBaseDialogFragment() {
     /**
      * @see CoordinatorLayoutAnchorDelegate#showToastText
      */
-    protected fun showToastText(text: CharSequence, length: Int = Toast.LENGTH_SHORT) {
-        (activity as CoordinatorLayoutAnchorDelegate).showToastText(text, length)
+    protected fun showToastText(text: CharSequence?, length: Int = Toast.LENGTH_SHORT) {
+        text?.let { (activity as CoordinatorLayoutAnchorDelegate).showToastText(it, length) }
     }
 
     protected abstract fun getProgressMessage(): CharSequence?
