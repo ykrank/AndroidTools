@@ -34,7 +34,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TableLayout;
 import android.widget.TextView;
@@ -126,9 +125,9 @@ public class VideoActivity extends AppCompatActivity implements TracksFragment.I
 
         mToastTextView = (TextView) findViewById(R.id.toast_text_view);
         mHudView = (TableLayout) findViewById(R.id.hud_view);
-        if (BuildConfig.DEBUG) {
-            mHudView.setVisibility(View.VISIBLE);
-        }
+//        if (BuildConfig.DEBUG) {
+//            mHudView.setVisibility(View.VISIBLE);
+//        }
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mRightDrawer = (ViewGroup) findViewById(R.id.right_drawer);
 
