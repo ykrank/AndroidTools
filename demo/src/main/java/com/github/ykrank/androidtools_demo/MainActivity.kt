@@ -1,5 +1,6 @@
 package com.github.ykrank.androidtools_demo
 
+import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -12,5 +13,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+        binding.tvVideo.setOnClickListener { startActivity(Intent(this, FileExplorerActivity::class.java)) }
     }
 }
