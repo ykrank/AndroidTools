@@ -8,6 +8,7 @@ import android.widget.Toast
 import com.github.ykrank.androidautodispose.AndroidRxDispose
 import com.github.ykrank.androidlifecycle.event.FragmentEvent
 import com.github.ykrank.androidtools.GlobalData
+import com.github.ykrank.androidtools.ui.UiGlobalData
 import com.github.ykrank.androidtools.ui.internal.CoordinatorLayoutAnchorDelegate
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -95,13 +96,6 @@ abstract class LibProgressDialogFragment<D> : LibBaseDialogFragment() {
      */
     protected fun finallyDo() {
         dismissAllowingStateLoss()
-    }
-
-    /**
-     * @see CoordinatorLayoutAnchorDelegate#showToastText
-     */
-    protected fun showToastText(text: CharSequence?, length: Int = Toast.LENGTH_SHORT) {
-        text?.let { (activity as CoordinatorLayoutAnchorDelegate).showToastText(it, length) }
     }
 
     protected abstract fun getProgressMessage(): CharSequence?

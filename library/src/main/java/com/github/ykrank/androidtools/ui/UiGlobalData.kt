@@ -5,13 +5,15 @@ package com.github.ykrank.androidtools.ui
  */
 object UiGlobalData {
     lateinit var provider: UiDataProvider
-    lateinit var R:RProvider
+    lateinit var R: RProvider
+    lateinit var toast: (CharSequence?, Int) -> Unit
 
     /**
      * 初始化全局参数
      */
-    fun init(uiProvider: UiDataProvider, R:RProvider) {
+    fun init(uiProvider: UiDataProvider, R: RProvider, toast: (CharSequence?, Int) -> Unit) {
         this.provider = uiProvider
         this.R = R
+        this.toast = toast
     }
 }
