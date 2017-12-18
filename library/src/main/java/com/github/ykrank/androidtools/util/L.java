@@ -137,6 +137,9 @@ public class L {
     }
 
     public static void report(Throwable tr, int severity) {
+        if (showLog()) {
+            tr.printStackTrace();
+        }
         CrashReport.postCatchedException(tr);
         BuglyLog.e(getLogTag(), "Report error", tr);
     }

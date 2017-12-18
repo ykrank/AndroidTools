@@ -51,6 +51,7 @@
     <dimen name="emoticon_keyboard_tab_layout_height">36dp</dimen>
     <dimen name="emoticon_keyboard_tab_layout_elevation">1dp</dimen>
     <dimen name="emoticon_padding">8dp</dimen>
+    <dimen name="control_keyboard_height">96dp</dimen>
 
     <dimen name="photo_view_crop_width">280dp</dimen>
     <dimen name="photo_view_crop_stroke_width">1dp</dimen>

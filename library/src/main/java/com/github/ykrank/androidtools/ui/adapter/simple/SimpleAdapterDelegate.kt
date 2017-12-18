@@ -12,15 +12,18 @@ import com.github.ykrank.androidtools.ui.adapter.delegate.item.FooterProgressIte
 import com.github.ykrank.androidtools.ui.adapter.delegate.item.ProgressItem
 import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
 
-class SimpleAdapterDelegate internal constructor(context: Context, @param:LayoutRes private val layoutRes: Int, private val bindViewHolderCallback: BindViewHolderCallback?) : AdapterDelegate<MutableList<Any>>() {
+open class SimpleAdapterDelegate constructor(context: Context, @param:LayoutRes private val layoutRes: Int,
+                                             private val createViewHolderCallback: ((ViewDataBinding) -> Unit)? = null,
+                                             private val bindViewHolderCallback: BindViewHolderCallback? = null) : AdapterDelegate<MutableList<Any>>() {
     private val mLayoutInflater: LayoutInflater = LayoutInflater.from(context)
 
     override fun isForViewType(items: MutableList<Any>, position: Int): Boolean {
-        return !ProgressItem::class.java.isInstance(items[position] ) && !FooterProgressItem::class.java.isInstance(items[position])
+        return !ProgressItem::class.java.isInstance(items[position]) && !FooterProgressItem::class.java.isInstance(items[position])
     }
 
     override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
         val binding = DataBindingUtil.inflate<ViewDataBinding>(mLayoutInflater, layoutRes, parent, false)
+        createViewHolderCallback?.invoke(binding)
         return SimpleRecycleViewHolder(binding)
     }
 
