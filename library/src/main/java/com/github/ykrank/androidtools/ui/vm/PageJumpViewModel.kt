@@ -17,7 +17,10 @@ class PageJumpViewModel(seekBarMax: Int, seekBarProgress: Int) : BaseObservable(
     private val seekBarMax = ObservableInt()
     @Bindable
     var seekBarProgress: Int = 0
-        private set
+        private set(value) {
+            field = value
+            notifyPropertyChanged(BR.seekBarProgressText)
+        }
 
     // current page is zero-based
     @get:Bindable

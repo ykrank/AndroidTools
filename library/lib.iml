@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module external.linked.project.id=":lib" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$/../../91video" external.system.id="GRADLE" type="JAVA_MODULE" version="4">
+<module external.linked.project.id=":lib" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$/../../S1-Next" external.system.id="GRADLE" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
     <facet type="android-gradle" name="Android-Gradle">
       <configuration>
@@ -138,6 +138,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="com.android.support:support-media-compat-26.1.0" level="project" />
     <orderEntry type="library" name="com.android.support:recyclerview-v7-26.1.0" level="project" />
+    <orderEntry type="library" name="org.jetbrains.kotlin:kotlin-stdlib-jre7:1.2.20@jar" level="project" />
     <orderEntry type="library" name="android.arch.lifecycle:common:1.0.0@jar" level="project" />
     <orderEntry type="library" name="com.android.support:preference-v14-26.1.0" level="project" />
     <orderEntry type="library" name="android.arch.lifecycle:runtime-1.0.0" level="project" />
@@ -157,6 +158,7 @@
     <orderEntry type="library" name="com.squareup.haha:haha:2.0.3@jar" level="project" />
     <orderEntry type="library" name="io.reactivex.rxjava2:rxkotlin:2.2.0@jar" level="project" />
     <orderEntry type="library" name="com.uber.autodispose:autodispose:0.2.0@jar" level="project" />
+    <orderEntry type="library" name="org.jetbrains.kotlin:kotlin-stdlib:1.2.20@jar" level="project" />
     <orderEntry type="library" name="com.hannesdorfmann:adapterdelegates3-3.0.2-SNAPSHOT" level="project" />
     <orderEntry type="library" name="com.android.support:transition-26.1.0" level="project" />
     <orderEntry type="library" name="com.android.support:design-26.1.0" level="project" />
