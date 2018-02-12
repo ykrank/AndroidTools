@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">AndroidTools</string>
+
+    <string name="snackbar_action_retry">重试</string>
+    <string name="navigation_drawer_open">打开导航抽屉</string>
+    <string name="navigation_drawer_close">关闭导航抽屉</string>
+    <string name="dialog_button_text_jump">跳转</string>
+    <string name="menu_page_jump">跳至特定页数</string>
+</resources>
