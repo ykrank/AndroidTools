@@ -8,12 +8,13 @@ import android.view.*
 import com.github.ykrank.androidtools.GlobalData
 import com.github.ykrank.androidtools.R
 import com.github.ykrank.androidtools.ui.dialog.PageJumpDialogFragment
+import com.github.ykrank.androidtools.ui.internal.PagerCallback
 import com.github.ykrank.androidtools.widget.TagFragmentStatePagerAdapter
 
 /**
  * A base Fragment wraps [ViewPager] and provides related methods.
  */
-abstract class LibBaseViewPagerFragment : LibBaseFragment(), PageJumpDialogFragment.OnPageJumpedListener {
+abstract class LibBaseViewPagerFragment : LibBaseFragment(), PagerCallback, PageJumpDialogFragment.OnPageJumpedListener {
 
     private lateinit var mViewPager: ViewPager
     protected lateinit var mAdapter: BaseFragmentStatePagerAdapter<*>
@@ -105,7 +106,7 @@ abstract class LibBaseViewPagerFragment : LibBaseFragment(), PageJumpDialogFragm
         return mTotalPages
     }
 
-    open fun setTotalPages(totalPages: Int) {
+    override fun setTotalPages(totalPages: Int) {
         if (totalPages <= mTotalPages) {
             return
         }
