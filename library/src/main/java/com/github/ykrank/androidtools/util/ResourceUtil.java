@@ -40,6 +40,18 @@ public final class ResourceUtil {
     }
 
     /**
+     * 获取实际上可能被覆盖的资源ID
+     * @param context
+     * @param id
+     * @return
+     */
+    public static int getAppRId(Context context, @AnyRes int id){
+        String resName =  context.getResources().getResourceEntryName(id);
+        String resType = context.getResources().getResourceTypeName(id);
+        return getIdByNameIncludeLib(resType, resName);
+    }
+
+    /**
      * 根据资源名称获取资源ID。如R.A.B
      *
      * @param r         主项目R文件的Class

@@ -1,8 +1,5 @@
 <resources>
-        
-    <string name="app_name">AndroidTools</string>
-
-        
+       
     <string name="snackbar_action_retry">重試</string>
         
     <string name="navigation_drawer_open">打開導航抽屜</string>

@@ -71,7 +71,7 @@ public final class PageJumpDialogFragment extends LibBaseDialogFragment {
         AlertDialog alertDialog = new AlertDialog.Builder(getContext())
                 .setTitle(R.string.menu_page_jump)
                 .setView(binding.getRoot())
-                .setPositiveButton(ResourceUtil.getIdByNameIncludeLib("string", "dialog_button_text_jump"), (dialog, which) -> {
+                .setPositiveButton(ResourceUtil.getAppRId(getContext(), R.string.dialog_button_text_jump), (dialog, which) -> {
                     if (!TextUtils.isEmpty(binding.value.getText())) {
                         ((OnPageJumpedListener) getParentFragment()).onPageJumped(
                                 mPageJumpViewModel.getSeekBarProgress());

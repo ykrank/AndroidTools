@@ -5,6 +5,7 @@ import android.support.annotation.StringRes
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.view.View
+import com.github.ykrank.androidtools.R
 import com.github.ykrank.androidtools.ui.internal.CoordinatorLayoutAnchorDelegate
 import com.github.ykrank.androidtools.util.ResourceUtil
 import java.lang.ref.WeakReference
@@ -47,7 +48,7 @@ abstract class LibBaseFragment : Fragment() {
     fun showRetrySnackbar(text: CharSequence, onClickListener: View.OnClickListener) {
         mCoordinatorLayoutAnchorDelegate?.let {
             val snackbar = it.showLongSnackbarIfVisible(
-                    text, ResourceUtil.getIdByNameIncludeLib("string", "snackbar_action_retry"), onClickListener)
+                    text, ResourceUtil.getAppRId(context, R.string.snackbar_action_retry), onClickListener)
             if (snackbar.isPresent) {
                 mRetrySnackbar = WeakReference(snackbar.get())
             }

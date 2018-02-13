@@ -61,8 +61,8 @@ abstract class DrawerLayoutDelegate constructor(protected val mFragmentActivity:
     private fun setupNavDrawer() {
         // see http://stackoverflow.com/a/27487357
         mDrawerToggle = object : ActionBarDrawerToggle(mFragmentActivity, mDrawerLayout,
-                ResourceUtil.getIdByNameIncludeLib("string", "navigation_drawer_open"),
-                ResourceUtil.getIdByNameIncludeLib("string", "navigation_drawer_close")) {
+                ResourceUtil.getAppRId(mFragmentActivity, R.string.navigation_drawer_open),
+                ResourceUtil.getAppRId(mFragmentActivity, R.string.navigation_drawer_close)) {
 
             override fun onDrawerSlide(drawerView: View?, slideOffset: Float) {
                 super.onDrawerSlide(drawerView, 0f)
