@@ -157,6 +157,7 @@ public final class BezelImageView extends AppCompatImageView {
                 Bitmap bitmap = ((BitmapDrawable) mDrawable).getBitmap();
                 if (bitmap != null && bitmap.getConfig() == Bitmap.Config.HARDWARE) {
                     setImageBitmap(bitmap.copy(Bitmap.Config.ARGB_8888, false));
+                    return;
                 }
             }
         }
@@ -183,9 +184,7 @@ public final class BezelImageView extends AppCompatImageView {
                 mMaskDrawable.draw(cacheCanvas);
                 mMaskedPaint.setColorFilter((mDesaturateOnPress && isPressed()) ? mDesaturateColorFilter
                         : null);
-                cacheCanvas.saveLayer(mBoundsF, mMaskedPaint,
-                        Canvas.HAS_ALPHA_LAYER_SAVE_FLAG
-                                | Canvas.FULL_COLOR_LAYER_SAVE_FLAG);
+                cacheCanvas.saveLayer(mBoundsF, mMaskedPaint, Canvas.ALL_SAVE_FLAG);
                 super.onDraw(cacheCanvas);
                 cacheCanvas.restoreToCount(sc);
             } else if (mDesaturateOnPress && isPressed()) {
@@ -193,9 +192,7 @@ public final class BezelImageView extends AppCompatImageView {
                 cacheCanvas.drawRect(0, 0, mCachedWidth, mCachedHeight,
                         mBlackPaint);
                 mMaskedPaint.setColorFilter(mDesaturateColorFilter);
-                cacheCanvas.saveLayer(mBoundsF, mMaskedPaint,
-                        Canvas.HAS_ALPHA_LAYER_SAVE_FLAG
-                                | Canvas.FULL_COLOR_LAYER_SAVE_FLAG);
+                cacheCanvas.saveLayer(mBoundsF, mMaskedPaint, Canvas.ALL_SAVE_FLAG);
                 super.onDraw(cacheCanvas);
                 cacheCanvas.restoreToCount(sc);
             } else {
