@@ -64,11 +64,11 @@ abstract class DrawerLayoutDelegate constructor(protected val mFragmentActivity:
                 ResourceUtil.getAppRId(mFragmentActivity, R.string.navigation_drawer_open),
                 ResourceUtil.getAppRId(mFragmentActivity, R.string.navigation_drawer_close)) {
 
-            override fun onDrawerSlide(drawerView: View?, slideOffset: Float) {
+            override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
                 super.onDrawerSlide(drawerView, 0f)
             }
 
-            override fun onDrawerOpened(drawerView: View?) {
+            override fun onDrawerOpened(drawerView: View) {
                 super.onDrawerOpened(drawerView)
 
                 super.onDrawerSlide(drawerView, 0f)

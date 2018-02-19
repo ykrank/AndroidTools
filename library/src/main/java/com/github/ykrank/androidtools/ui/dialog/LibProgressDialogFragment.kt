@@ -86,8 +86,11 @@ abstract class LibProgressDialogFragment<D> : LibBaseDialogFragment() {
      * @see BaseRecyclerViewFragment.onError
      */
     protected open fun onError(throwable: Throwable) {
-        GlobalData.provider.errorParser?.let {
-            showToastText(it.parse(context, throwable))
+        val context = context
+        if (context != null) {
+            GlobalData.provider.errorParser?.let {
+                showToastText(it.parse(context, throwable))
+            }
         }
     }
 
