@@ -48,7 +48,7 @@ abstract class LibBaseFragment : Fragment() {
     fun showRetrySnackbar(text: CharSequence, onClickListener: View.OnClickListener) {
         mCoordinatorLayoutAnchorDelegate?.let {
             val snackbar = it.showLongSnackbarIfVisible(
-                    text, ResourceUtil.getAppRId(context, R.string.snackbar_action_retry), onClickListener)
+                    text, R.string.snackbar_action_retry, onClickListener)
             if (snackbar.isPresent) {
                 mRetrySnackbar = WeakReference(snackbar.get())
             }
