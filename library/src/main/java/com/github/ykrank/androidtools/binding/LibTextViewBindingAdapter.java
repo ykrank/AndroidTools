@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.Locale;
 
 public final class LibTextViewBindingAdapter {
-    private static DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault());
+    private static DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
 
     private LibTextViewBindingAdapter() {
     }

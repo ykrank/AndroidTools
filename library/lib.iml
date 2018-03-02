@@ -33,13 +33,13 @@
           <option name="jvmTarget" value="1.8" />
           <option name="addCompilerBuiltIns" value="true" />
           <option name="loadBuiltInsFromDependencies" value="true" />
-          <option name="languageVersion" value="1.2" />
-          <option name="apiVersion" value="1.2" />
           <option name="pluginOptions">
             <array />
           </option>
           <option name="pluginClasspaths">
             <array>
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-annotation-processing-gradle/1.2.21/a8217f1d15190b377518c6231200f325342a0ab1/kotlin-annotation-processing-gradle-1.2.21.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-annotation-processing-gradle/1.2.21/a8217f1d15190b377518c6231200f325342a0ab1/kotlin-annotation-processing-gradle-1.2.21.jar" />
               <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-annotation-processing-gradle/1.2.21/a8217f1d15190b377518c6231200f325342a0ab1/kotlin-annotation-processing-gradle-1.2.21.jar" />
             </array>
           </option>
@@ -186,5 +186,6 @@
     <orderEntry type="library" name="com.android.support:preference-v14-27.0.2" level="project" />
     <orderEntry type="library" name="com.squareup.leakcanary:leakcanary-android-1.5.4" level="project" />
     <orderEntry type="library" name="com.squareup.leakcanary:leakcanary-watcher:1.5.4@jar" level="project" />
+    <orderEntry type="library" name="com.squareup.leakcanary:leakcanary-android-no-op-1.5.4" level="project" />
   </component>
 </module>
