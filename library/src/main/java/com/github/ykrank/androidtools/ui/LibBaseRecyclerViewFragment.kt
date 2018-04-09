@@ -33,7 +33,7 @@ import io.reactivex.disposables.Disposable
 abstract class LibBaseRecyclerViewFragment<D> : LibBaseFragment() {
 
     private lateinit var mLoadingViewModelBindingDelegate: LoadingViewModelBindingDelegate
-    private lateinit var mLoadingViewModel: LoadingViewModel
+    private var mLoadingViewModel: LoadingViewModel = LoadingViewModel()
 
     /**
      * We use retained Fragment to retain data when configuration changes.
@@ -92,10 +92,8 @@ abstract class LibBaseRecyclerViewFragment<D> : LibBaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (savedInstanceState == null) {
-            mLoadingViewModel = LoadingViewModel()
-        } else {
-            mLoadingViewModel = savedInstanceState.getParcelable(STATE_LOADING_VIEW_MODEL)
+        if (savedInstanceState != null) {
+            mLoadingViewModel = savedInstanceState.getParcelable(STATE_LOADING_VIEW_MODEL)?:LoadingViewModel()
         }
     }
 
@@ -173,7 +171,7 @@ abstract class LibBaseRecyclerViewFragment<D> : LibBaseFragment() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
 
-        outState?.putParcelable(STATE_LOADING_VIEW_MODEL, mLoadingViewModel)
+        outState.putParcelable(STATE_LOADING_VIEW_MODEL, mLoadingViewModel)
     }
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {

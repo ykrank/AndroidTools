@@ -8,6 +8,7 @@ import android.support.annotation.IntDef;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
+// FIXME: 2018/4/10 BadParcelableException
 public final class LoadingViewModel extends BaseObservable implements Parcelable {
 
     public static final Creator<LoadingViewModel> CREATOR = new Creator<LoadingViewModel>() {
