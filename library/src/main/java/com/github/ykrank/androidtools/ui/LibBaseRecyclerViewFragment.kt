@@ -92,8 +92,9 @@ abstract class LibBaseRecyclerViewFragment<D> : LibBaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        mLoadingViewModel = LoadingViewModel()
         if (savedInstanceState != null) {
-            mLoadingViewModel = savedInstanceState.getParcelable(STATE_LOADING_VIEW_MODEL)?:LoadingViewModel()
+            mLoadingViewModel.loading = savedInstanceState.getInt(STATE_LOADING_VIEW_MODEL, LoadingViewModel.LOADING_FINISH)
         }
     }
 
@@ -171,7 +172,7 @@ abstract class LibBaseRecyclerViewFragment<D> : LibBaseFragment() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
 
-        outState.putParcelable(STATE_LOADING_VIEW_MODEL, mLoadingViewModel)
+        outState.putInt(STATE_LOADING_VIEW_MODEL, mLoadingViewModel.loading)
     }
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {

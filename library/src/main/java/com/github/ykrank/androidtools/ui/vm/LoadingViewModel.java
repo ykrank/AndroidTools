@@ -2,28 +2,12 @@ package com.github.ykrank.androidtools.ui.vm;
 
 import android.databinding.BaseObservable;
 import android.os.Parcel;
-import android.os.Parcelable;
 import android.support.annotation.IntDef;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-// FIXME: 2018/4/10 BadParcelableException
-public final class LoadingViewModel extends BaseObservable implements Parcelable {
-
-    public static final Creator<LoadingViewModel> CREATOR = new Creator<LoadingViewModel>() {
-
-        @Override
-        public LoadingViewModel createFromParcel(Parcel source) {
-            return new LoadingViewModel(source);
-        }
-
-        @Override
-        public LoadingViewModel[] newArray(int i) {
-            return new LoadingViewModel[i];
-        }
-    };
-
+public final class LoadingViewModel extends BaseObservable {
     public static final int LOADING_FINISH = 0;
 
     /**
@@ -64,16 +48,6 @@ public final class LoadingViewModel extends BaseObservable implements Parcelable
 
     public Boolean isLoadingFirstTime() {
         return loading == LOADING_FIRST_TIME;
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(loading);
     }
 
     @Retention(RetentionPolicy.SOURCE)
