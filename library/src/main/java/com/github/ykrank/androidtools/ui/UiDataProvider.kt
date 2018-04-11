@@ -8,7 +8,7 @@ import com.squareup.leakcanary.RefWatcher
  * Created by ykrank on 2017/11/6.
  */
 interface UiDataProvider {
-    val refWatcher: RefWatcher
-    val actLifeCallback: WifiActivityLifecycleCallbacks
-    val trackAgent: DataTrackAgent
+    val refWatcher: RefWatcher?
+    val actLifeCallback: WifiActivityLifecycleCallbacks?
+    val trackAgent: DataTrackAgent?
 }

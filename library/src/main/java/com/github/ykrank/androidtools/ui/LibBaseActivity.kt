@@ -48,12 +48,12 @@ abstract class LibBaseActivity : AppCompatActivity(), CoordinatorLayoutAnchorDel
 
     override fun onResume() {
         super.onResume()
-        UiGlobalData.provider.trackAgent.post(ActivityStartEvent(this))
+        UiGlobalData.provider?.trackAgent?.post(ActivityStartEvent(this))
     }
 
     override fun onPause() {
         super.onPause()
-        UiGlobalData.provider.trackAgent.post(ActivityEndEvent(this))
+        UiGlobalData.provider?.trackAgent?.post(ActivityEndEvent(this))
     }
 
     override fun onDestroy() {

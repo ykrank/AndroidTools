@@ -10,10 +10,10 @@ import com.github.ykrank.androidtools.ui.UiGlobalData
 
 abstract class CoordinatorLayoutAnchorDelegateBaseImpl(private val mCoordinatorLayout: CoordinatorLayout) : CoordinatorLayoutAnchorDelegate {
 
-    private val actLifeCallback = UiGlobalData.provider.actLifeCallback
+    private val actLifeCallback = UiGlobalData.provider?.actLifeCallback
 
     override fun showToastText(text: CharSequence, length: Int): Optional<Snackbar> {
-        if (actLifeCallback.isAppVisible) {
+        if (actLifeCallback?.isAppVisible == true) {
             return showShortSnackbar(text)
         } else {
             Toast.makeText(mCoordinatorLayout.context.applicationContext, text,
@@ -39,7 +39,7 @@ abstract class CoordinatorLayoutAnchorDelegateBaseImpl(private val mCoordinatorL
     }
 
     override fun showLongSnackbarIfVisible(text: CharSequence, @StringRes actionResId: Int, onClickListener: View.OnClickListener): Optional<Snackbar> {
-        if (actLifeCallback.isAppVisible) {
+        if (actLifeCallback?.isAppVisible == true) {
             val snackbar = Snackbar.make(mCoordinatorLayout, text, Snackbar.LENGTH_LONG)
             snackbar.setAction(actionResId, onClickListener)
             snackbar.show()

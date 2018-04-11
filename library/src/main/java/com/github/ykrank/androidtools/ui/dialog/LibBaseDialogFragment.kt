@@ -16,7 +16,7 @@ import java.lang.ref.WeakReference
  */
 
 abstract class LibBaseDialogFragment : DialogFragment() {
-    val trackAgent: DataTrackAgent = UiGlobalData.provider.trackAgent
+    val trackAgent: DataTrackAgent? = UiGlobalData.provider?.trackAgent
 
     protected var mRetrySnackbar: WeakReference<Snackbar>? = null
 
@@ -26,11 +26,11 @@ abstract class LibBaseDialogFragment : DialogFragment() {
 
     override fun onResume() {
         super.onResume()
-        trackAgent.post(FragmentStartEvent(this))
+        trackAgent?.post(FragmentStartEvent(this))
     }
 
     override fun onPause() {
-        trackAgent.post(FragmentEndEvent(this))
+        trackAgent?.post(FragmentEndEvent(this))
         super.onPause()
     }
 

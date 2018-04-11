@@ -30,7 +30,7 @@ abstract class LibBaseFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        UiGlobalData.provider.refWatcher.watch(this)
+        UiGlobalData.provider?.refWatcher?.watch(this)
     }
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
