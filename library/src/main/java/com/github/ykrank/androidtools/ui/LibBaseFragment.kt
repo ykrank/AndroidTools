@@ -7,7 +7,8 @@ import android.support.v4.app.Fragment
 import android.view.View
 import com.github.ykrank.androidtools.R
 import com.github.ykrank.androidtools.ui.internal.CoordinatorLayoutAnchorDelegate
-import com.github.ykrank.androidtools.util.ResourceUtil
+import com.github.ykrank.androidtools.widget.track.event.page.FragmentEndEvent
+import com.github.ykrank.androidtools.widget.track.event.page.FragmentStartEvent
 import java.lang.ref.WeakReference
 
 /**
@@ -26,6 +27,16 @@ abstract class LibBaseFragment : Fragment() {
     override fun onDetach() {
         mCoordinatorLayoutAnchorDelegate = null
         super.onDetach()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        UiGlobalData.provider?.trackAgent?.post(FragmentStartEvent(this))
+    }
+
+    override fun onPause() {
+        UiGlobalData.provider?.trackAgent?.post(FragmentEndEvent(this))
+        super.onPause()
     }
 
     override fun onDestroy() {
