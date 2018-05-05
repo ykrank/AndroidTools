@@ -1,0 +1,18 @@
+apply plugin: 'java'
+
+jar {
+    // This line of code recursively collects and copies all of a project's files
+    // and adds them to the JAR itself. One can extend this task, to skip certain
+    // files or particular types at will
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'com.squareup.okio:okio:1.14.0'
+    implementation 'com.github.javaparser:javaparser-core:3.6.3'
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
