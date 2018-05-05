@@ -10,6 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
         vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -43,6 +44,8 @@ dependencies {
     api "com.android.support:percent:$rootProject.supportVersion"
     api "com.android.support:preference-v14:$rootProject.supportVersion"
 
+    api 'com.android.support:multidex:1.0.3'
+
     debugApi 'com.squareup.leakcanary:leakcanary-android:1.5.4'
     releaseApi 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
     api 'org.apache.commons:commons-lang3:3.7'
@@ -63,5 +66,5 @@ dependencies {
 
     api 'com.orhanobut:logger:2.2.0'
 
-    compileOnly 'com.nononsenseapps:filepicker:4.1.0'
+    implementation 'com.nononsenseapps:filepicker:4.1.0'
 }
