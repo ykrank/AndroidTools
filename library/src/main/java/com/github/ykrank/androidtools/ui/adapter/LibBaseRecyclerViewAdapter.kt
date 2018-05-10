@@ -43,10 +43,8 @@ abstract class LibBaseRecyclerViewAdapter(context: Context) : ListDelegationAdap
     }
 
     fun showFooterProgress() {
-        val position = itemCount - 1
-        Preconditions.checkState(getItem(position) != null)
         addItem(FooterProgressItem())
-        notifyItemInserted(position + 1)
+        notifyItemInserted(items.size)
     }
 
     fun hideFooterProgress() {

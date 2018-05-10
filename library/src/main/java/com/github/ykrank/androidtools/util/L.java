@@ -2,6 +2,7 @@ package com.github.ykrank.androidtools.util;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.github.ykrank.androidtools.GlobalData;
@@ -74,39 +75,39 @@ public class L {
         return GlobalData.provider.getLogTag();
     }
 
-    public static void d(String msg) {
+    public static void d(@Nullable String msg) {
         Logger.d(msg);
     }
 
-    public static void d(Throwable e) {
+    public static void d(@NonNull Throwable e) {
         Logger.d(e.getMessage());
     }
 
-    public static void d(String tag, String msg) {
+    public static void d(String tag, @Nullable String msg) {
         Logger.t(tag).d(msg);
     }
 
-    public static void i(String msg) {
+    public static void i(@NonNull String msg) {
         Logger.i(msg);
     }
 
-    public static void i(String tag, String msg) {
+    public static void i(String tag, @NonNull String msg) {
         Logger.t(tag).i(msg);
     }
 
-    public static void w(String msg) {
+    public static void w(@NonNull String msg) {
         Logger.w(msg);
     }
 
-    public static void w(String tag, String msg) {
+    public static void w(String tag, @NonNull String msg) {
         Logger.t(tag).w(msg);
     }
 
     public static void w(Throwable e) {
-        Logger.e(e, null);
+        Logger.e(e, "");
     }
 
-    public static void e(String msg) {
+    public static void e(@NonNull String msg) {
         e(null, msg, null);
     }
 
@@ -118,11 +119,11 @@ public class L {
         e(null, msg, tr);
     }
 
-    public static void e(String tag, String msg) {
+    public static void e(String tag, @NonNull String msg) {
         e(tag, msg, null);
     }
 
-    public static void e(String tag, String msg, Throwable tr) {
+    public static void e(String tag, @NonNull String msg, Throwable tr) {
         BuglyLog.e(getLogTag() + tag, msg, tr);
         if (tr != null) {
             tr.printStackTrace();

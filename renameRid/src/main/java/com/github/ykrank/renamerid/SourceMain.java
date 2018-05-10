@@ -93,9 +93,9 @@ public class SourceMain {
      * 遍历文件夹
      *
      * @param dir            文件夹
-     * @param ignoreRootFile 是否忽略文件夹根目录的文件
+     * @param ignoreRootRFile 是否忽略文件夹根目录的R.java
      */
-    private void listDir(File dir, boolean ignoreRootFile) {
+    private void listDir(File dir, boolean ignoreRootRFile) {
         if (!dir.isDirectory()) {
             return;
         }
@@ -104,7 +104,9 @@ public class SourceMain {
             Arrays.stream(childFiles)
                     .forEach(it -> {
                         if (it.isFile()) {
-                            if (!ignoreRootFile) {
+                            if (ignoreRootRFile && it.getName().equals("R.java")) {
+
+                            } else {
                                 rewriteFile(it);
                             }
                         } else {
