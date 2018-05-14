@@ -1,5 +1,6 @@
 package com.github.ykrank.androidtools.util;
 
+import android.annotation.SuppressLint;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -33,11 +34,28 @@ public class ColorDrawableUtils {
         return (T) drawable.getConstantState().newDrawable();
     }
 
+    @SuppressLint("RestrictedApi")
     @NonNull
     public static <T extends Drawable> T safeMutableDrawable(@NonNull T drawable) {
         T tDrawable;
         if (DrawableUtils.canSafelyMutateDrawable(drawable)) {
-            tDrawable = (T) drawable.mutate();
+            try {
+                tDrawable = (T) drawable.mutate();
+            } catch (Exception e){
+                tDrawable = drawable;
+
+                //RippleDrawable mutate npe in framework 21-23. but it need not mutate
+                boolean notReport = false;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    if (drawable instanceof RippleDrawable && e instanceof NullPointerException){
+                        notReport = true;
+                    }
+                }
+                if (!notReport){
+                    L.report(e);
+                }
+            }
+
         } else {
             tDrawable = ColorDrawableUtils.getNewDrawable(drawable);
         }
