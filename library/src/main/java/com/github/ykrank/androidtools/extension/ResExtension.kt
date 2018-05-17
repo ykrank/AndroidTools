@@ -19,5 +19,9 @@ fun Int.resInt(context: Context): Int {
 }
 
 fun Int.dp2px(context: Context): Int {
-    return (context.getResources().getDisplayMetrics().density * this + 0.5f).toInt()
+    return (context.resources.displayMetrics.density * this + 0.5f).toInt()
+}
+
+fun Int.px2dp(context: Context): Int {
+    return (this / context.resources.displayMetrics.density).toInt()
 }

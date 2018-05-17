@@ -49,11 +49,15 @@
 
     <!-- 36dp (emoticon keyboard header) + 160dp (48dp * 3 three lines of emoticons
     + 8dp * 2 top/bottom padding of emoticon grid) -->
-    <dimen name="emoticon_keyboard_height">196dp</dimen>
+    <dimen name="emoticon_keyboard_height">208dp</dimen>
     <dimen name="emoticon_keyboard_tab_layout_height">36dp</dimen>
     <dimen name="emoticon_keyboard_tab_layout_elevation">1dp</dimen>
     <dimen name="emoticon_padding">8dp</dimen>
     <dimen name="control_keyboard_height">96dp</dimen>
+
+    <dimen name="post_tools_content_height">240dp</dimen>
+    <dimen name="post_tools_tab_layout_height">48dp</dimen>
+    <dimen name="post_tools_tab_layout_elevation">2dp</dimen>
 
     <dimen name="photo_view_crop_width">280dp</dimen>
     <dimen name="photo_view_crop_stroke_width">1dp</dimen>
