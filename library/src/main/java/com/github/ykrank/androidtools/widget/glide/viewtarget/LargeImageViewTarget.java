@@ -30,6 +30,7 @@ public class LargeImageViewTarget extends ViewTarget<LargeImageView, File> {
 
     @Override
     public void onLoadStarted(Drawable placeholder) {
+        super.onLoadStarted(placeholder);
         view.setImageDrawable(placeholder);
     }
 
@@ -46,6 +47,7 @@ public class LargeImageViewTarget extends ViewTarget<LargeImageView, File> {
 
     @Override
     public void onLoadCleared(Drawable placeholder) {
+        super.onLoadCleared(placeholder);
         view.setImageDrawable(placeholder);
     }
 
