@@ -18,7 +18,7 @@ class SimpleRecycleViewAdapter : LibBaseRecyclerViewAdapter {
 
     constructor(context: Context, @LayoutRes layoutRes: Int, bindViewHolderCallback: BindViewHolderCallback? = null,
                 createViewHolderCallback: ((ViewDataBinding) -> Unit)? = null) : super(context) {
-        addAdapterDelegate(SimpleAdapterDelegate(context, layoutRes, createViewHolderCallback, bindViewHolderCallback))
+        addAdapterDelegate(SimpleAdapterDelegate(context, layoutRes, null, createViewHolderCallback, bindViewHolderCallback))
     }
 
     constructor(context: Context, adapterDelegate: AdapterDelegate<MutableList<Any>>) : super(context) {
