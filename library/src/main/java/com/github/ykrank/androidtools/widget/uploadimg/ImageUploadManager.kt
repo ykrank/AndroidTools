@@ -1,13 +1,8 @@
 package com.github.ykrank.androidtools.widget.uploadimg
 
-import android.content.Context
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
-import com.bumptech.glide.request.target.SimpleTarget
-import com.bumptech.glide.request.transition.Transition
-import com.github.ykrank.androidtools.util.L
 import io.reactivex.Single
 import okhttp3.MediaType
+import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
 import retrofit2.Retrofit
@@ -15,16 +10,22 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.jackson.JacksonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.io.File
+import java.util.concurrent.TimeUnit
 
 class ImageUploadManager(private val _okHttpClient: OkHttpClient? = null) {
 
     private val okHttpClient: OkHttpClient by lazy {
-        _okHttpClient ?: OkHttpClient.Builder().build()
+        _okHttpClient ?: OkHttpClient.Builder()
+                .connectTimeout(17, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .writeTimeout(120, TimeUnit.SECONDS)
+                .build()
     }
 
-    val uploadApiService: ImageUploadApiService by lazy {
+    private val uploadApiService: ImageUploadApiService by lazy {
         Retrofit.Builder()
                 .client(okHttpClient)
+                .baseUrl("https://sm.ms/")
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(JacksonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -35,24 +36,13 @@ class ImageUploadManager(private val _okHttpClient: OkHttpClient? = null) {
     /**
      * Force upload to sm.ms
      */
-    fun forceUploadSmms(imageFile: File): Single<String> {
-        val imageRequestBody = RequestBody.create(MediaType.parse("image/*"), imageFile)
-        return uploadApiService.postSmmsImage(imageRequestBody)
+    fun forceUploadSmms(imageFile: File): Single<ImageUpload> {
+        val requestFile = RequestBody.create(MediaType.parse("image/*"), imageFile)
+        val body = MultipartBody.Part.createFormData("smfile", imageFile.name, requestFile)
+        return uploadApiService.postSmmsImage(body)
     }
 
-    /**
-     * Use glide to compress file
-     */
-    fun compressFile(context: Context, imageFile: File) {
-        L.d("Origin file: ${imageFile.absolutePath}")
-        Glide.with(context)
-                .download(imageFile)
-                .apply(RequestOptions.overrideOf(300, 300))
-                .into(object : SimpleTarget<File>() {
-                    override fun onResourceReady(resource: File, transition: Transition<in File>?) {
-                        L.d("Load file: ${resource.absolutePath}")
-                    }
-
-                })
+    fun delUploadedSmms(url:String): Single<ImageDelete> {
+        return uploadApiService.deldSmmsImage(url)
     }
 }
