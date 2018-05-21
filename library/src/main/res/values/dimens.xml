@@ -10,6 +10,7 @@
 
     <dimen name="single_line_height">48dp</dimen>
     <dimen name="avatar_size">40dp</dimen>
+    <dimen name="avatar_size_small">24dp</dimen>
     <dimen name="avatar_size_home">96dp</dimen>
     <dimen name="single_line_height_with_avatar">56dp</dimen>
     <dimen name="two_line_height">72dp</dimen>
@@ -89,6 +90,8 @@
     <dimen name="text_size_subtitle">@dimen/abc_text_size_subtitle_material_toolbar</dimen>
     <dimen name="text_size_title">@dimen/abc_text_size_title_material</dimen>
     <dimen name="text_size_title_toolbar">@dimen/abc_text_size_title_material_toolbar</dimen>
+
+    <dimen name="text_size_caption_small">10sp</dimen>
 
     <!-- Z-axis elevations -->
     <dimen name="z_app_bar">4dp</dimen>

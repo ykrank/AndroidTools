@@ -99,6 +99,7 @@
         <item name="fabBackgroundTint">?attr/colorAccent</item>
 
         <item name="iconClose">@drawable/ic_close_black_24dp</item>
+        <item name="iconAdd">@drawable/ic_add_black_24dp</item>
 
         <item name="iconMenuPageJump">@drawable/selector_menu_swap_horiz_black</item>
 
@@ -120,6 +121,7 @@
         <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
         <item name="fabBackgroundTint">?attr/colorPrimary</item>
         <item name="iconClose">@drawable/ic_close_white_24dp</item>
+        <item name="iconAdd">@drawable/ic_add_white_24dp</item>
         <item name="iconMenuPageJump">@drawable/selector_menu_swap_horiz_white</item>
         <item name="android:actionBarStyle">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
     </style>
@@ -142,6 +144,7 @@
         <item name="drawerTextColor">?android:attr/textColorPrimary</item>
         <item name="fabBackgroundTint">?attr/colorAccent</item>
         <item name="iconClose">@drawable/ic_close_white_24dp</item>
+        <item name="iconAdd">@drawable/ic_add_white_24dp</item>
         <item name="iconMenuPageJump">@drawable/selector_menu_swap_horiz_white</item>
 
         <item name="divisionBackground">@color/grey_600</item>

@@ -11,6 +11,7 @@
     <attr name="fabBackgroundTint" format="color|reference" />
 
     <attr name="iconClose" format="reference" />
+    <attr name="iconAdd" format="reference" />
 
     <attr name="iconMenuPageJump" format="reference" />
     <attr name="iconMenuPersonAdd" format="reference" />
