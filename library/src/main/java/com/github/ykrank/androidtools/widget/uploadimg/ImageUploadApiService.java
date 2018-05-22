@@ -2,7 +2,6 @@ package com.github.ykrank.androidtools.widget.uploadimg;
 
 import io.reactivex.Single;
 import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
@@ -14,7 +13,6 @@ public interface ImageUploadApiService {
 
     @Headers({
             "Accept:*/*",
-            "Accept-Encoding:gzip, deflate",
             "Accept-Language:zh-CN,zh;q=0.8",
             "User-Agent:Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36"
     })
@@ -22,6 +20,11 @@ public interface ImageUploadApiService {
     @POST("https://sm.ms/api/upload")
     Single<ImageUpload> postSmmsImage(@Part MultipartBody.Part image);
 
+    @Headers({
+            "Accept:*/*",
+            "Accept-Language:zh-CN,zh;q=0.8",
+            "User-Agent:Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36"
+    })
     @GET
-    Single<ImageDelete> deldSmmsImage(@Url String url);
+    Single<String> deldSmmsImage(@Url String url);
 }

@@ -60,11 +60,6 @@ dependencies {
     api 'com.github.bumptech.glide:okhttp3-integration:4.7.1'
     api 'com.squareup.okhttp3:okhttp:3.10.0'
 
-    compileOnly 'com.squareup.retrofit2:retrofit:2.4.0'
-    compileOnly 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
-    compileOnly 'com.squareup.retrofit2:converter-jackson:2.4.0'
-    compileOnly 'com.squareup.retrofit2:converter-scalars:2.4.0'
-
     api 'com.shizhefei:LargeImageView:1.0.9'
     api 'com.github.ykrank:androidautodispose:0.4.0'
     api 'com.hannesdorfmann:adapterdelegates3:3.0.2-SNAPSHOT'
@@ -74,7 +69,16 @@ dependencies {
 
     api 'com.orhanobut:logger:2.2.0'
 
+    //FilePicker
     compileOnly 'com.nononsenseapps:filepicker:4.1.0'
 
+    //PictureSelector
     compileOnly 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'
+
+    //PictureUpload
+    compileOnly 'org.jsoup:jsoup:1.11.3'
+    compileOnly 'com.squareup.retrofit2:retrofit:2.4.0'
+    compileOnly 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    compileOnly 'com.squareup.retrofit2:converter-jackson:2.4.0'
+    compileOnly 'com.squareup.retrofit2:converter-scalars:2.4.0'
 }

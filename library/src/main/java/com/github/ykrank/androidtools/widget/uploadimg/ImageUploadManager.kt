@@ -44,5 +44,6 @@ class ImageUploadManager(private val _okHttpClient: OkHttpClient? = null) {
 
     fun delUploadedSmms(url:String): Single<ImageDelete> {
         return uploadApiService.deldSmmsImage(url)
+                .map { ImageDelete.fromHtml(it) }
     }
 }

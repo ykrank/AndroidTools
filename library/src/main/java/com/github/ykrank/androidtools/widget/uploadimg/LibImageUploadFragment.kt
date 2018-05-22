@@ -71,7 +71,6 @@ open class LibImageUploadFragment : LibImagePickerFragment() {
     }
 
     override fun afterPickImage(medias: List<LocalMedia>) {
-//        uploadPickedImage()
         medias.map { ModelImageUpload(it) }
                 .apply {
                     //仅添加不同路径的图片
@@ -85,6 +84,7 @@ open class LibImageUploadFragment : LibImagePickerFragment() {
                     }
 
                     refreshDataSet()
+                    uploadPickedImage()
                 }
     }
 
@@ -109,9 +109,12 @@ open class LibImageUploadFragment : LibImagePickerFragment() {
                         it.first.url = it.second.data?.url
                         it.first.deleteUrl = it.second.data?.delete
 
-                        adapter.dataSet.indexOf(it.first).also {
-                            if (it >= 0) {
-                                adapter.notifyItemChanged(it)
+                        adapter.dataSet.indexOf(it.first).also { index ->
+                            if (index >= 0) {
+                                adapter.notifyItemChanged(index)
+                            } else {
+                                //If image removed from list, remove it from server
+                                delPickedImage(it.first)
                             }
                         }
                     } else {
@@ -138,7 +141,7 @@ open class LibImageUploadFragment : LibImagePickerFragment() {
                             }
                         }
                         .subscribe({
-                            context?.toast(it.code)
+                            context?.toast(it.msg)
                             if (!it.success) {
                                 L.report(ImageUploadError("Delete image error: $model, $it"))
                             }
@@ -149,6 +152,7 @@ open class LibImageUploadFragment : LibImagePickerFragment() {
 
     @MainThread
     private fun removeUploadedImage(model: ModelImageUpload) {
+        images.remove(model)
         adapter.dataSet.indexOf(model).also {
             if (it >= 0) {
                 adapter.removeItem(it)

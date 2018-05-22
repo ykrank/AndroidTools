@@ -1,5 +1,8 @@
 package com.github.ykrank.androidtools.widget.uploadimg
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 class ImageUpload {
 
 
@@ -24,12 +27,13 @@ class ImageUpload {
 
     var data: DataBean? = null
 
-    val success:Boolean = code == "success"
+    val success: Boolean get() = code == "success"
 
     override fun toString(): String {
         return "ImageUpload(code=$code, data=$data)"
     }
 
+    @JsonIgnoreProperties(ignoreUnknown = true)
     class DataBean {
         var width: Int = 0
         var height: Int = 0
