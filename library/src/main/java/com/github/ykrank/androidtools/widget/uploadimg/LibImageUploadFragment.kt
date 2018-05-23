@@ -32,10 +32,13 @@ open class LibImageUploadFragment : LibImagePickerFragment() {
     private val images = arrayListOf<ModelImageUpload>()
     private val modelAdd = ModelImageUploadAdd()
 
+    //Call onCreateView
+    open val imageClickListener: ((View, ModelImageUpload) -> Unit)? = null
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentUploadedImageBinding.inflate(inflater, container, false)
 
-        adapter = ImageUploadAdapter(this)
+        adapter = ImageUploadAdapter(this, imageClickListener)
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = GridLayoutManager(context, 2, RecyclerView.VERTICAL, false)
 
