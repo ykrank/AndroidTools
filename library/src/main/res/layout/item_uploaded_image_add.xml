@@ -21,7 +21,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-        <ImageView
+        <android.support.v7.widget.AppCompatImageView
             android:layout_width="48dp"
             android:layout_height="48dp"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -46,6 +46,8 @@ public final class LibImageViewBindingAdapter {
         }
     }
 
+
+
     @BindingAdapter("roundAvatar")
     public static void setRoundAvatarmageDrawable(ImageView imageView, String oUri, String uri) {
         if (TextUtils.equals(oUri, uri)) {

@@ -39,6 +39,18 @@ public final class ResourceUtil {
         return typedValue.resourceId;
     }
 
+    /**
+     * Retrieves the resource id in the Theme.
+     *
+     * @param context The context.
+     * @param resId The resource id of of the desired theme attribute.
+     * @return The corresponding resource id.
+     */
+    @AnyRes
+    public static int getResourceId(Context context, @AttrRes int resId) {
+        return getResourceId(context.getTheme(), resId);
+    }
+
     @ColorInt
     public static int getAttrColorInt(Context context, @AttrRes int resId) {
         int colorRes = getResourceId(context.getTheme(), resId);

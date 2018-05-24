@@ -13,6 +13,7 @@
     <attr name="iconClose" format="reference" />
     <attr name="iconAdd" format="reference" />
 
+    <attr name="iconTintColor" format="color" />
     <attr name="iconMenuPageJump" format="reference" />
     <attr name="iconMenuPersonAdd" format="reference" />
     <attr name="iconMenuEmoticon" format="reference" />
