@@ -1,4 +1,4 @@
-package com.rk.a91.a91video.ui.internal
+package com.github.ykrank.androidtools.ui.internal
 
 import android.content.res.Configuration
 import android.support.annotation.CallSuper
