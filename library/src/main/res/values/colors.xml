@@ -37,4 +37,6 @@
     <color name="scrim">#BB323232</color>
     <color name="background_dark">#ff333333</color>
     <color name="background_super_dark">#ff292929</color>
+
+    <color name="transparent">#00000000</color>
 </resources>
