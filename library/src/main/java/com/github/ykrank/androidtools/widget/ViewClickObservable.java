@@ -2,10 +2,11 @@ package com.github.ykrank.androidtools.widget;
 
 import android.view.View;
 
+import com.github.ykrank.androidtools.util.RxJavaUtil;
+
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.MainThreadDisposable;
-import com.github.ykrank.androidtools.util.RxJavaUtil;
 
 import static io.reactivex.android.MainThreadDisposable.verifyMainThread;
 

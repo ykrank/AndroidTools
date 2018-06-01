@@ -3,7 +3,6 @@ package com.github.ykrank.androidtools.widget.imagepicker
 import android.app.Activity
 import android.content.Intent
 import com.github.ykrank.androidtools.ui.LibBaseFragment
-import com.github.ykrank.androidtools.util.L
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import com.luck.picture.lib.entity.LocalMedia

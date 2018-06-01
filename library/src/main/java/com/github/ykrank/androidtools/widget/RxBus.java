@@ -4,10 +4,11 @@ import android.support.annotation.AnyThread;
 import android.support.annotation.MainThread;
 import android.support.annotation.NonNull;
 
+import com.github.ykrank.androidtools.util.LooperUtil;
+
 import java.util.concurrent.ConcurrentHashMap;
 
 import io.reactivex.subjects.PublishSubject;
-import com.github.ykrank.androidtools.util.LooperUtil;
 
 /**
  * See https://code.google.com/p/guava-libraries/wiki/EventBusExplained

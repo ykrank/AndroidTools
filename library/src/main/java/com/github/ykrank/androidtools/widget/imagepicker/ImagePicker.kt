@@ -1,6 +1,5 @@
 package com.github.ykrank.androidtools.widget.imagepicker
 
-import android.app.Activity
 import android.support.v4.app.Fragment
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig

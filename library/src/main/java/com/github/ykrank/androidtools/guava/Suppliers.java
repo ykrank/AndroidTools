@@ -15,19 +15,14 @@
  */
 
 package com.github.ykrank.androidtools.guava;
+
 import android.support.annotation.Nullable;
 import android.support.annotation.VisibleForTesting;
-
-import com.github.ykrank.androidtools.guava.Function;
-import com.github.ykrank.androidtools.guava.Preconditions;
-import com.github.ykrank.androidtools.guava.Supplier;
-import com.github.ykrank.androidtools.util.*;
 
 import java.io.Serializable;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.annotations.Beta;
-import io.reactivex.annotations.CheckReturnValue;
 
 /**
  * Useful suppliers.

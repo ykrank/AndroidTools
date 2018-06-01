@@ -2,13 +2,11 @@ package com.github.ykrank.androidtools.ui.internal
 
 import android.support.annotation.DrawableRes
 import android.support.annotation.StringRes
-import android.support.design.widget.BaseTransientBottomBar
 import android.support.design.widget.CoordinatorLayout
 import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.Snackbar
 import android.view.View
 import android.widget.Toast
-
 import com.github.ykrank.androidtools.guava.Optional
 
 /**

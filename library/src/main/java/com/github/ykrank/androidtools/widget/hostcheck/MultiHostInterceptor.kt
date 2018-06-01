@@ -42,8 +42,8 @@ open class MultiHostInterceptor<T : BaseHostUrl>(private val baseHostUrl: T, pri
 
     @Throws(IOException::class)
     private inline fun proceedRequest(chain: Interceptor.Chain, request: Request, except: (Exception) -> Response): Response {
-        try {
-            return chain.proceed(request)
+        return try {
+            chain.proceed(request)
         } catch (e: Exception) {
             if (e is IOException) {
                 //Normal exception
@@ -52,7 +52,7 @@ open class MultiHostInterceptor<T : BaseHostUrl>(private val baseHostUrl: T, pri
                 //Route error or other
                 L.leaveMsg("request:" + request)
                 L.report(e)
-                return except.invoke(e)
+                except.invoke(e)
             }
         }
     }

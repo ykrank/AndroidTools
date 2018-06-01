@@ -10,7 +10,6 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.view.MenuItem
 import android.view.View
 import com.github.ykrank.androidtools.R
-import com.github.ykrank.androidtools.util.ResourceUtil
 
 
 /**

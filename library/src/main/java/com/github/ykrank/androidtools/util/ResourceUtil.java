@@ -17,9 +17,6 @@ import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.View;
 
-import com.github.ykrank.androidtools.GlobalData;
-import com.github.ykrank.androidtools.R;
-
 public final class ResourceUtil {
 
     private ResourceUtil() {

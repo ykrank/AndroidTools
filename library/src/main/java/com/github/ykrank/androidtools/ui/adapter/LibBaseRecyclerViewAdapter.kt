@@ -2,16 +2,15 @@ package com.github.ykrank.androidtools.ui.adapter
 
 import android.content.Context
 import android.support.v7.util.DiffUtil
-import com.github.ykrank.androidtools.GlobalData
 import com.github.ykrank.androidtools.guava.Preconditions
 import com.github.ykrank.androidtools.ui.adapter.delegate.FooterProgressAdapterDelegate
-import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
-import com.hannesdorfmann.adapterdelegates3.ListDelegationAdapter
 import com.github.ykrank.androidtools.ui.adapter.delegate.ProgressAdapterDelegate
 import com.github.ykrank.androidtools.ui.adapter.delegate.item.FooterProgressItem
 import com.github.ykrank.androidtools.ui.adapter.delegate.item.ProgressItem
 import com.github.ykrank.androidtools.ui.adapter.model.SameItem
-import java.util.*
+import com.github.ykrank.androidtools.util.L
+import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
+import com.hannesdorfmann.adapterdelegates3.ListDelegationAdapter
 
 abstract class LibBaseRecyclerViewAdapter(context: Context) : ListDelegationAdapter<MutableList<Any>>() {
 
@@ -67,7 +66,7 @@ abstract class LibBaseRecyclerViewAdapter(context: Context) : ListDelegationAdap
     fun diffNewDataSet(newData: List<Any>, detectMoves: Boolean) {
         if (items === newData) {
             refreshDataSet(newData, detectMoves)
-            GlobalData.provider.errorParser?.throwNewErrorIfDebug(IllegalArgumentException("must set new data set"))
+            L.throwNewErrorIfDebug(IllegalArgumentException("must set new data set"))
         }
         val diffResult = DiffUtil.calculateDiff(
                 BaseDiffCallback(items, newData), detectMoves)

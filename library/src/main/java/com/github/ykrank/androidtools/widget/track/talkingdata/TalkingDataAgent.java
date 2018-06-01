@@ -4,12 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import com.github.ykrank.androidtools.data.TrackUser;
 import com.github.ykrank.androidtools.widget.track.TrackAgent;
 import com.tendcloud.tenddata.TCAgent;
 
 import java.util.Map;
-
-import com.github.ykrank.androidtools.data.TrackUser;
 
 /**
  * Created by ykrank on 2016/12/28.

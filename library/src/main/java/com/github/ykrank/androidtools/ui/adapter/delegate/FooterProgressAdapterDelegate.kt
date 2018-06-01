@@ -4,9 +4,8 @@ import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
-
-import com.github.ykrank.androidtools.ui.adapter.delegate.item.FooterProgressItem
 import com.github.ykrank.androidtools.R
+import com.github.ykrank.androidtools.ui.adapter.delegate.item.FooterProgressItem
 
 
 class FooterProgressAdapterDelegate(context: Context) : LibBaseAdapterDelegate<FooterProgressItem,

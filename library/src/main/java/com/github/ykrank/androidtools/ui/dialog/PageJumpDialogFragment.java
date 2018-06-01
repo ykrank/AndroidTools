@@ -14,7 +14,6 @@ import android.widget.SeekBar;
 import com.github.ykrank.androidtools.R;
 import com.github.ykrank.androidtools.databinding.DialogPageJumpBinding;
 import com.github.ykrank.androidtools.ui.vm.PageJumpViewModel;
-import com.github.ykrank.androidtools.util.ResourceUtil;
 import com.github.ykrank.androidtools.util.ViewUtil;
 
 

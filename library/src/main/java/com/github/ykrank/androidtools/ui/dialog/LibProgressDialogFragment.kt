@@ -4,12 +4,9 @@ import android.app.Dialog
 import android.app.ProgressDialog
 import android.os.Bundle
 import android.support.annotation.CallSuper
-import android.widget.Toast
 import com.github.ykrank.androidautodispose.AndroidRxDispose
 import com.github.ykrank.androidlifecycle.event.FragmentEvent
 import com.github.ykrank.androidtools.GlobalData
-import com.github.ykrank.androidtools.ui.UiGlobalData
-import com.github.ykrank.androidtools.ui.internal.CoordinatorLayoutAnchorDelegate
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

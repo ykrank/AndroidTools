@@ -2,7 +2,6 @@ package com.github.ykrank.androidtools.widget.uploadimg
 
 import android.os.Parcel
 import android.os.Parcelable
-import android.support.annotation.IntDef
 import com.github.ykrank.androidtools.ui.adapter.model.SameItem
 import com.luck.picture.lib.entity.LocalMedia
 

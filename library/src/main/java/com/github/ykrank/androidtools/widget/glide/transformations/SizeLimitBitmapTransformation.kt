@@ -1,11 +1,8 @@
 package com.github.ykrank.androidtools.widget.glide.transformations
 
 import android.graphics.Bitmap
-
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation
-import com.github.ykrank.androidtools.widget.glide.transformations.TransformationUtil
-
 import java.security.MessageDigest
 
 /**

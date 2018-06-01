@@ -1,7 +1,6 @@
 package com.github.ykrank.androidtools.widget.uploadimg
 
 import android.view.View
-import android.widget.AdapterView
 import com.github.ykrank.androidtools.R
 import com.github.ykrank.androidtools.databinding.ItemUploadedImageAddBinding
 import com.github.ykrank.androidtools.databinding.ItemUploadedImageBinding

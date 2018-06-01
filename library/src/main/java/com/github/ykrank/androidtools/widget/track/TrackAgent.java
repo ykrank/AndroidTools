@@ -4,9 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import java.util.Map;
-
 import com.github.ykrank.androidtools.data.TrackUser;
+
+import java.util.Map;
 
 /**
  * Created by ykrank on 2016/12/29.
