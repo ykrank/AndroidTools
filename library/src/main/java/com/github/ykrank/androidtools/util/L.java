@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.github.ykrank.androidtools.BuildConfig;
 import com.github.ykrank.androidtools.GlobalData;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
@@ -141,8 +142,11 @@ public class L {
         if (showLog()) {
             tr.printStackTrace();
         }
-        CrashReport.postCatchedException(tr);
-        BuglyLog.e(getLogTag(), "Report error", tr);
+
+        ErrorParser errorParser = GlobalData.provider.getErrorParser();
+        if (errorParser == null || !errorParser.ignoreError(tr)) {
+            CrashReport.postCatchedException(tr);
+        }
     }
 
     public static void report(String msg, Throwable tr) {
@@ -165,5 +169,13 @@ public class L {
 
     public static void test() {
         throw new RuntimeException("Just test");
+    }
+
+    public static void throwNewErrorIfDebug(RuntimeException throwable) {
+        if (BuildConfig.DEBUG) {
+            throw throwable;
+        } else {
+            L.report(throwable, Log.WARN);
+        }
     }
 }

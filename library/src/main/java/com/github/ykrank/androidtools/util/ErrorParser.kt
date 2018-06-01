@@ -7,7 +7,13 @@ import android.content.Context
  */
 interface ErrorParser {
 
+    /**
+     * 从错误中解析用户友好的提示
+     */
     fun parse(context: Context, throwable: Throwable): String
 
-    fun throwNewErrorIfDebug(throwable: RuntimeException)
+    /**
+     * 是否忽略异常不上传
+     */
+    fun ignoreError(throwable: Throwable):Boolean
 }

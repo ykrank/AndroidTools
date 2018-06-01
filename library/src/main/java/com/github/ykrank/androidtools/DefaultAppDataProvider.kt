@@ -23,5 +23,4 @@ open class DefaultAppDataProvider : AppDataProvider {
         get() = R.drawable.recycleview_error_symbol
     override val appR: Class<out Any>
         get() = R::class.java
-
 }

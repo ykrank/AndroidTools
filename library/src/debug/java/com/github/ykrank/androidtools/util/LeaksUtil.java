@@ -11,7 +11,6 @@ import com.squareup.leakcanary.ExcludedRefs;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
-
 import org.apache.commons.lang3.reflect.FieldUtils;
 
 import java.lang.reflect.Field;
