@@ -19,7 +19,7 @@ object ImagePicker {
                 .previewImage(true)// 是否可预览图片 true or false
 //                .previewVideo()// 是否可预览视频 true or false
 //                .enablePreviewAudio() // 是否可播放音频 true or false
-                .isCamera(true)// 是否显示拍照按钮 true or false
+                .isCamera(false)// 是否显示拍照按钮 true or false
                 .imageFormat(PictureMimeType.JPEG)// 拍照保存图片格式后缀,默认jpeg
                 .isZoomAnim(true)// 图片列表点击 缩放效果 默认true
 //                .sizeMultiplier(0.5f)// glide 加载图片大小 0~1之间 如设置 .glideOverride()无效
@@ -38,8 +38,8 @@ object ImagePicker {
                 .openClickSound(false)// 是否开启点击声音 true or false
 //                .selectionMedia()// 是否传入已选图片 List<LocalMedia> list
                 .previewEggs(true)// 预览图片时 是否增强左右滑动图片体验(图片滑动一半即可看到上一张是否选中) true or false
-                .cropCompressQuality(90)// 裁剪压缩质量 默认90 int
-                .minimumCompressSize(300)// 小于100kb的图片不压缩
+                .cropCompressQuality(80)// 裁剪压缩质量 默认90 int
+                .minimumCompressSize(100)// 小于100kb的图片不压缩
                 .synOrAsy(false)//同步true或异步false 压缩 默认同步
 //                .cropWH()// 裁剪宽高比，设置如果大于图片本身宽高则无效 int
 //                .rotateEnabled() // 裁剪是否可旋转图片 true or false

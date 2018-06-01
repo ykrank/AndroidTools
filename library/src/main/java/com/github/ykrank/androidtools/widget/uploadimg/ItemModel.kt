@@ -22,11 +22,15 @@ class ModelImageUpload(val media: LocalMedia) : SameItem, Parcelable {
 
     var url: String? = null
     var deleteUrl: String? = null
-    
-    var state:Int = STATE_INIT
+
+    var state: Int = STATE_INIT
 
     val path: String
-        get() = if (media.isCompressed) media.compressPath else media.path
+        get() = if (media.path?.endsWith(".gif") == true || !media.isCompressed) {
+            media.path
+        } else {
+            media.compressPath
+        }
 
     constructor(parcel: Parcel) : this(
             parcel.readParcelable<LocalMedia>(LocalMedia::class.java.classLoader)) {
@@ -95,7 +99,7 @@ class ModelImageUpload(val media: LocalMedia) : SameItem, Parcelable {
                 return arrayOfNulls(size)
             }
         }
-        
+
         const val STATE_INIT = 0
         const val STATE_UPLOADING = 1
         const val STATE_DONE = 2

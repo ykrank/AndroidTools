@@ -29,7 +29,7 @@ class ImageUploadAdapter(fragment: LibImageUploadFragment, imageClickListener: (
                 createViewHolderCallback = {
                     val binding = it as ItemUploadedImageAddBinding
                     binding.ivCorners.setOnClickListener {
-                        fragment.startPickImage(compress = true)
+                        fragment.startPickImage()
                     }
                 }))
     }
