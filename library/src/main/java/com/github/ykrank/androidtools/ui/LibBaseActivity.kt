@@ -34,6 +34,12 @@ abstract class LibBaseActivity : AppCompatActivity(), CoordinatorLayoutAnchorDel
     }
 
     @CallSuper
+    override fun setContentView(view: View) {
+        super.setContentView(view)
+        setupCoordinatorLayoutAnchorDelegate()
+    }
+
+    @CallSuper
     override fun setContentView(view: View, params: ViewGroup.LayoutParams) {
         super.setContentView(view, params)
         setupCoordinatorLayoutAnchorDelegate()
