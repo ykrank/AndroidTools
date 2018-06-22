@@ -72,7 +72,7 @@ dependencies {
     api 'com.orhanobut:logger:2.2.0'
 
     //FilePicker
-    compileOnly 'com.nononsenseapps:filepicker:4.1.0'
+    api 'com.nononsenseapps:filepicker:4.1.0'
 
     //PictureSelector
     compileOnly 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'
