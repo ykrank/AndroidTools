@@ -43,7 +43,7 @@ public final class RxJavaUtil {
      */
     public static Disposable workInMainThreadWithView(View view, Action workAction) {
         return Single.just(NULL)
-                .subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread())
                 .to(AndroidRxDispose.withSingle(view, ViewEvent.DESTROY))
                 .subscribe(o -> workAction.run(),
                         L::report);
@@ -61,7 +61,18 @@ public final class RxJavaUtil {
      */
     public static <D> Disposable workInMainThread(D data, Consumer<D> workAction) {
         return Single.just(data)
-                .subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(workAction,
+                        L::report);
+    }
+
+    /**
+     * push delayed work to RxJava io thread {@link AndroidSchedulers#mainThread()}
+     */
+    public static <D> Disposable delayInMainThread(D data, long time, TimeUnit unit, Consumer<D> workAction) {
+        return Single.just(data)
+                .delay(time, unit)
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(workAction,
                         L::report);
     }
@@ -85,7 +96,7 @@ public final class RxJavaUtil {
      */
     public static Disposable workInRxComputationThread(Action workAction) {
         return Single.just(NULL)
-                .subscribeOn(Schedulers.computation())
+                .observeOn(Schedulers.computation())
                 .subscribe(o -> workAction.run(), L::report);
     }
 
