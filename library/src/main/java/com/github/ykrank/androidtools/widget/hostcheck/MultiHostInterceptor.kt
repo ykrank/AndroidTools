@@ -1,11 +1,13 @@
 package com.github.ykrank.androidtools.widget.hostcheck
 
 import com.github.ykrank.androidtools.util.L
+import com.github.ykrank.androidtools.widget.glide.NoAvatarException
 import okhttp3.HttpUrl
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
 import java.io.IOException
+import java.net.ProtocolException
 
 /**
  * Self-adaption multi host
@@ -29,41 +31,47 @@ open class MultiHostInterceptor<T : BaseHostUrl>(private val baseHostUrl: T, pri
             newRequest = builder.build()
         }
 
-        val response: Response = proceedRequest(chain, newRequest, {
+        val response: Response = proceedRequest(chain, newRequest) {
             if (newRequest != originRequest) {
-                return proceedRequest(chain, originRequest, { throw OkHttpException(it) })
+                return proceedRequest(chain, originRequest) { throw it }
             } else {
-                throw OkHttpException(it)
+                throw it
             }
-        })
+        }
 
         return response
     }
 
-    @Throws(IOException::class)
-    private inline fun proceedRequest(chain: Interceptor.Chain, request: Request, except: (Exception) -> Response): Response {
+    private inline fun proceedRequest(chain: Interceptor.Chain, request: Request, except: (IOException) -> Response): Response {
         return try {
             chain.proceed(request)
         } catch (e: Exception) {
-            if (e is IOException) {
-                //Normal exception
-                throw e
-            } else {
-                //Route error or other
-                L.leaveMsg("request:" + request)
-                L.report(e)
-                except.invoke(e)
+            val ioException: IOException
+            when (e) {
+                is NoAvatarException -> {
+                    //No avatar
+                    ioException = e
+                }
+                is IOException -> {
+                    //Normal exception
+                    ioException = e
+                }
+                else -> {
+                    //Route error or other
+                    L.leaveMsg("request:$request")
+                    L.report(e)
+                    ioException = OkHttpException(request.url()?.host(), e)
+                }
             }
+            except.invoke(ioException)
         }
     }
 }
 
-class OkHttpException : IOException {
-    constructor() : super()
-
-    constructor(message: String) : super(message)
-
-    constructor(message: String, cause: Throwable) : super(message, cause)
-
-    constructor(cause: Throwable) : super(cause)
-}
+/**
+ * Must not extends IOException but ProtocolException because  okhttp3 catch RouteException and IOException to retry.
+ * But only some exception
+ *
+ * @see okhttp3.internal.http.RetryAndFollowUpInterceptor#recover(IOException, StreamAllocation, boolean, Request)
+ */
+class OkHttpException(val host: String?, override val cause: Throwable?) : ProtocolException(host)
