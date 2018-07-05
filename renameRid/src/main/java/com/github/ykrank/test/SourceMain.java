@@ -19,7 +19,8 @@ public class SourceMain {
     private Pattern rPattern;
 
     SourceMain() {
-        this.rPattern = Pattern.compile("a\\.auu\\.a\\.c\\(\"(.+?)\"\\)");
+//        this.rPattern = Pattern.compile("a\\.auu\\.a\\.c\\(\"(.+?)\"\\)");
+        this.rPattern = Pattern.compile("a\\.c\\(\"(.+?)\"\\)");
     }
 
     private File checkRootDir() {
