@@ -1,7 +1,5 @@
 package com.github.ykrank.androidtools.widget.hostcheck
 
-import com.github.ykrank.androidtools.util.L
-import com.github.ykrank.androidtools.widget.glide.NoAvatarException
 import okhttp3.HttpUrl
 import okhttp3.Interceptor
 import okhttp3.Request
@@ -46,24 +44,11 @@ open class MultiHostInterceptor<T : BaseHostUrl>(private val baseHostUrl: T, pri
         return try {
             chain.proceed(request)
         } catch (e: Exception) {
-            val ioException: IOException
-            when (e) {
-                is NoAvatarException -> {
-                    //No avatar
-                    ioException = e
-                }
-                is IOException -> {
-                    //Normal exception
-                    ioException = e
-                }
-                else -> {
-                    //Route error or other
-                    L.leaveMsg("request:$request")
-                    L.report(e)
-                    ioException = OkHttpException(request.url()?.host(), e)
-                }
+            if (e is IOException) {
+                except.invoke(e)
+            } else {
+                except.invoke(OkHttpException(request.url()?.host(), e))
             }
-            except.invoke(ioException)
         }
     }
 }
