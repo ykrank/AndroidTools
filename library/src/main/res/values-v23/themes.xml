@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.Light" parent="Base.Theme.Light">
+    <style name="Lib.Base.V.Theme.Light" parent="Lib.Origin.Theme.Light.V23">
         <item name="android:windowLightStatusBar">true</item>
         <item name="colorPrimaryDark">@color/light_status_bar_v23</item>
     </style>
+
+    <style name="Lib.Origin.Theme.Light.V23" parent="Lib.Origin.Theme.Light.V21" />
 
 </resources>
