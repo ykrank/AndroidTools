@@ -3,6 +3,7 @@ package com.github.ykrank.androidtools.ui
 import android.os.Bundle
 import android.os.SystemClock
 import android.support.annotation.CallSuper
+import android.support.annotation.MainThread
 import android.support.annotation.StringRes
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.RecyclerView
@@ -251,6 +252,7 @@ abstract class LibBaseRecyclerViewFragment<D> : LibBaseFragment() {
         if (loading == LoadingViewModel.LOADING_FINISH) {
             return
         }
+        onLoad(loading)
         // dismiss Snackbar in order to let user see the ProgressBar
         // when we start to loadViewPager new data
         mCoordinatorLayoutAnchorDelegate?.dismissSnackbarIfExist()
@@ -259,6 +261,14 @@ abstract class LibBaseRecyclerViewFragment<D> : LibBaseFragment() {
                 .compose(RxJavaUtil.iOSingleTransformer())
                 .doAfterTerminate { this.finallyDo() }
                 .subscribe({ this.onNext(it) }, { this.onError(it) })
+    }
+
+    /**
+     * DO something on load data
+     */
+    @MainThread
+    protected open fun onLoad(@LoadingViewModel.LoadingDef loading: Int){
+
     }
 
     /**
@@ -341,6 +351,6 @@ abstract class LibBaseRecyclerViewFragment<D> : LibBaseFragment() {
          * current recycleview_loading state.
          */
         private val STATE_LOADING_VIEW_MODEL = "loading_view_model"
-        private val PULL_REFRESH_COLD_TIME: Long = 1000
+        private val PULL_REFRESH_COLD_TIME: Long = 3000
     }
 }
