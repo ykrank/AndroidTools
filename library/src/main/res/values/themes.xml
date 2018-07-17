@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Lib.Theme.Light.AfternoonTea" parent="Lib.Base.Theme.Light.AfternoonTea" />
+    <!-- Use for app theme override -->
+    <style name="Lib.Theme.Light.AfternoonTea" parent="Lib.V.Theme.Light.AfternoonTea" />
 
     <style name="Lib.Theme.Light" parent="Lib.Base.Theme.Light" />
 
@@ -18,6 +19,9 @@
     <style name="Lib.Theme.Dark.NightMode" parent="Lib.Base.Theme.Dark.NightMode" />
 
     <style name="Lib.Theme.Dark.NightMode.Amoled" parent="Lib.Base.Theme.Dark.NightMode.Amoled" />
+
+    <!-- Use for other version (v19, v21 etc.) override -->
+    <style name="Lib.V.Theme.Light.AfternoonTea" parent="Lib.Base.Theme.Light.AfternoonTea" />
 
     <style name="Lib.Base.Theme.Light.AfternoonTea" parent="Lib.Base.Theme.Light">
         <item name="colorPrimaryDark">@color/saraba_main_top_color_dark</item>
