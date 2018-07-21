@@ -4,6 +4,8 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 27
+	buildToolsVersion rootProject.ext.buildToolsVersion
+	
     defaultConfig {
         minSdkVersion 15
         //api>=27, bugly could not show notification
