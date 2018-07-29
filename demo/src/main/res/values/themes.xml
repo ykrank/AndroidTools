@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Light.AfternoonTea" parent="Lib.Theme.Light.AfternoonTea" />
+
+    <style name="Theme.Light" parent="Lib.Theme.Light" />
+
+    <style name="Theme.Light.Amber" parent="Lib.Theme.Light.Amber" />
+
+    <style name="Theme.Light.Green" parent="Lib.Theme.Light.Green" />
+
+    <style name="Theme.Light.LightBlue" parent="Lib.Theme.Light.LightBlue" />
+
+    <style name="Theme.Light.Purple" parent="Lib.Theme.Light.Purple" />
+
+    <style name="Theme.Dark" parent="Lib.Theme.Dark" />
+
+    <style name="Theme.Dark.NightMode" parent="Lib.Theme.Dark.NightMode" />
+
+    <style name="Theme.Dark.NightMode.Amoled" parent="Lib.Theme.Dark.NightMode.Amoled" />
+
+</resources>

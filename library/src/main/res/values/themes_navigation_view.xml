@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.Light.NavigationView">
+    <style name="Lib.Theme.Light.NavigationView">
         <item name="colorPrimary">?attr/colorAccent</item>
     </style>
 
-    <style name="Theme.Dark.NavigationView">
+    <style name="Lib.Theme.Dark.NavigationView">
         <item name="colorPrimary">?attr/colorAccent</item>
     </style>
 
-    <style name="Theme.Dark.NightMode.NavigationView">
+    <style name="Lib.Theme.Dark.NightMode.NavigationView">
         <item name="colorPrimary">?attr/colorAccent</item>
     </style>
 
-    <style name="Theme.Dark.NightMode.Amoled.NavigationView">
+    <style name="Lib.Theme.Dark.NightMode.Amoled.NavigationView">
         <item name="colorPrimary">?attr/colorAccent</item>
     </style>
 
