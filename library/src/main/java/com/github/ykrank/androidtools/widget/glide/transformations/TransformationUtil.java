@@ -26,9 +26,6 @@ public final class TransformationUtil {
 
         Bitmap.Config config = getSafeConfig(toTransform);
         Bitmap toReuse = pool.get(targetWidth, targetHeight, config);
-        if (toReuse == null) {
-            toReuse = Bitmap.createBitmap(targetWidth, targetHeight, config);
-        }
         // We don't add or remove alpha, so keep the alpha setting of the Bitmap we were given.
         TransformationUtils.setAlpha(toTransform, toReuse);
 
