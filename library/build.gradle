@@ -40,7 +40,8 @@ kapt {
 }
 
 dependencies {
-    api fileTree(dir: 'libs', include: ['*.jar'])
+    normalApi fileTree(dir: 'libs/normal', include: ['*.jar'])
+    playApi fileTree(dir: 'libs/play', include: ['*.jar'])
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     api "com.android.support:design:$rootProject.supportVersion"
