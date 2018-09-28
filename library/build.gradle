@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
 	buildToolsVersion rootProject.ext.buildToolsVersion
 	
     defaultConfig {
@@ -24,7 +24,6 @@ android {
         enabled = true
     }
     flavorDimensions "market"
-    publishNonDefault true
     productFlavors {
         play{
             dimension "market"

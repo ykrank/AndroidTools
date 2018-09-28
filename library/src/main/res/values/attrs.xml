@@ -31,6 +31,7 @@
     <attr name="titlePopWindowTextColor" format="reference" />
 
     <attr name="divideLineColor" format="color" />
+    <attr name="textColorError" format="color" />
 
     <attr name="errorBackground" format="color|reference" />
 </resources>
