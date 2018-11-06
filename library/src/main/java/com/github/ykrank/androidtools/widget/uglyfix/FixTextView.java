@@ -1,6 +1,7 @@
 package com.github.ykrank.androidtools.widget.uglyfix;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 
@@ -31,6 +32,16 @@ public class FixTextView extends AppCompatTextView {
             L.leaveMsg("FixTextView:" + this.getText());
             L.report(e);
             return false;
+        }
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        try {
+            super.onDraw(canvas);
+        } catch (IndexOutOfBoundsException e){
+            //java.lang.IndexOutOfBoundsException in meizu 8.1.0
+            L.report(e);
         }
     }
 }

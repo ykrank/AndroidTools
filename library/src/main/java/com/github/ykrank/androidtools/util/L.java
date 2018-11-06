@@ -144,7 +144,9 @@ public class L {
         }
 
         ErrorParser errorParser = GlobalData.provider.getErrorParser();
-        if (errorParser == null || !errorParser.ignoreError(tr)) {
+        if (errorParser != null && errorParser.ignoreError(tr)) {
+            CrashReport.postCatchedException(new IgnoredException(tr));
+        } else {
             CrashReport.postCatchedException(tr);
         }
     }
