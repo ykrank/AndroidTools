@@ -99,6 +99,7 @@
         <item name="android:windowBackground">?android:attr/colorBackground</item>
         <item name="colorPrimaryDark">@color/light_status_bar</item>
         <item name="colorPrimary">@color/light_app_bar</item>
+        <item name="colorAccent">@color/light_blue_700</item>
         <item name="toolbarTheme">@style/ThemeOverlay.AppCompat.ActionBar</item>
         <item name="toolbarTitleTextStyle">@style/CustomToolbarTitle.Light</item>
         <item name="navigationViewTheme">@style/Lib.Theme.Light.NavigationView</item>

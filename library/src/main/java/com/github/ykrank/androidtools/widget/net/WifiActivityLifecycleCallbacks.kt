@@ -20,7 +20,8 @@ open abstract class WifiActivityLifecycleCallbacks(val context: Context) : Appli
     val isAppVisible: Boolean
         get() = mVisibleCount > 0
 
-    abstract val wifiStateChangedCallback: ((Boolean) -> Unit)?
+    open val wifiStateChangedCallback: ((Boolean) -> Unit)?
+        get() = null
 
     @CallSuper
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
@@ -66,7 +67,7 @@ open abstract class WifiActivityLifecycleCallbacks(val context: Context) : Appli
         mExistCount--
     }
 
-    private fun check(){
+    private fun check() {
         if (mWifiBroadcastReceiver == null) {
             mWifiBroadcastReceiver = WifiBroadcastReceiver(context.applicationContext, wifiStateChangedCallback)
         }
