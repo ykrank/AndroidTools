@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.RequestBuilder;
+import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
@@ -85,7 +86,8 @@ public final class LibImageViewBindingAdapter {
             imageView.setImageResource(error);
             return;
         }
-        Context context = imageView.getContext();
+
+        RequestManager requestManager = Glide.with(imageView);
 
         RequestOptions requestOptions = new RequestOptions()
                 .diskCacheStrategy(DiskCacheStrategy.DATA)
@@ -98,15 +100,14 @@ public final class LibImageViewBindingAdapter {
         if (!TextUtils.isEmpty(thumbUrl)) {
             RequestOptions thumbRequestOptions = new RequestOptions()
                     .diskCacheStrategy(DiskCacheStrategy.DATA);
-            thumbnailRequest = Glide
-                    .with(context)
+            thumbnailRequest = requestManager
                     .load(thumbUrl)
                     .apply(thumbRequestOptions);
         } else {
-            thumbnailRequest = Glide.with(context).load(loading);
+            thumbnailRequest = requestManager.load(loading);
         }
 
-        RequestBuilder<Drawable> builder = Glide.with(context)
+        RequestBuilder<Drawable> builder = requestManager
                 .load(url)
                 .apply(requestOptions)
                 .thumbnail(thumbnailRequest)
@@ -115,7 +116,7 @@ public final class LibImageViewBindingAdapter {
                     public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
                         //stop thumnal animatable like gif
                         target.onStop();
-                        target.onLoadFailed(ContextCompat.getDrawable(context, error));
+                        target.onLoadFailed(ContextCompat.getDrawable(imageView.getContext(), error));
                         return true;
                     }
 

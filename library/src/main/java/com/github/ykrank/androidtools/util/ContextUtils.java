@@ -29,11 +29,9 @@ public final class ContextUtils {
             return activity.isDestroyed();
         }
         //in device before 4.2
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            if (activity instanceof FragmentActivity) {
-                FragmentManager fm = ((FragmentActivity) activity).getSupportFragmentManager();
-                return fm == null || fm.isDestroyed();
-            }
+        if (activity instanceof FragmentActivity) {
+            FragmentManager fm = ((FragmentActivity) activity).getSupportFragmentManager();
+            return fm == null || fm.isDestroyed();
         }
         return false;
     }
