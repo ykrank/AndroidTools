@@ -18,4 +18,5 @@
 
     <string name="message_operation_canceled">操作被取消</string>
     <string name="message_unknown_error">发生了一个未知的错误</string>
+    <string name="footer_hint">我是有底线的</string>
 </resources>

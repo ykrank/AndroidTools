@@ -13,5 +13,6 @@ interface StableIdModel {
     companion object {
         const val ID_PROGRESS = -11L
         const val ID_PROGRESS_FOOTER = -12L
+        const val ID_FOOTER = -13L
     }
 }

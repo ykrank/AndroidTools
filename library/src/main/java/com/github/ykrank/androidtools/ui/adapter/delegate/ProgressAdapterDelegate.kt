@@ -10,7 +10,8 @@ import com.github.ykrank.androidtools.databinding.ItemProgressBinding
 import com.github.ykrank.androidtools.ui.adapter.delegate.item.ProgressItem
 
 
-class ProgressAdapterDelegate(context: Context) : LibBaseAdapterDelegate<ProgressItem, ProgressAdapterDelegate.ProgressViewHolder>(context, ProgressItem::class.java) {
+class ProgressAdapterDelegate(context: Context) : LibBaseAdapterDelegate<ProgressItem,
+        ProgressAdapterDelegate.ProgressViewHolder>(context, ProgressItem::class.java) {
 
     public override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
         return ProgressViewHolder(DataBindingUtil.inflate(mLayoutInflater, R.layout.item_progress, parent, false))
