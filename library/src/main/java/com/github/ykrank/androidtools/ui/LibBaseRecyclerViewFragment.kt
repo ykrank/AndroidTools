@@ -351,6 +351,6 @@ abstract class LibBaseRecyclerViewFragment<D> : LibBaseFragment() {
          * current recycleview_loading state.
          */
         private val STATE_LOADING_VIEW_MODEL = "loading_view_model"
-        private val PULL_REFRESH_COLD_TIME: Long = 3000
+        private val PULL_REFRESH_COLD_TIME: Long = 1000
     }
 }
