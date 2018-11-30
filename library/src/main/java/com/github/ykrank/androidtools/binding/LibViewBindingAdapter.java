@@ -14,6 +14,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v4.view.TintableBackgroundView;
 import android.support.v4.view.ViewCompat;
+import android.support.v4.widget.CircularProgressDrawable;
 import android.view.TouchDelegate;
 import android.view.View;
 import android.widget.Toast;
@@ -121,7 +122,7 @@ public final class LibViewBindingAdapter {
     }
 
     @BindingAdapter({"ripple"})
-    public static void setRipple(View view, int oRipple, int ripple) {
+    public static void setRipple(View view, @ColorInt int oRipple, @ColorInt int ripple) {
         if (oRipple == ripple) {
             return;
         }
@@ -159,5 +160,19 @@ public final class LibViewBindingAdapter {
             // use TouchDelegate to increase count's clicking area
             parent.setTouchDelegate(new TouchDelegate(rect, view));
         });
+    }
+
+    @BindingAdapter({"normalBackground", "backProgress"})
+    public static void showViewProgressBack(View view, Drawable oNormalDrawable, boolean oBackProgress,
+                                            Drawable normalDrawable, boolean backProgress) {
+        if (oBackProgress && backProgress) {
+            return;
+        }
+        if (backProgress) {
+            CircularProgressDrawable drawable = new CircularProgressDrawable(view.getContext());
+            ViewCompat.setBackground(view, drawable);
+        } else {
+            ViewCompat.setBackground(view, normalDrawable);
+        }
     }
 }

@@ -2,6 +2,8 @@ package com.github.ykrank.androidtools.ui.adapter
 
 import android.content.Context
 import android.support.v7.util.DiffUtil
+import com.github.ykrank.androidtools.BuildConfig
+import com.github.ykrank.androidtools.guava.Objects
 import com.github.ykrank.androidtools.guava.Preconditions
 import com.github.ykrank.androidtools.ui.adapter.delegate.FooterProgressAdapterDelegate
 import com.github.ykrank.androidtools.ui.adapter.delegate.ProgressAdapterDelegate
@@ -12,10 +14,15 @@ import com.github.ykrank.androidtools.util.L
 import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
 import com.hannesdorfmann.adapterdelegates3.ListDelegationAdapter
 
-abstract class LibBaseRecyclerViewAdapter(context: Context) : ListDelegationAdapter<MutableList<Any>>() {
+abstract class LibBaseRecyclerViewAdapter : ListDelegationAdapter<MutableList<Any>> {
 
-    init {
-        setHasStableIds(false)
+    constructor(context: Context) : this(context, false)
+
+    /**
+     * Only use when you sure inner model implements [StableIdModel]
+     */
+    constructor(context: Context, stableId: Boolean) {
+        setHasStableIds(stableId)
         items = arrayListOf()
         delegatesManager.addDelegate(VIEW_TYPE_PROGRESS, ProgressAdapterDelegate(context))
         addAdapterDelegate(FooterProgressAdapterDelegate(context))
@@ -112,6 +119,21 @@ abstract class LibBaseRecyclerViewAdapter(context: Context) : ListDelegationAdap
 
     fun removeItem(position: Int) {
         items.removeAt(position)
+    }
+
+    override fun getItemId(position: Int): Long {
+        if (!hasStableIds()) {
+            return super.getItemId(position)
+        }
+
+        val d = items[position]
+        if (d is StableIdModel) {
+            return d.stableId
+        }
+        if (BuildConfig.DEBUG) {
+            throw IllegalStateException("Item must implements StableIdModel if stable id")
+        }
+        return Objects.hashCode(d).toLong()
     }
 
     class BaseDiffCallback(var oldData: List<*>, var newData: List<*>) : DiffUtil.Callback() {

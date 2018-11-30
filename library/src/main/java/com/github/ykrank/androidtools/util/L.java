@@ -23,14 +23,17 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class L {
     static AtomicBoolean init = new AtomicBoolean(false);
     static boolean showLog = false;
+    private static String TAG = BuildConfig.APPLICATION_ID;
 
     public static void init(@NonNull Context context) {
+        TAG = GlobalData.provider.getLogTag();
+        
         FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()
                 .showThreadInfo(true)  // (Optional) Whether to show thread info or not. Default true
                 .methodCount(0)         // (Optional) How many method line to show. Default 2
                 .methodOffset(7)        // (Optional) Hides internal method calls up to offset. Default 5
                 //.logStrategy(customLog) // (Optional) Changes the log strategy to print out. Default LogCat
-                .tag(getLogTag())   // (Optional) Global tag for every log. Default PRETTY_LOGGER
+                .tag(TAG)   // (Optional) Global tag for every log. Default PRETTY_LOGGER
                 .build();
 
         Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy) {
@@ -55,14 +58,13 @@ public class L {
 
     public static void l(String msg) {
         if (showLog()) {
-            Log.i(getLogTag(), msg);
-            BuglyLog.d("LogMsg", msg);
+            BuglyLog.d(TAG, msg);
         }
     }
 
     public static void print(String msg) {
         if (showLog()) {
-            Log.d(getLogTag(), msg);
+            Log.d(TAG, msg);
         }
     }
 
@@ -70,10 +72,6 @@ public class L {
         if (showLog() && e != null) {
             e.printStackTrace();
         }
-    }
-
-    private static String getLogTag() {
-        return GlobalData.provider.getLogTag();
     }
 
     public static void d(@Nullable String msg) {
@@ -125,7 +123,7 @@ public class L {
     }
 
     public static void e(String tag, @NonNull String msg, Throwable tr) {
-        BuglyLog.e(getLogTag() + tag, msg, tr);
+        BuglyLog.e(TAG + tag, msg, tr);
         if (tr != null) {
             tr.printStackTrace();
         }
