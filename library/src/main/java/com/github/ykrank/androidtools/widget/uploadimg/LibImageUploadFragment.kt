@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.github.ykrank.androidautodispose.AndroidRxDispose
+import com.github.ykrank.androidlifecycle.event.FragmentEvent
 import com.github.ykrank.androidtools.databinding.FragmentUploadedImageBinding
 import com.github.ykrank.androidtools.extension.toast
 import com.github.ykrank.androidtools.util.L
@@ -29,7 +31,7 @@ open class LibImageUploadFragment : LibImagePickerFragment() {
 
     private lateinit var imageUploadManager: ImageUploadManager
 
-    private val images = arrayListOf<ModelImageUpload>()
+    val images = arrayListOf<ModelImageUpload>()
     private val modelAdd = ModelImageUploadAdd()
 
     //Call onCreateView
@@ -105,6 +107,7 @@ open class LibImageUploadFragment : LibImagePickerFragment() {
                 }
                 .subscribeOn(uploadScheduler)
                 .observeOn(AndroidSchedulers.mainThread())
+                .to(AndroidRxDispose.withObservable(this, FragmentEvent.DESTROY))
                 .subscribe({
                     L.d(it.second.toString())
                     if (it.second.success) {
@@ -143,6 +146,7 @@ open class LibImageUploadFragment : LibImagePickerFragment() {
                                 removeUploadedImage(model)
                             }
                         }
+                        .to(AndroidRxDispose.withSingle(this, FragmentEvent.DESTROY))
                         .subscribe({
                             context?.toast(it.msg)
                             if (!it.success) {
