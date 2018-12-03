@@ -85,6 +85,7 @@ abstract class LibBaseLoadMoreRecycleViewFragment<D> : LibBaseRecyclerViewFragme
 
     override fun onError(throwable: Throwable) {
         pageNum--
+        recyclerViewAdapter.hideFooterProgress()
         super.onError(throwable)
     }
 
