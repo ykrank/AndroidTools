@@ -2,7 +2,7 @@ package com.github.ykrank.androidtools.widget.uploadimg
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.github.ykrank.androidtools.ui.adapter.model.SameItem
+import com.github.ykrank.androidtools.ui.adapter.model.DiffSameItem
 import com.luck.picture.lib.entity.LocalMedia
 
 internal class ModelImageUploadAdd {
@@ -18,7 +18,7 @@ internal class ModelImageUploadAdd {
     }
 }
 
-class ModelImageUpload(val media: LocalMedia) : SameItem, Parcelable {
+class ModelImageUpload(val media: LocalMedia) : DiffSameItem, Parcelable {
 
     var url: String? = null
     var deleteUrl: String? = null

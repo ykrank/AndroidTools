@@ -1,5 +1,6 @@
 package com.github.ykrank.androidtools.binding;
 
+import android.content.Context;
 import android.databinding.BindingAdapter;
 import android.graphics.Paint;
 import android.text.format.DateUtils;
@@ -25,12 +26,16 @@ public final class LibTextViewBindingAdapter {
 
     @BindingAdapter("relativeDateTime")
     public static void setRelativeDateTime(TextView textView, long datetime) {
-        textView.setText(DateUtils.getRelativeDateTimeString(textView.getContext(), datetime,
-                DateUtils.MINUTE_IN_MILLIS, DateUtils.DAY_IN_MILLIS, 0));
+        textView.setText(getRelativeDateTime(textView.getContext(), datetime));
+    }
+
+    public static CharSequence getRelativeDateTime(Context context, long datetime) {
+        return DateUtils.getRelativeDateTimeString(context, datetime,
+                DateUtils.MINUTE_IN_MILLIS, DateUtils.DAY_IN_MILLIS, 0);
     }
 
     @BindingAdapter("second")
     public static void setSecondTime(TextView textView, long datetimeSecond) {
-        textView.setText(df.format(new Date(datetimeSecond*1000)));
+        textView.setText(df.format(new Date(datetimeSecond * 1000)));
     }
 }

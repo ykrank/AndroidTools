@@ -10,12 +10,16 @@ import com.github.ykrank.androidtools.ui.adapter.delegate.FooterProgressAdapterD
 import com.github.ykrank.androidtools.ui.adapter.delegate.ProgressAdapterDelegate
 import com.github.ykrank.androidtools.ui.adapter.delegate.item.FooterProgressItem
 import com.github.ykrank.androidtools.ui.adapter.delegate.item.ProgressItem
-import com.github.ykrank.androidtools.ui.adapter.model.SameItem
+import com.github.ykrank.androidtools.ui.adapter.model.DiffSameItem
 import com.github.ykrank.androidtools.util.L
+import com.github.ykrank.androidtools.util.RxJavaUtil
 import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
 import com.hannesdorfmann.adapterdelegates3.ListDelegationAdapter
+import io.reactivex.disposables.Disposable
 
 abstract class LibBaseRecyclerViewAdapter : ListDelegationAdapter<MutableList<Any>> {
+
+    var updateDispose:Disposable? = null
 
     constructor(context: Context) : this(context, false)
 
@@ -76,11 +80,17 @@ abstract class LibBaseRecyclerViewAdapter : ListDelegationAdapter<MutableList<An
         if (items === newData) {
             refreshDataSet(newData, detectMoves)
             L.throwNewErrorIfDebug(IllegalArgumentException("must set new data set"))
+            return
         }
-        val diffResult = DiffUtil.calculateDiff(
-                BaseDiffCallback(items, newData), detectMoves)
-        items = newData.toMutableList()
-        diffResult.dispatchUpdatesTo(this)
+        RxJavaUtil.disposeIfNotNull(updateDispose)
+
+        updateDispose = RxJavaUtil.workWithUiResult({
+            DiffUtil.calculateDiff(
+                    BaseDiffCallback(items, newData), detectMoves)
+        }, {
+            it.dispatchUpdatesTo(this)
+            items = newData.toMutableList()
+        })
     }
 
     /**
@@ -151,14 +161,28 @@ abstract class LibBaseRecyclerViewAdapter : ListDelegationAdapter<MutableList<An
         override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
             val oldD = oldData[oldItemPosition]
             val newD = newData[newItemPosition]
-            if (oldD != null && oldD is SameItem) {
+            if (oldD != null && oldD is DiffSameItem) {
                 return oldD.isSameItem(newD)
             }
             return oldD == newD
         }
 
         override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-            return oldData[oldItemPosition] == newData[newItemPosition]
+            val oldD = oldData[oldItemPosition]
+            val newD = newData[newItemPosition]
+            if (oldD != null && oldD is DiffSameItem) {
+                return oldD.isSameContent(newD)
+            }
+            return oldD == newD
+        }
+
+        override fun getChangePayload(oldItemPosition: Int, newItemPosition: Int): Any? {
+            val oldD = oldData[oldItemPosition]
+            val newD = newData[newItemPosition]
+            if (oldD != null && oldD is DiffSameItem) {
+                return oldD.getChangePayload(newD)
+            }
+            return null
         }
     }
 
