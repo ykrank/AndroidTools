@@ -32,6 +32,8 @@
 
     <attr name="divideLineColor" format="color" />
     <attr name="textColorError" format="color" />
+    <attr name="textColorRight" format="color" />
+    <attr name="textColorHint" format="color" />
 
     <attr name="errorBackground" format="color|reference" />
 </resources>
