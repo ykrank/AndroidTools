@@ -40,7 +40,7 @@ public final class ResourceUtil {
      * Retrieves the resource id in the Theme.
      *
      * @param context The context.
-     * @param resId The resource id of of the desired theme attribute.
+     * @param resId   The resource id of of the desired theme attribute.
      * @return The corresponding resource id.
      */
     @AnyRes
@@ -50,13 +50,19 @@ public final class ResourceUtil {
 
     @ColorInt
     public static int getAttrColorInt(Context context, @AttrRes int resId) {
-        int colorRes = getResourceId(context.getTheme(), resId);
+        return getAttrColorInt(context, context.getTheme(), resId);
+    }
+
+    @ColorInt
+    public static int getAttrColorInt(Context context, Resources.Theme theme, @AttrRes int resId) {
+        int colorRes = getResourceId(theme, resId);
         return ContextCompat.getColor(context, colorRes);
     }
 
     /**
      * Sets the scaling factor for fonts displayed on the display.
      * After api 25, updateConfiguration not valid
+     *
      * @param scale the scaling factor.
      */
     @SuppressLint("RestrictedApi")
@@ -68,12 +74,12 @@ public final class ResourceUtil {
         Configuration config = resources.getConfiguration();
         float sysFontScale = sysResources.getConfiguration().fontScale;
 //        if (config.fontScale != sysFontScale * scale) {
-            config.fontScale = sysFontScale * scale;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                return context.createConfigurationContext(config);
-            } else {
-                resources.updateConfiguration(config, displayMetrics);
-            }
+        config.fontScale = sysFontScale * scale;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            return context.createConfigurationContext(config);
+        } else {
+            resources.updateConfiguration(config, displayMetrics);
+        }
 //        }
         return context;
     }
@@ -104,7 +110,7 @@ public final class ResourceUtil {
                 ResourceUtil.getResourceId(mContext.getTheme(), android.R.attr.textColorPrimary));
     }
 
-    public static int getNavigationBarHeight(Context context){
+    public static int getNavigationBarHeight(Context context) {
         Resources resources = context.getResources();
         int resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android");
         if (resourceId > 0) {

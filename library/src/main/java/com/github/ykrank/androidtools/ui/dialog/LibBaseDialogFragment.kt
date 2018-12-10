@@ -1,11 +1,13 @@
 package com.github.ykrank.androidtools.ui.dialog
 
+import android.app.Dialog
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.DialogFragment
 import android.widget.Toast
 import com.github.ykrank.androidtools.ui.UiGlobalData
 import com.github.ykrank.androidtools.ui.internal.CoordinatorLayoutAnchorDelegate
+import com.github.ykrank.androidtools.util.LeaksUtil
 import com.github.ykrank.androidtools.widget.track.DataTrackAgent
 import com.github.ykrank.androidtools.widget.track.event.page.FragmentEndEvent
 import com.github.ykrank.androidtools.widget.track.event.page.FragmentStartEvent
@@ -20,6 +22,9 @@ abstract class LibBaseDialogFragment : DialogFragment() {
 
     protected var mRetrySnackbar: WeakReference<Snackbar>? = null
 
+    //Dialog null in onDestroyView, so save in onStop
+    private var mDialog: Dialog? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -32,6 +37,19 @@ abstract class LibBaseDialogFragment : DialogFragment() {
     override fun onPause() {
         trackAgent?.post(FragmentEndEvent(this))
         super.onPause()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        mDialog = dialog
+    }
+
+    override fun onDestroy() {
+        mDialog?.apply {
+            LeaksUtil.clearDialogLeaks(this)
+        }
+        mDialog = null
+        super.onDestroy()
     }
 
     /**

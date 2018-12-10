@@ -112,7 +112,7 @@
     <!-- Use for other version (v19, v21 etc.) override -->
     <style name="Lib.Base.V.Theme.Gallery" parent="Lib.Origin.Theme.Gallery" />
 
-    <style name="Lib.Origin.Theme.Gallery" parent="Theme.AppCompat.NoActionBar">
+    <style name="Lib.Origin.Theme.Gallery" parent="Theme.MaterialComponents.NoActionBar">
         <item name="android:windowBackground">@android:color/black</item>
         <item name="iconClose">@drawable/ic_close_white_24dp</item>
         <item name="android:windowFullscreen">true</item>
