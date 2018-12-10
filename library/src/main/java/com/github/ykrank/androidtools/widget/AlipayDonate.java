@@ -38,7 +38,7 @@ public class AlipayDonate {
      * @param payCode  手动解析二维码获得地址中的参数，例如 https://qr.alipay.com/aehvyvf4taua18zo6e 最后那段
      * @return 是否成功调用
      */
-    public static boolean startAlipayClient(Activity activity, String payCode) {
+    public static boolean startAlipayTrans(Activity activity, String payCode) {
         return startIntentUrl(activity, INTENT_URL_FORMAT.replace("{payCode}", payCode));
     }
 
@@ -131,6 +131,21 @@ public class AlipayDonate {
     public static boolean openAlipayBarcode(Context context) {
         try {
             Uri uri = Uri.parse("alipayqr://platformapi/startapp?saId=20000056");
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && context instanceof TileService) {
+                ((TileService) context).startActivityAndCollapse(intent);
+            } else {
+                context.startActivity(intent);
+            }
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public static boolean startAlipay(Context context) {
+        try {
+            Uri uri = Uri.parse("alipayqr://platformapi/startapp");
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && context instanceof TileService) {
                 ((TileService) context).startActivityAndCollapse(intent);

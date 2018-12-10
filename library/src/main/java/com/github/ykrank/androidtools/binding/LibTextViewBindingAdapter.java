@@ -34,8 +34,12 @@ public final class LibTextViewBindingAdapter {
                 DateUtils.MINUTE_IN_MILLIS, DateUtils.DAY_IN_MILLIS, 0);
     }
 
-    @BindingAdapter("second")
-    public static void setSecondTime(TextView textView, long datetimeSecond) {
-        textView.setText(df.format(new Date(datetimeSecond * 1000)));
+    @BindingAdapter("secondTime")
+    public static void setSecondTime(TextView textView, Long datetimeSecond) {
+        if (datetimeSecond == null){
+            textView.setText("-");
+        } else {
+            textView.setText(df.format(new Date(datetimeSecond * 1000)));
+        }
     }
 }

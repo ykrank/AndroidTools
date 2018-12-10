@@ -7,9 +7,9 @@ package com.github.ykrank.androidtools.widget.glide.viewtarget;
  */
 
 import android.graphics.drawable.Drawable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.bumptech.glide.request.target.ViewTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.shizhefei.view.largeimage.LargeImageView;
 import com.shizhefei.view.largeimage.factory.FileBitmapDecoderFactory;
@@ -22,15 +22,14 @@ import java.io.File;
  * A base {@link com.bumptech.glide.request.target.Target} for displaying resources in
  * {@link LargeImageView}s.
  */
-public class LargeImageViewTarget extends ViewTarget<LargeImageView, File> {
+public class LargeImageViewTarget extends CustomViewTarget<LargeImageView, File> {
 
     public LargeImageViewTarget(LargeImageView view) {
         super(view);
     }
 
     @Override
-    public void onLoadStarted(Drawable placeholder) {
-        super.onLoadStarted(placeholder);
+    public void onResourceLoading(Drawable placeholder) {
         view.setImageDrawable(placeholder);
     }
 
@@ -41,13 +40,12 @@ public class LargeImageViewTarget extends ViewTarget<LargeImageView, File> {
     }
 
     @Override
-    public void onResourceReady(File resource, Transition<? super File> transition) {
+    public void onResourceReady(@NonNull File resource, Transition<? super File> transition) {
         view.setImage(new FileBitmapDecoderFactory(resource));
     }
 
     @Override
-    public void onLoadCleared(Drawable placeholder) {
-        super.onLoadCleared(placeholder);
+    public void onResourceCleared(Drawable placeholder) {
         view.setImageDrawable(placeholder);
     }
 
