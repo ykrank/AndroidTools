@@ -82,7 +82,7 @@ abstract class LibBaseRecyclerViewAdapter : ListDelegationAdapter<MutableList<An
      * *
      * @see DiffUtil
      */
-    fun diffNewDataSet(newData: List<Any>, detectMoves: Boolean) {
+    fun diffNewDataSet(newData: List<Any>, detectMoves: Boolean, callback: (() -> Unit)? = null) {
         if (items === newData) {
             refreshDataSet(newData, detectMoves)
             L.throwNewErrorIfDebug(IllegalArgumentException("must set new data set"))
@@ -98,6 +98,7 @@ abstract class LibBaseRecyclerViewAdapter : ListDelegationAdapter<MutableList<An
                 .subscribe({
                     items = newData.toMutableList()
                     it.dispatchUpdatesTo(this)
+                    callback?.invoke()
                 }, L::report)
     }
 
