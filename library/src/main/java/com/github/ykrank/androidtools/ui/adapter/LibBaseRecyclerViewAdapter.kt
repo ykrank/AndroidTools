@@ -15,11 +15,14 @@ import com.github.ykrank.androidtools.util.L
 import com.github.ykrank.androidtools.util.RxJavaUtil
 import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
 import com.hannesdorfmann.adapterdelegates3.ListDelegationAdapter
+import io.reactivex.Single
 import io.reactivex.disposables.Disposable
 
 abstract class LibBaseRecyclerViewAdapter : ListDelegationAdapter<MutableList<Any>> {
 
-    var updateDispose:Disposable? = null
+    var updateDispose: Disposable? = null
+
+    var differed: Boolean = false
 
     constructor(context: Context) : this(context, false)
 
@@ -60,6 +63,9 @@ abstract class LibBaseRecyclerViewAdapter : ListDelegationAdapter<MutableList<An
     }
 
     fun hideFooterProgress() {
+        if (differed) {
+            return
+        }
         val position = itemCount - 1
         Preconditions.checkState(getItem(position) is FooterProgressItem)
         removeItem(position)
@@ -84,13 +90,15 @@ abstract class LibBaseRecyclerViewAdapter : ListDelegationAdapter<MutableList<An
         }
         RxJavaUtil.disposeIfNotNull(updateDispose)
 
-        updateDispose = RxJavaUtil.workWithUiResult({
-            DiffUtil.calculateDiff(
-                    BaseDiffCallback(items, newData), detectMoves)
-        }, {
-            it.dispatchUpdatesTo(this)
-            items = newData.toMutableList()
-        })
+        differed = true
+        updateDispose = Single.just(BaseDiffCallback(items.toList(), newData))
+                .map { DiffUtil.calculateDiff(it, detectMoves) }
+                .compose(RxJavaUtil.iOSingleTransformer())
+                .doFinally { differed = false }
+                .subscribe({
+                    items = newData.toMutableList()
+                    it.dispatchUpdatesTo(this)
+                }, L::report)
     }
 
     /**
@@ -126,10 +134,16 @@ abstract class LibBaseRecyclerViewAdapter : ListDelegationAdapter<MutableList<An
     }
 
     fun addItem(`object`: Any) {
+        if (L.showLog()) {
+            check(!differed)
+        }
         items.add(`object`)
     }
 
     fun removeItem(position: Int) {
+        if (L.showLog()) {
+            check(!differed)
+        }
         items.removeAt(position)
     }
 
@@ -159,8 +173,8 @@ abstract class LibBaseRecyclerViewAdapter : ListDelegationAdapter<MutableList<An
         }
 
         override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-            val oldD = oldData[oldItemPosition]
-            val newD = newData[newItemPosition]
+            val oldD = oldData.getOrNull(oldItemPosition)
+            val newD = newData.getOrNull(newItemPosition)
             if (oldD != null && oldD is DiffSameItem) {
                 return oldD.isSameItem(newD)
             }
@@ -168,8 +182,8 @@ abstract class LibBaseRecyclerViewAdapter : ListDelegationAdapter<MutableList<An
         }
 
         override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-            val oldD = oldData[oldItemPosition]
-            val newD = newData[newItemPosition]
+            val oldD = oldData.getOrNull(oldItemPosition)
+            val newD = newData.getOrNull(newItemPosition)
             if (oldD != null && oldD is DiffSameItem) {
                 return oldD.isSameContent(newD)
             }
@@ -177,8 +191,8 @@ abstract class LibBaseRecyclerViewAdapter : ListDelegationAdapter<MutableList<An
         }
 
         override fun getChangePayload(oldItemPosition: Int, newItemPosition: Int): Any? {
-            val oldD = oldData[oldItemPosition]
-            val newD = newData[newItemPosition]
+            val oldD = oldData.getOrNull(oldItemPosition)
+            val newD = newData.getOrNull(newItemPosition)
             if (oldD != null && oldD is DiffSameItem) {
                 return oldD.getChangePayload(newD)
             }
