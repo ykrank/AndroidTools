@@ -22,9 +22,12 @@ abstract class LibBaseRecyclerViewAdapter : ListDelegationAdapter<MutableList<An
 
     var updateDispose: Disposable? = null
 
-    var differed: Boolean = false
+    /**
+     * Whether diffutil calculateDiffing
+     */
+    private var differing: Boolean = false
 
-    constructor(context: Context) : this(context, false)
+    constructor(context: Context) : this(context, true)
 
     /**
      * Only use when you sure inner model implements [StableIdModel]
@@ -44,14 +47,19 @@ abstract class LibBaseRecyclerViewAdapter : ListDelegationAdapter<MutableList<An
 
     fun setHasProgress(hasProgress: Boolean) {
         if (hasProgress) {
-            items.clear()
-            items.add(ProgressItem())
-            notifyDataSetChanged()
+            //If diffing, post a task to it
+            if (differing) {
+                diffNewDataSet(listOf(ProgressItem()), false)
+            } else {
+                clear()
+                addItem(ProgressItem())
+                notifyDataSetChanged()
+            }
         } else {
             // we do not need to clear list if we have already changed
-            // data set or we have no ProgressItem to been cleared
-            if (items.size == 1 && items[0] is ProgressItem) {
-                items.clear()
+            // data set or we have no ProgressItem to been cleared or differing
+            if (!differing && items.size == 1 && items[0] is ProgressItem) {
+                clear()
                 notifyDataSetChanged()
             }
         }
@@ -63,7 +71,7 @@ abstract class LibBaseRecyclerViewAdapter : ListDelegationAdapter<MutableList<An
     }
 
     fun hideFooterProgress() {
-        if (differed) {
+        if (differing) {
             return
         }
         val position = itemCount - 1
@@ -90,11 +98,11 @@ abstract class LibBaseRecyclerViewAdapter : ListDelegationAdapter<MutableList<An
         }
         RxJavaUtil.disposeIfNotNull(updateDispose)
 
-        differed = true
+        differing = true
         updateDispose = Single.just(BaseDiffCallback(items.toList(), newData))
                 .map { DiffUtil.calculateDiff(it, detectMoves) }
                 .compose(RxJavaUtil.iOSingleTransformer())
-                .doFinally { differed = false }
+                .doFinally { differing = false }
                 .subscribe({
                     items = newData.toMutableList()
                     it.dispatchUpdatesTo(this)
@@ -136,14 +144,21 @@ abstract class LibBaseRecyclerViewAdapter : ListDelegationAdapter<MutableList<An
 
     fun addItem(`object`: Any) {
         if (L.showLog()) {
-            check(!differed)
+            check(!differing)
         }
         items.add(`object`)
     }
 
+    fun clear() {
+        if (L.showLog()) {
+            check(!differing)
+        }
+        items.clear()
+    }
+
     fun removeItem(position: Int) {
         if (L.showLog()) {
-            check(!differed)
+            check(!differing)
         }
         items.removeAt(position)
     }

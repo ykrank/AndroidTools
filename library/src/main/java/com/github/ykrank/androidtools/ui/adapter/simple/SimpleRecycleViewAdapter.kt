@@ -16,12 +16,12 @@ import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
 
 class SimpleRecycleViewAdapter : LibBaseRecyclerViewAdapter {
 
-    constructor(context: Context, @LayoutRes layoutRes: Int, bindViewHolderCallback: BindViewHolderCallback? = null,
-                createViewHolderCallback: ((ViewDataBinding) -> Unit)? = null) : super(context) {
+    constructor(context: Context, @LayoutRes layoutRes: Int, stableId: Boolean = false, bindViewHolderCallback: BindViewHolderCallback? = null,
+                createViewHolderCallback: ((ViewDataBinding) -> Unit)? = null) : super(context, stableId) {
         addAdapterDelegate(SimpleAdapterDelegate(context, layoutRes, null, createViewHolderCallback, bindViewHolderCallback))
     }
 
-    constructor(context: Context, adapterDelegate: AdapterDelegate<MutableList<Any>>) : super(context) {
+    constructor(context: Context, adapterDelegate: AdapterDelegate<MutableList<Any>>, stableId: Boolean = false) : super(context, stableId) {
         addAdapterDelegate(adapterDelegate)
     }
 }

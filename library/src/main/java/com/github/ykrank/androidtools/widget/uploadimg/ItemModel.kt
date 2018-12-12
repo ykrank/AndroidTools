@@ -2,10 +2,11 @@ package com.github.ykrank.androidtools.widget.uploadimg
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.github.ykrank.androidtools.ui.adapter.StableIdModel
 import com.github.ykrank.androidtools.ui.adapter.model.DiffSameItem
 import com.luck.picture.lib.entity.LocalMedia
 
-internal class ModelImageUploadAdd {
+internal class ModelImageUploadAdd : StableIdModel {
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -18,7 +19,7 @@ internal class ModelImageUploadAdd {
     }
 }
 
-class ModelImageUpload(val media: LocalMedia) : DiffSameItem, Parcelable {
+class ModelImageUpload(val media: LocalMedia) : DiffSameItem, Parcelable, StableIdModel {
 
     var url: String? = null
     var deleteUrl: String? = null
@@ -39,6 +40,8 @@ class ModelImageUpload(val media: LocalMedia) : DiffSameItem, Parcelable {
         state = parcel.readInt()
     }
 
+    override val stableId: Long
+        get() = path.hashCode().toLong()
 
     override fun isSameItem(other: Any?): Boolean {
         if (this === other) return true
