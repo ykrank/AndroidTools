@@ -126,8 +126,8 @@
         <item name="titlePopWindowTextColor">@android:color/secondary_text_light</item>
 
         <item name="divideLineColor">@color/grey_500</item>
-        <item name="textColorError">@color/red_A400</item>
-        <item name="textColorRight">@color/green_A400</item>
+        <item name="textColorError">@color/error</item>
+        <item name="textColorRight">@color/right</item>
         <item name="textColorHint">@color/grey_500</item>
     </style>
 
@@ -178,8 +178,8 @@
 
         <item name="divideLineColor">@color/grey_700</item>
 
-        <item name="textColorError">@color/red_A400</item>
-        <item name="textColorRight">@color/green_500</item>
+        <item name="textColorError">@color/error</item>
+        <item name="textColorRight">@color/right</item>
         <item name="textColorHint">@color/grey_600</item>
     </style>
 </resources>
