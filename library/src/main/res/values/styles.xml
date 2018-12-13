@@ -3,7 +3,7 @@
 
     <style name="Preference.Overlay" parent="PreferenceThemeOverlay.v14" />
 
-    <style name="CustomCardView" parent="CardView">
+    <style name="CustomCardView" parent="Widget.MaterialComponents.CardView">
         <item name="cardCornerRadius">4dp</item>
     </style>
 
