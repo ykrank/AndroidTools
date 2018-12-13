@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment
 import android.view.View
 import com.github.ykrank.androidtools.R
 import com.github.ykrank.androidtools.ui.internal.CoordinatorLayoutAnchorDelegate
+import com.github.ykrank.androidtools.util.L
 import com.github.ykrank.androidtools.widget.track.event.page.FragmentEndEvent
 import com.github.ykrank.androidtools.widget.track.event.page.FragmentStartEvent
 import java.lang.ref.WeakReference
@@ -18,6 +19,7 @@ abstract class LibBaseFragment : Fragment() {
     protected var mCoordinatorLayoutAnchorDelegate: CoordinatorLayoutAnchorDelegate? = null
     protected var mRetrySnackbar: WeakReference<Snackbar>? = null
     protected var mUserVisibleHint = false
+    private var pageMsgLeaved = false
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -32,6 +34,10 @@ abstract class LibBaseFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         UiGlobalData.provider?.trackAgent?.post(FragmentStartEvent(this))
+        if (!pageMsgLeaved){
+            L.leaveMsg(this.javaClass.simpleName)
+            pageMsgLeaved = true
+        }
     }
 
     override fun onPause() {
@@ -90,5 +96,10 @@ abstract class LibBaseFragment : Fragment() {
             }
             mRetrySnackbar = null
         }
+    }
+
+    protected fun leavePageMsg(msg:String){
+        pageMsgLeaved = true
+        L.leaveMsg(msg)
     }
 }

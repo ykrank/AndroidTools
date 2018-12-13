@@ -13,6 +13,7 @@ import com.github.ykrank.androidtools.guava.Optional
 import com.github.ykrank.androidtools.ui.internal.CoordinatorLayoutAnchorDelegate
 import com.github.ykrank.androidtools.ui.internal.DrawerLayoutDelegate
 import com.github.ykrank.androidtools.ui.internal.DrawerLayoutOp
+import com.github.ykrank.androidtools.util.L
 import com.github.ykrank.androidtools.widget.track.event.page.ActivityEndEvent
 import com.github.ykrank.androidtools.widget.track.event.page.ActivityStartEvent
 import java.lang.ref.WeakReference
@@ -26,6 +27,8 @@ abstract class LibBaseActivity : AppCompatActivity(), CoordinatorLayoutAnchorDel
     private var mDrawerLayoutDelegate: DrawerLayoutDelegate? = null
     private var mSnackbar: WeakReference<Snackbar>? = null
     protected open val mDrawerIndicatorEnabled = true
+
+    private var pageMsgLeaved = false
 
     @CallSuper
     override fun setContentView(layoutResID: Int) {
@@ -55,6 +58,10 @@ abstract class LibBaseActivity : AppCompatActivity(), CoordinatorLayoutAnchorDel
     override fun onResume() {
         super.onResume()
         UiGlobalData.provider?.trackAgent?.post(ActivityStartEvent(this))
+        if (!pageMsgLeaved) {
+            L.leaveMsg(this.javaClass.simpleName)
+            pageMsgLeaved = true
+        }
     }
 
     override fun onPause() {
@@ -136,4 +143,10 @@ abstract class LibBaseActivity : AppCompatActivity(), CoordinatorLayoutAnchorDel
         }
         return snackbar
     }
+
+    protected fun leavePageMsg(msg: String) {
+        pageMsgLeaved = true
+        L.leaveMsg(msg)
+    }
+
 }

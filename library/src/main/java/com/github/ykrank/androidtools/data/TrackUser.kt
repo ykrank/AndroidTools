@@ -2,9 +2,11 @@ package com.github.ykrank.androidtools.data
 
 interface TrackUser {
 
-    var uid: String?
+    val uid: String?
 
-    var name: String?
+    val name: String?
 
-    var permission: Int
+    val permission: Int
+
+    val extras: Map<String, String>?
 }
