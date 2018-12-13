@@ -17,6 +17,7 @@ import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
 import com.hannesdorfmann.adapterdelegates3.ListDelegationAdapter
 import io.reactivex.Single
 import io.reactivex.disposables.Disposable
+import java.util.concurrent.atomic.AtomicBoolean
 
 abstract class LibBaseRecyclerViewAdapter : ListDelegationAdapter<MutableList<Any>> {
 
@@ -25,7 +26,7 @@ abstract class LibBaseRecyclerViewAdapter : ListDelegationAdapter<MutableList<An
     /**
      * Whether diffutil calculateDiffing
      */
-    private var differing: Boolean = false
+    private var differing: AtomicBoolean = AtomicBoolean(false)
 
     constructor(context: Context) : this(context, true)
 
@@ -48,7 +49,7 @@ abstract class LibBaseRecyclerViewAdapter : ListDelegationAdapter<MutableList<An
     fun setHasProgress(hasProgress: Boolean) {
         if (hasProgress) {
             //If diffing, post a task to it
-            if (differing) {
+            if (differing.get()) {
                 diffNewDataSet(listOf(ProgressItem()), false)
             } else {
                 clear()
@@ -58,7 +59,7 @@ abstract class LibBaseRecyclerViewAdapter : ListDelegationAdapter<MutableList<An
         } else {
             // we do not need to clear list if we have already changed
             // data set or we have no ProgressItem to been cleared or differing
-            if (!differing && items.size == 1 && items[0] is ProgressItem) {
+            if (!differing.get() && items.size == 1 && items[0] is ProgressItem) {
                 clear()
                 notifyDataSetChanged()
             }
@@ -66,18 +67,23 @@ abstract class LibBaseRecyclerViewAdapter : ListDelegationAdapter<MutableList<An
     }
 
     fun showFooterProgress() {
+        if (differing.get()) {
+            return
+        }
         addItem(FooterProgressItem())
         notifyItemInserted(items.size)
     }
 
     fun hideFooterProgress() {
-        if (differing) {
+        if (differing.get()) {
             return
         }
         val position = itemCount - 1
-        Preconditions.checkState(getItem(position) is FooterProgressItem)
-        removeItem(position)
-        notifyItemRemoved(position)
+        val lastItem = getItem(position)
+        if (lastItem is FooterProgressItem) {
+            removeItem(position)
+            notifyItemRemoved(position)
+        }
     }
 
     /**
@@ -98,11 +104,11 @@ abstract class LibBaseRecyclerViewAdapter : ListDelegationAdapter<MutableList<An
         }
         RxJavaUtil.disposeIfNotNull(updateDispose)
 
-        differing = true
-        updateDispose = Single.just(BaseDiffCallback(items.toList(), newData))
+        differing.set(true)
+        updateDispose = Single.just(BaseDiffCallback(items, newData))
                 .map { DiffUtil.calculateDiff(it, detectMoves) }
                 .compose(RxJavaUtil.iOSingleTransformer())
-                .doFinally { differing = false }
+                .doFinally { differing.set(false) }
                 .subscribe({
                     items = newData.toMutableList()
                     it.dispatchUpdatesTo(this)
@@ -142,25 +148,37 @@ abstract class LibBaseRecyclerViewAdapter : ListDelegationAdapter<MutableList<An
         return items[position]
     }
 
+    /**
+     * Any change on items should run on main thread and not differing
+     */
     fun addItem(`object`: Any) {
-        if (L.showLog()) {
-            check(!differing)
-        }
+        checkNotDiffering()
         items.add(`object`)
     }
 
+    /**
+     * Any change on items should run on main thread and not differing
+     */
     fun clear() {
-        if (L.showLog()) {
-            check(!differing)
-        }
+        checkNotDiffering()
         items.clear()
     }
 
+    /**
+     * Any change on items should run on main thread and not differing
+     */
     fun removeItem(position: Int) {
-        if (L.showLog()) {
-            check(!differing)
-        }
+        checkNotDiffering()
         items.removeAt(position)
+    }
+
+    /**
+     * Any change on items should run on main thread and not differing
+     */
+    private fun checkNotDiffering() {
+        if (L.showLog()) {
+            check(!differing.get())
+        }
     }
 
     override fun getItemId(position: Int): Long {

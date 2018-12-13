@@ -89,15 +89,6 @@ abstract class LibBaseRecyclerViewFragment<D> : LibBaseFragment() {
     protected val recyclerView: RecyclerView
         get() = mLoadingViewModelBindingDelegate.recyclerView
 
-    @CallSuper
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        mLoadingViewModel = LoadingViewModel()
-        if (savedInstanceState != null) {
-            mLoadingViewModel.loading = savedInstanceState.getInt(STATE_LOADING_VIEW_MODEL, LoadingViewModel.LOADING_FINISH)
-        }
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mLoadingViewModelBindingDelegate = getLoadingViewModelBindingDelegateImpl(inflater,
