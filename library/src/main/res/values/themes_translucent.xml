@@ -20,10 +20,10 @@
     <style name="Lib.Theme.Translucent.Dark.NightMode.Amoled" parent="Lib.Base.Theme.Dark.Translucent.NightMode.Amoled" />
 
     <style name="Lib.Base.Theme.Light.Translucent.AfternoonTea" parent="Lib.Base.Theme.Light.Translucent">
-        <item name="colorPrimaryDark">@color/saraba_main_top_color_dark</item>
-        <item name="colorPrimary">@color/saraba_main_top_color</item>
-        <item name="android:colorBackground">@color/saraba_main_bg_color</item>
-        <item name="colorAccent">@color/light_blue_700</item>
+        <item name="colorPrimaryDark">@color/saraba_primary_dark</item>
+        <item name="colorPrimary">@color/saraba_primary</item>
+        <item name="android:colorBackground">@color/saraba_background</item>
+        <item name="colorAccent">@color/saraba_accent</item>
         <item name="actionModeBackground">?attr/colorPrimary</item>
         <item name="colorControlActivated">?attr/colorAccent</item>
         <item name="cardViewStyle">@style/CardView.Light.AfternoonTea</item>

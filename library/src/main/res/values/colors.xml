@@ -25,14 +25,14 @@
     <color name="photo_view_crop_dim_color">#cc000000</color>
     <color name="photo_view_crop_highlight_color">#fff</color>
 
-    <color name="saraba_main_bg_color">#f6f7eb</color>
-    <color name="saraba_main_top_color">#cccc99</color>
-    <color name="saraba_main_top_color_dark">#999972</color>
-    <color name="saraba_main_color_dark">#dede93</color>
-
     <color name="scrim">#BB323232</color>
     <color name="background_dark">#ff333333</color>
     <color name="background_super_dark">#ff292929</color>
 
     <color name="transparent">#00000000</color>
+
+    <color name="saraba_primary">#cccc99</color>
+    <color name="saraba_primary_dark">#999972</color>
+    <color name="saraba_accent">@color/light_blue_A400</color>
+    <color name="saraba_background">#f6f7eb</color>
 </resources>

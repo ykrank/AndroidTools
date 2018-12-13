@@ -8,7 +8,7 @@
     </style>
 
     <style name="CardView.Light.AfternoonTea" parent="CustomCardView">
-        <item name="cardBackgroundColor">@color/saraba_main_bg_color</item>
+        <item name="cardBackgroundColor">@color/saraba_background</item>
     </style>
 
     <style name="CustomCardView.Light">
