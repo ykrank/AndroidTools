@@ -8,9 +8,6 @@
     <attr name="drawerTextColor" format="color" />
     <attr name="fabBackgroundTint" format="color|reference" />
 
-    <attr name="iconClose" format="reference" />
-    <attr name="iconAdd" format="reference" />
-
     <attr name="iconTintColor" format="color" />
     <attr name="iconTintColorLight" format="color" />
     <attr name="iconMenuPageJump" format="reference" />

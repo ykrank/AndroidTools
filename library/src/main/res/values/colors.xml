@@ -21,7 +21,6 @@
     <!--<color name="light_cards_or_dialog">#ffffff</color>-->
     <color name="dark_status_bar">#000000</color>
     <color name="dark_app_bar">#212121</color>
-    <color name="dark_background">#303030</color>
     <!--<color name="dark_cards_or_dialog">#424242</color>-->
     <color name="dark_card_view">#202020</color>
 
@@ -34,8 +33,5 @@
 
     <color name="transparent">#00000000</color>
 
-    <color name="saraba_primary">#cccc99</color>
-    <color name="saraba_primary_dark">#999972</color>
-    <color name="saraba_accent">@color/light_blue_A400</color>
-    <color name="saraba_background">#f6f7eb</color>
+    <color name="saraba_accent">@color/saraba_secondary</color>
 </resources>

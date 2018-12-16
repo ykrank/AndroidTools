@@ -112,8 +112,9 @@
 
     <style name="Lib.Origin.Theme.Gallery" parent="Theme.Design.NoActionBar">
         <item name="android:windowBackground">@android:color/black</item>
-        <item name="iconClose">@drawable/ic_close_white_24dp</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
+
+        <item name="colorPrimaryText">@color/dark_primary_text</item>
     </style>
 </resources>

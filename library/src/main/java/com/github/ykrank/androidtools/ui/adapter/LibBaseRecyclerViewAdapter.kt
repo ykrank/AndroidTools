@@ -17,6 +17,7 @@ import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
 import com.hannesdorfmann.adapterdelegates3.ListDelegationAdapter
 import io.reactivex.Single
 import io.reactivex.disposables.Disposable
+import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicBoolean
 
 abstract class LibBaseRecyclerViewAdapter : ListDelegationAdapter<MutableList<Any>> {

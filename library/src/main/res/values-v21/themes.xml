@@ -17,5 +17,7 @@
 
     <style name="Lib.Origin.Theme.Dark.V21" parent="Lib.Origin.Theme.Dark">
         <item name="android:navigationBarColor">?android:attr/colorPrimaryDark</item>
+        <item name="android:colorPrimary">?attr/colorPrimary</item>
+        <item name="android:colorPrimaryDark">?attr/colorPrimaryDark</item>
     </style>
 </resources>

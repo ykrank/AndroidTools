@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="colorPrimary" format="color" />
+    <attr name="colorPrimaryDark" format="color" />
+    <attr name="colorPrimaryLight" format="color" />
+    <attr name="colorPrimaryText" format="color" />
+    <attr name="colorPrimaryTextDark" format="color" />
+    <attr name="colorPrimaryTextLight" format="color" />
+    <attr name="colorSecondary" format="color" />
+    <attr name="colorSecondaryDark" format="color" />
+    <attr name="colorSecondaryLight" format="color" />
+    <attr name="colorSecondaryText" format="color" />
+    <attr name="colorSecondaryTextDark" format="color" />
+    <attr name="colorSecondaryTextLight" format="color" />
+    <attr name="colorBackground" format="color" />
+    <attr name="colorBackgroundDark" format="color" />
+    <attr name="colorBackgroundLight" format="color" />
+    <attr name="colorBackgroundText" format="color" />
+    <attr name="colorBackgroundTextDark" format="color" />
+    <attr name="colorBackgroundTextLight" format="color" />
+</resources>
