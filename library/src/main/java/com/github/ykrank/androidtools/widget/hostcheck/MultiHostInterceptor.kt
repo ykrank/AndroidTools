@@ -47,7 +47,7 @@ open class MultiHostInterceptor<T : BaseHostUrl>(private val baseHostUrl: T, pri
             if (e is IOException) {
                 except.invoke(e)
             } else {
-                except.invoke(OkHttpException(request.url()?.host(), e))
+                except.invoke(OkHttpException(request.url().host(), e))
             }
         }
     }
@@ -57,6 +57,6 @@ open class MultiHostInterceptor<T : BaseHostUrl>(private val baseHostUrl: T, pri
  * Must not extends IOException but ProtocolException because  okhttp3 catch RouteException and IOException to retry.
  * But only some exception
  *
- * @see okhttp3.internal.http.RetryAndFollowUpInterceptor#recover(IOException, StreamAllocation, boolean, Request)
+ * @see [okhttp3.internal.http.RetryAndFollowUpInterceptor.recover]
  */
 class OkHttpException(val host: String?, override val cause: Throwable?) : ProtocolException(host)

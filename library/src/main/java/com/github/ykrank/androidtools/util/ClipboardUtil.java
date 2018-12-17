@@ -14,10 +14,12 @@ public final class ClipboardUtil {
      *
      * @param text The actual text we want to copyFrom.
      */
-    public static void copyText(Context context, CharSequence text) {
+    public static void copyText(Context context, CharSequence label, CharSequence text) {
         ClipboardManager clipboardManager = (ClipboardManager)
                 context.getSystemService(Context.CLIPBOARD_SERVICE);
-        ClipData clipData = ClipData.newPlainText("simple text", text);
-        clipboardManager.setPrimaryClip(clipData);
+        ClipData clipData = ClipData.newPlainText(label, text);
+        if (clipboardManager != null) {
+            clipboardManager.setPrimaryClip(clipData);
+        }
     }
 }
