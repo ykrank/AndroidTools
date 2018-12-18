@@ -1,6 +1,8 @@
 package com.github.ykrank.androidtools.ui
 
 import android.content.Context
+import android.os.Bundle
+import android.support.annotation.CallSuper
 import android.support.annotation.StringRes
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
@@ -19,33 +21,41 @@ abstract class LibBaseFragment : Fragment() {
     protected var mCoordinatorLayoutAnchorDelegate: CoordinatorLayoutAnchorDelegate? = null
     protected var mRetrySnackbar: WeakReference<Snackbar>? = null
     protected var mUserVisibleHint = false
-    private var pageMsgLeaved = false
 
+    @CallSuper
     override fun onAttach(context: Context?) {
         super.onAttach(context)
         mCoordinatorLayoutAnchorDelegate = context as CoordinatorLayoutAnchorDelegate
     }
 
+    @CallSuper
     override fun onDetach() {
         mCoordinatorLayoutAnchorDelegate = null
         super.onDetach()
     }
 
+    @CallSuper
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        L.leaveMsg("${this.javaClass.simpleName} onCreate")
+    }
+
+    @CallSuper
     override fun onResume() {
         super.onResume()
         UiGlobalData.provider?.trackAgent?.post(FragmentStartEvent(this))
-        if (!pageMsgLeaved){
-            L.leaveMsg(this.javaClass.simpleName)
-            pageMsgLeaved = true
-        }
     }
 
+    @CallSuper
     override fun onPause() {
         UiGlobalData.provider?.trackAgent?.post(FragmentEndEvent(this))
         super.onPause()
     }
 
+    @CallSuper
     override fun onDestroy() {
+        L.leaveMsg("${this.javaClass.simpleName} onDestroy")
+
         super.onDestroy()
         UiGlobalData.provider?.refWatcher?.watch(this)
     }
@@ -99,7 +109,6 @@ abstract class LibBaseFragment : Fragment() {
     }
 
     protected fun leavePageMsg(msg:String){
-        pageMsgLeaved = true
         L.leaveMsg(msg)
     }
 }

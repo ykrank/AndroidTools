@@ -25,7 +25,7 @@ class DefaultTrackHandler(private val context: Context, agent: TrackAgent) : Tra
             if (label == null) {
                 label = ""
             }
-            agent.onEvent(context, name, label, event.data)
+            agent.onEvent(context, name, label, event.getData())
             return true
         }
         return false

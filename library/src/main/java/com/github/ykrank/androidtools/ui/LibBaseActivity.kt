@@ -28,8 +28,6 @@ abstract class LibBaseActivity : AppCompatActivity(), CoordinatorLayoutAnchorDel
     private var mSnackbar: WeakReference<Snackbar>? = null
     protected open val mDrawerIndicatorEnabled = true
 
-    private var pageMsgLeaved = false
-
     @CallSuper
     override fun setContentView(layoutResID: Int) {
         super.setContentView(layoutResID)
@@ -48,6 +46,13 @@ abstract class LibBaseActivity : AppCompatActivity(), CoordinatorLayoutAnchorDel
         setupCoordinatorLayoutAnchorDelegate()
     }
 
+    @CallSuper
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        L.leaveMsg("${this.javaClass.simpleName} onCreate")
+    }
+
+    @CallSuper
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
         mDrawerLayoutDelegate = findDrawerLayoutDelegate()
@@ -55,24 +60,24 @@ abstract class LibBaseActivity : AppCompatActivity(), CoordinatorLayoutAnchorDel
         mDrawerLayoutDelegate?.onPostCreate()
     }
 
+    @CallSuper
     override fun onResume() {
         super.onResume()
         UiGlobalData.provider?.trackAgent?.post(ActivityStartEvent(this))
-        if (!pageMsgLeaved) {
-            L.leaveMsg(this.javaClass.simpleName)
-            pageMsgLeaved = true
-        }
     }
 
+    @CallSuper
     override fun onPause() {
         super.onPause()
         UiGlobalData.provider?.trackAgent?.post(ActivityEndEvent(this))
     }
 
+    @CallSuper
     override fun onDestroy() {
         mDrawerLayoutDelegate?.onDestroy()
         mDrawerLayoutDelegate = null
 
+        L.leaveMsg("${this.javaClass.simpleName} onDestroy")
         super.onDestroy()
     }
 
@@ -145,7 +150,6 @@ abstract class LibBaseActivity : AppCompatActivity(), CoordinatorLayoutAnchorDel
     }
 
     protected fun leavePageMsg(msg: String) {
-        pageMsgLeaved = true
         L.leaveMsg(msg)
     }
 

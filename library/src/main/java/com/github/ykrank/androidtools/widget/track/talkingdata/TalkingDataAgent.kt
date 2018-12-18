@@ -43,7 +43,7 @@ class TalkingDataAgent : TrackAgent {
         TCAgent.onPageEnd(context, string)
     }
 
-    override fun onEvent(context: Context, name: String, label: String, data: Map<String, String>) {
+    override fun onEvent(context: Context, name: String, label: String, data: Map<String, String?>) {
         TCAgent.onEvent(context, name, label, data)
     }
 }

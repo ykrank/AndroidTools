@@ -1,6 +1,7 @@
 package com.github.ykrank.androidtools.ui
 
 import android.content.SharedPreferences
+import android.os.Bundle
 import android.support.annotation.CallSuper
 import android.support.v14.preference.PreferenceFragment
 import com.github.ykrank.androidtools.util.L
@@ -13,7 +14,11 @@ import com.github.ykrank.androidtools.widget.track.event.page.LocalFragmentStart
  */
 abstract class LibBasePreferenceFragment : PreferenceFragment(), SharedPreferences.OnSharedPreferenceChangeListener {
 
-    private var pageMsgLeaved = false
+    @CallSuper
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        L.leaveMsg("${this.javaClass.simpleName} onCreate")
+    }
 
     @CallSuper
     override fun onStart() {
@@ -29,22 +34,25 @@ abstract class LibBasePreferenceFragment : PreferenceFragment(), SharedPreferenc
         preferenceScreen.sharedPreferences.unregisterOnSharedPreferenceChangeListener(this)
     }
 
+    @CallSuper
     override fun onResume() {
         super.onResume()
         UiGlobalData.provider?.trackAgent?.post(LocalFragmentStartEvent(this))
-        if (!pageMsgLeaved){
-            L.leaveMsg(this.javaClass.simpleName)
-            pageMsgLeaved = true
-        }
     }
 
+    @CallSuper
     override fun onPause() {
         UiGlobalData.provider?.trackAgent?.post(LocalFragmentEndEvent(this))
         super.onPause()
     }
 
-    protected fun leavePageMsg(msg:String){
-        pageMsgLeaved = true
+    @CallSuper
+    override fun onDestroy() {
+        L.leaveMsg("${this.javaClass.simpleName} onDestroy")
+        super.onDestroy()
+    }
+
+    protected fun leavePageMsg(msg: String) {
         L.leaveMsg(msg)
     }
 }
