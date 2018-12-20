@@ -49,7 +49,6 @@ abstract class LibBaseActivity : AppCompatActivity(), CoordinatorLayoutAnchorDel
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        L.leaveMsg("${this.javaClass.simpleName} onCreate")
     }
 
     @CallSuper
@@ -77,7 +76,6 @@ abstract class LibBaseActivity : AppCompatActivity(), CoordinatorLayoutAnchorDel
         mDrawerLayoutDelegate?.onDestroy()
         mDrawerLayoutDelegate = null
 
-        L.leaveMsg("${this.javaClass.simpleName} onDestroy")
         super.onDestroy()
     }
 
