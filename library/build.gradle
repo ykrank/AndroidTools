@@ -57,6 +57,7 @@ dependencies {
     debugApi 'com.squareup.leakcanary:leakcanary-android:1.6.3'
     releaseApi 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.3'
     api 'org.apache.commons:commons-lang3:3.9'
+    api 'com.google.guava:guava:27.1-android'
 
     api 'io.reactivex.rxjava2:rxjava:2.2.8'
     api 'io.reactivex.rxjava2:rxandroid:2.1.1'
