@@ -174,6 +174,6 @@ open class LibImageUploadFragment : LibImagePickerFragment() {
         val Extras_Upload_Images = "extras_upload_images"
 
         val uploadExecutor = ThreadPoolExecutor(1, 3, 1, TimeUnit.SECONDS, LinkedBlockingDeque(32))
-        val uploadScheduler = ExecutorScheduler(uploadExecutor)
+        val uploadScheduler = ExecutorScheduler(uploadExecutor, true)
     }
 }
