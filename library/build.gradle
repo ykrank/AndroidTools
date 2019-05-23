@@ -66,7 +66,7 @@ dependencies {
     api 'com.github.bumptech.glide:glide:4.9.0'
     api 'com.github.bumptech.glide:okhttp3-integration:4.9.0'
     //okhttp 3.12.0 have bug https://github.com/square/okhttp/issues/4395
-    api 'com.squareup.okhttp3:okhttp:3.14.1'
+    api 'com.squareup.okhttp3:okhttp:3.14.2'
 
     api 'com.shizhefei:LargeImageView:1.1.0'
     api 'com.github.ykrank:androidautodispose:0.4.0'
@@ -84,7 +84,7 @@ dependencies {
     compileOnly 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'
 
     //PictureUpload
-    compileOnly 'org.jsoup:jsoup:1.11.3'
+    compileOnly 'org.jsoup:jsoup:1.12.1'
     compileOnly 'com.squareup.retrofit2:retrofit:2.5.0'
     compileOnly 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
     compileOnly 'com.squareup.retrofit2:converter-jackson:2.5.0'
