@@ -3,8 +3,8 @@ package com.github.ykrank.androidtools.ui.adapter
 import android.content.Context
 import android.support.v7.util.DiffUtil
 import com.github.ykrank.androidtools.BuildConfig
-import com.github.ykrank.androidtools.guava.Objects
-import com.github.ykrank.androidtools.guava.Preconditions
+import com.google.common.base.Objects
+import com.google.common.base.Preconditions
 import com.github.ykrank.androidtools.ui.adapter.delegate.FooterAdapterDelegate
 import com.github.ykrank.androidtools.ui.adapter.delegate.FooterProgressAdapterDelegate
 import com.github.ykrank.androidtools.ui.adapter.delegate.ProgressAdapterDelegate

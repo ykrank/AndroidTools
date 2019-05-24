@@ -2,7 +2,7 @@ package com.github.ykrank.androidtools.util;
 
 import android.os.Looper;
 
-import com.github.ykrank.androidtools.guava.Preconditions;
+import com.google.common.base.Preconditions;
 
 public final class LooperUtil {
 

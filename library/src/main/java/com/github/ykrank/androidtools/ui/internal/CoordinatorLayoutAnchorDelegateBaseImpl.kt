@@ -5,7 +5,7 @@ import android.support.design.widget.CoordinatorLayout
 import android.support.design.widget.Snackbar
 import android.view.View
 import android.widget.Toast
-import com.github.ykrank.androidtools.guava.Optional
+import com.google.common.base.Optional
 import com.github.ykrank.androidtools.ui.UiGlobalData
 
 abstract class CoordinatorLayoutAnchorDelegateBaseImpl(private val mCoordinatorLayout: CoordinatorLayout) : CoordinatorLayoutAnchorDelegate {

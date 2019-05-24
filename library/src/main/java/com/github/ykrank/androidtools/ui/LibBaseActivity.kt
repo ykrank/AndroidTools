@@ -9,7 +9,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.github.ykrank.androidtools.guava.Optional
+import com.google.common.base.Optional
 import com.github.ykrank.androidtools.ui.internal.CoordinatorLayoutAnchorDelegate
 import com.github.ykrank.androidtools.ui.internal.DrawerLayoutDelegate
 import com.github.ykrank.androidtools.ui.internal.DrawerLayoutOp

@@ -11,7 +11,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.github.ykrank.androidtools.GlobalData
-import com.github.ykrank.androidtools.guava.Preconditions
 import com.github.ykrank.androidtools.ui.internal.DataRetainedFragment
 import com.github.ykrank.androidtools.ui.internal.LoadingViewModelBindingDelegate
 import com.github.ykrank.androidtools.ui.vm.LoadingViewModel
@@ -111,8 +110,8 @@ abstract class LibBaseRecyclerViewFragment<D> : LibBaseFragment() {
         // so we need to confirm this Fragment has unique tag in order to compose
         // a new unique tag for its retained Fragment.
         // Without this, we couldn't get its retained Fragment back.
-        val dataRetainedFragmentTag = DataRetainedFragment.TAG + "_" +
-                Preconditions.checkNotNull(tag, "Must add a tag to " + this + ".")
+        assert(tag != null) { "Must add a tag to $this." }
+        val dataRetainedFragmentTag = DataRetainedFragment.TAG + "_" + tag
         val fragmentManager = fragmentManager ?: return
         val fragment = fragmentManager.findFragmentByTag(dataRetainedFragmentTag)
         if (fragment == null) {
@@ -258,7 +257,7 @@ abstract class LibBaseRecyclerViewFragment<D> : LibBaseFragment() {
      * DO something on load data
      */
     @MainThread
-    protected open fun onLoad(@LoadingViewModel.LoadingDef loading: Int){
+    protected open fun onLoad(@LoadingViewModel.LoadingDef loading: Int) {
 
     }
 

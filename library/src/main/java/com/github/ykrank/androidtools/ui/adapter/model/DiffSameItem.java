@@ -2,7 +2,7 @@ package com.github.ykrank.androidtools.ui.adapter.model;
 
 import android.support.annotation.Nullable;
 
-import com.github.ykrank.androidtools.guava.Objects;
+import com.google.common.base.Objects;
 
 /**
  * Created by ykrank on 2016/10/27.

@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.net.wifi.WifiManager
-import com.github.ykrank.androidtools.guava.Preconditions
+import com.google.common.base.Preconditions
 import com.github.ykrank.androidtools.util.NetworkUtil
 
 /**

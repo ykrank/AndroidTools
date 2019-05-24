@@ -7,7 +7,7 @@ import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.Snackbar
 import android.view.View
 import android.widget.Toast
-import com.github.ykrank.androidtools.guava.Optional
+import com.google.common.base.Optional
 
 /**
  * This class represents a delegate which you can use to

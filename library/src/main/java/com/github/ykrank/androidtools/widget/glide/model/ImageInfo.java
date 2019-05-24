@@ -3,7 +3,7 @@ package com.github.ykrank.androidtools.widget.glide.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.github.ykrank.androidtools.guava.Objects;
+import com.google.common.base.Objects;
 
 /**
  * Image info, should saved in view tag. use to load thumb in transition
