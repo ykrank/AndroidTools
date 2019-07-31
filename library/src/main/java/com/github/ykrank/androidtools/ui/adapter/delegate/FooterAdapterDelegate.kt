@@ -1,8 +1,8 @@
 package com.github.ykrank.androidtools.ui.adapter.delegate
 
 import android.content.Context
-import android.databinding.DataBindingUtil
-import android.support.v7.widget.RecyclerView
+import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.RecyclerView
 import android.view.ViewGroup
 import com.github.ykrank.androidtools.R
 import com.github.ykrank.androidtools.databinding.ItemFooterBinding
@@ -12,7 +12,7 @@ import com.github.ykrank.androidtools.ui.adapter.delegate.item.FooterItem
 class FooterAdapterDelegate(context: Context) : LibBaseAdapterDelegate<FooterItem,
         FooterAdapterDelegate.FooterViewHolder>(context, FooterItem::class.java) {
 
-    public override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
+    public override fun onCreateViewHolder(parent: ViewGroup): androidx.recyclerview.widget.RecyclerView.ViewHolder {
         return FooterViewHolder(DataBindingUtil.inflate(mLayoutInflater, R.layout.item_footer, parent, false))
     }
 
@@ -20,5 +20,5 @@ class FooterAdapterDelegate(context: Context) : LibBaseAdapterDelegate<FooterIte
 
     }
 
-    class FooterViewHolder(private val binding: ItemFooterBinding) : RecyclerView.ViewHolder(binding.root)
+    class FooterViewHolder(private val binding: ItemFooterBinding) : androidx.recyclerview.widget.RecyclerView.ViewHolder(binding.root)
 }

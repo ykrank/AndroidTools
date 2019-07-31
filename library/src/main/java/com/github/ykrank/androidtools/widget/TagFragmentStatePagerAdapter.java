@@ -19,11 +19,12 @@ package com.github.ykrank.androidtools.widget;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.PagerAdapter;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager.widget.PagerAdapter;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +36,7 @@ import java.util.ArrayList;
  * So we adds tag to each Fragments in order to let host Fragment in ViewPager
  * know its target {@link com.github.ykrank.androidtools.ui.internal.DataRetainedFragment}.
  * <p>
- * Forked from {@link android.support.v4.app.FragmentStatePagerAdapter}
+ * Forked from {@link FragmentStatePagerAdapter}
  * Version: 25.3.0
  */
 @SuppressLint({"CommitTransaction", "unchecked"})

@@ -19,7 +19,7 @@ package com.github.ykrank.androidtools.util;
 import android.animation.Animator;
 import android.animation.TimeInterpolator;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.RequiresApi;
 import android.util.ArrayMap;
 import android.view.View;
 import android.view.animation.AlphaAnimation;

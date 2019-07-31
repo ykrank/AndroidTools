@@ -1,9 +1,9 @@
 package com.github.ykrank.androidtools.widget.uploadimg
 
 import android.os.Bundle
-import android.support.annotation.MainThread
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.annotation.MainThread
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,7 +42,7 @@ open class LibImageUploadFragment : LibImagePickerFragment() {
 
         adapter = ImageUploadAdapter(this, imageClickListener)
         binding.recyclerView.adapter = adapter
-        binding.recyclerView.layoutManager = GridLayoutManager(context, 2, RecyclerView.VERTICAL, false)
+        binding.recyclerView.layoutManager = androidx.recyclerview.widget.GridLayoutManager(context, 2, androidx.recyclerview.widget.RecyclerView.VERTICAL, false)
 
         if (savedInstanceState != null) {
             images.clear()

@@ -1,7 +1,7 @@
 package com.github.ykrank.androidtools.widget.uglyfix
 
 import android.content.Context
-import android.support.v4.widget.DrawerLayout
+import androidx.drawerlayout.widget.DrawerLayout
 import android.util.AttributeSet
 import android.view.MotionEvent
 import java.lang.Exception
@@ -10,7 +10,7 @@ import java.lang.Exception
  * Created by ykrank on 2017/7/22.
  */
 
-class FixDrawerLayout : DrawerLayout {
+class FixDrawerLayout : androidx.drawerlayout.widget.DrawerLayout {
     constructor(context: Context) : super(context)
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)

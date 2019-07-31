@@ -1,7 +1,7 @@
 package com.github.ykrank.androidtools.ui.adapter.delegate
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import com.github.ykrank.androidtools.R
@@ -11,7 +11,7 @@ import com.github.ykrank.androidtools.ui.adapter.delegate.item.FooterProgressIte
 class FooterProgressAdapterDelegate(context: Context) : LibBaseAdapterDelegate<FooterProgressItem,
         FooterProgressAdapterDelegate.FooterProgressViewHolder>(context, FooterProgressItem::class.java) {
 
-    public override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
+    public override fun onCreateViewHolder(parent: ViewGroup): androidx.recyclerview.widget.RecyclerView.ViewHolder {
         return FooterProgressViewHolder(mLayoutInflater.inflate(R.layout.item_footer_progress,
                 parent, false))
     }
@@ -20,5 +20,5 @@ class FooterProgressAdapterDelegate(context: Context) : LibBaseAdapterDelegate<F
 
     }
 
-    class FooterProgressViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    class FooterProgressViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView)
 }

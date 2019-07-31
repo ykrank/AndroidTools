@@ -1,8 +1,8 @@
 package com.github.ykrank.androidtools.ui.adapter.simple
 
 import android.content.Context
-import android.databinding.ViewDataBinding
-import android.support.annotation.LayoutRes
+import androidx.databinding.ViewDataBinding
+import androidx.annotation.LayoutRes
 import com.github.ykrank.androidtools.ui.adapter.LibBaseRecyclerViewAdapter
 import com.github.ykrank.androidtools.ui.adapter.delegate.item.ProgressItem
 import com.hannesdorfmann.adapterdelegates3.AdapterDelegate

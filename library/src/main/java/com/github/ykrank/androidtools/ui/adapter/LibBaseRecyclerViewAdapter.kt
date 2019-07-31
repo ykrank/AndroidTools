@@ -1,7 +1,7 @@
 package com.github.ykrank.androidtools.ui.adapter
 
 import android.content.Context
-import android.support.v7.util.DiffUtil
+import androidx.recyclerview.widget.DiffUtil
 import com.github.ykrank.androidtools.BuildConfig
 import com.google.common.base.Objects
 import com.google.common.base.Preconditions

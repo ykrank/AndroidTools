@@ -1,12 +1,12 @@
 package com.github.ykrank.androidtools.ui.internal
 
 import android.content.res.Configuration
-import android.support.annotation.CallSuper
-import android.support.design.widget.NavigationView
-import android.support.v4.app.FragmentActivity
-import android.support.v4.view.GravityCompat
-import android.support.v4.widget.DrawerLayout
-import android.support.v7.app.ActionBarDrawerToggle
+import androidx.annotation.CallSuper
+import com.google.android.material.navigation.NavigationView
+import androidx.fragment.app.FragmentActivity
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.appcompat.app.ActionBarDrawerToggle
 import android.view.MenuItem
 import android.view.View
 import com.github.ykrank.androidtools.R
@@ -16,7 +16,7 @@ import com.github.ykrank.androidtools.R
  * This class represents a delegate which you can use to add
  * [DrawerLayout] to [FragmentActivity].
  */
-abstract class DrawerLayoutDelegate constructor(protected val mFragmentActivity: FragmentActivity, private val mDrawerLayout: DrawerLayout, private val mNavigationView: NavigationView) {
+abstract class DrawerLayoutDelegate constructor(protected val mFragmentActivity: androidx.fragment.app.FragmentActivity, private val mDrawerLayout: androidx.drawerlayout.widget.DrawerLayout, private val mNavigationView: NavigationView) {
     private lateinit var mDrawerToggle: ActionBarDrawerToggle
 
     private var mDrawerIndicatorEnabled = true
@@ -111,5 +111,5 @@ abstract class DrawerLayoutDelegate constructor(protected val mFragmentActivity:
         mDrawerLayout.openDrawer(GravityCompat.START)
     }
 
-    protected abstract fun setupNavDrawerItem(drawerLayout: DrawerLayout, navigationView: NavigationView)
+    protected abstract fun setupNavDrawerItem(drawerLayout: androidx.drawerlayout.widget.DrawerLayout, navigationView: NavigationView)
 }

@@ -2,8 +2,8 @@ package com.github.ykrank.androidtools.ui
 
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.support.annotation.CallSuper
-import android.support.v14.preference.PreferenceFragment
+import androidx.annotation.CallSuper
+import androidx.preference.PreferenceFragment
 import com.github.ykrank.androidtools.util.L
 import com.github.ykrank.androidtools.widget.track.event.page.LocalFragmentEndEvent
 import com.github.ykrank.androidtools.widget.track.event.page.LocalFragmentStartEvent

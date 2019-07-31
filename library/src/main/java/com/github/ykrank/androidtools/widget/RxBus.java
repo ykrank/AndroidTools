@@ -1,8 +1,8 @@
 package com.github.ykrank.androidtools.widget;
 
-import android.support.annotation.AnyThread;
-import android.support.annotation.MainThread;
-import android.support.annotation.NonNull;
+import androidx.annotation.AnyThread;
+import androidx.annotation.MainThread;
+import androidx.annotation.NonNull;
 
 import com.github.ykrank.androidtools.util.LooperUtil;
 

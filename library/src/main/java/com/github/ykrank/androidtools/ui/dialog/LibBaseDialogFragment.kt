@@ -2,8 +2,8 @@ package com.github.ykrank.androidtools.ui.dialog
 
 import android.app.Dialog
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v4.app.DialogFragment
+import com.google.android.material.snackbar.Snackbar
+import androidx.fragment.app.DialogFragment
 import android.widget.Toast
 import com.github.ykrank.androidtools.ui.UiGlobalData
 import com.github.ykrank.androidtools.ui.internal.CoordinatorLayoutAnchorDelegate
@@ -17,7 +17,7 @@ import java.lang.ref.WeakReference
  * Created by ykrank on 2016/12/28.
  */
 
-abstract class LibBaseDialogFragment : DialogFragment() {
+abstract class LibBaseDialogFragment : androidx.fragment.app.DialogFragment() {
     val trackAgent: DataTrackAgent? = UiGlobalData.provider?.trackAgent
 
     protected var mRetrySnackbar: WeakReference<Snackbar>? = null

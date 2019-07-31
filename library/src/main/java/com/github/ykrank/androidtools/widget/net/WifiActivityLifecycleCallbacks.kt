@@ -4,7 +4,7 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
-import android.support.annotation.CallSuper
+import androidx.annotation.CallSuper
 
 
 open abstract class WifiActivityLifecycleCallbacks(val context: Context) : Application.ActivityLifecycleCallbacks {

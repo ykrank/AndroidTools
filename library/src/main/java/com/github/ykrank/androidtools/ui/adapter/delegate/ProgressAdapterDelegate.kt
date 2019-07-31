@@ -1,8 +1,8 @@
 package com.github.ykrank.androidtools.ui.adapter.delegate
 
 import android.content.Context
-import android.databinding.DataBindingUtil
-import android.support.v7.widget.RecyclerView
+import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.RecyclerView
 import android.view.ViewGroup
 
 import com.github.ykrank.androidtools.R
@@ -13,7 +13,7 @@ import com.github.ykrank.androidtools.ui.adapter.delegate.item.ProgressItem
 class ProgressAdapterDelegate(context: Context) : LibBaseAdapterDelegate<ProgressItem,
         ProgressAdapterDelegate.ProgressViewHolder>(context, ProgressItem::class.java) {
 
-    public override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
+    public override fun onCreateViewHolder(parent: ViewGroup): androidx.recyclerview.widget.RecyclerView.ViewHolder {
         return ProgressViewHolder(DataBindingUtil.inflate(mLayoutInflater, R.layout.item_progress, parent, false))
     }
 
@@ -21,5 +21,5 @@ class ProgressAdapterDelegate(context: Context) : LibBaseAdapterDelegate<Progres
 
     }
 
-    class ProgressViewHolder(private val binding: ItemProgressBinding) : RecyclerView.ViewHolder(binding.root)
+    class ProgressViewHolder(private val binding: ItemProgressBinding) : androidx.recyclerview.widget.RecyclerView.ViewHolder(binding.root)
 }

@@ -1,11 +1,11 @@
 package com.github.ykrank.androidtools.ui
 
 import android.os.Bundle
-import android.support.annotation.CallSuper
-import android.support.annotation.DrawableRes
-import android.support.annotation.StringRes
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
+import androidx.annotation.CallSuper
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
+import com.google.android.material.snackbar.Snackbar
+import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast

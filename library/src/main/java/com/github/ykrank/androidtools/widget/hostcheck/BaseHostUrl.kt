@@ -1,6 +1,7 @@
 package com.github.ykrank.androidtools.widget.hostcheck
 
 import okhttp3.HttpUrl
+import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 
 /**
  * Base url and host ip
@@ -19,9 +20,9 @@ interface BaseHostUrl {
          * @return parsed HttpUrl
          */
         fun checkBaseHostUrl(baseUrl: String?): HttpUrl? {
-            return if (baseUrl?.endsWith("/") == true) {
-                HttpUrl.parse(baseUrl)
-            } else null
+            return if (baseUrl?.endsWith("/") == true)
+                baseUrl.toHttpUrlOrNull()
+            else null
         }
     }
 }

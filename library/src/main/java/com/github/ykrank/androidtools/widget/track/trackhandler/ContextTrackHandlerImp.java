@@ -1,8 +1,8 @@
 package com.github.ykrank.androidtools.widget.track.trackhandler;
 
 import android.os.Looper;
-import android.support.annotation.NonNull;
-import android.support.annotation.UiThread;
+import androidx.annotation.NonNull;
+import androidx.annotation.UiThread;
 
 import com.github.ykrank.androidtools.widget.track.TrackAgent;
 

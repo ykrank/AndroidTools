@@ -17,7 +17,7 @@ open class MultiHostInterceptor<T : BaseHostUrl>(private val baseHostUrl: T, pri
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {
         val originRequest = chain.request()
-        val originHttpUrl = originRequest.url()
+        val originHttpUrl = originRequest.url
 
         val newHttpUrl = mergeHttpUrl.invoke(originHttpUrl, baseHostUrl)
 
@@ -25,7 +25,7 @@ open class MultiHostInterceptor<T : BaseHostUrl>(private val baseHostUrl: T, pri
         if (originHttpUrl !== newHttpUrl) {
             val builder = originRequest.newBuilder()
             builder.url(newHttpUrl)
-            builder.header("host", newHttpUrl.host())
+            builder.header("host", newHttpUrl.host)
             newRequest = builder.build()
         }
 
@@ -47,7 +47,7 @@ open class MultiHostInterceptor<T : BaseHostUrl>(private val baseHostUrl: T, pri
             if (e is IOException) {
                 except.invoke(e)
             } else {
-                except.invoke(OkHttpException(request.url().host(), e))
+                except.invoke(OkHttpException(request.url.host, e))
             }
         }
     }

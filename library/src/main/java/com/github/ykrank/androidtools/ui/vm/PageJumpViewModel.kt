@@ -1,8 +1,8 @@
 package com.github.ykrank.androidtools.ui.vm
 
-import android.databinding.BaseObservable
-import android.databinding.Bindable
-import android.databinding.ObservableInt
+import androidx.databinding.BaseObservable
+import androidx.databinding.Bindable
+import androidx.databinding.ObservableInt
 import android.text.Editable
 import android.text.InputFilter
 import android.text.TextUtils

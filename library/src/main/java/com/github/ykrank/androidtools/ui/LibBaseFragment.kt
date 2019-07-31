@@ -2,10 +2,10 @@ package com.github.ykrank.androidtools.ui
 
 import android.content.Context
 import android.os.Bundle
-import android.support.annotation.CallSuper
-import android.support.annotation.StringRes
-import android.support.design.widget.Snackbar
-import android.support.v4.app.Fragment
+import androidx.annotation.CallSuper
+import androidx.annotation.StringRes
+import com.google.android.material.snackbar.Snackbar
+import androidx.fragment.app.Fragment
 import android.view.View
 import com.github.ykrank.androidtools.R
 import com.github.ykrank.androidtools.ui.internal.CoordinatorLayoutAnchorDelegate
@@ -17,7 +17,7 @@ import java.lang.ref.WeakReference
 /**
  * Created by ykrank on 2017/10/27.
  */
-abstract class LibBaseFragment : Fragment() {
+abstract class LibBaseFragment : androidx.fragment.app.Fragment() {
     protected var mCoordinatorLayoutAnchorDelegate: CoordinatorLayoutAnchorDelegate? = null
     protected var mRetrySnackbar: WeakReference<Snackbar>? = null
     protected var mUserVisibleHint = false

@@ -1,7 +1,7 @@
 package com.github.ykrank.androidtools.binding;
 
 import android.content.Context;
-import android.databinding.BindingAdapter;
+import androidx.databinding.BindingAdapter;
 import android.graphics.Paint;
 import android.text.format.DateUtils;
 import android.widget.TextView;

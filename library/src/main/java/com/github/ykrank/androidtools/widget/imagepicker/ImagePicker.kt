@@ -1,13 +1,13 @@
 package com.github.ykrank.androidtools.widget.imagepicker
 
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import com.luck.picture.lib.config.PictureMimeType
 
 object ImagePicker {
 
-    fun pickImage(fragment: Fragment, requestCode: Int, maxSelect: Int = 9, compress: Boolean = false) {
+    fun pickImage(fragment: androidx.fragment.app.Fragment, requestCode: Int, maxSelect: Int = 9, compress: Boolean = false) {
         // 进入相册 以下是例子：用不到的api可以不写
         PictureSelector.create(fragment)
                 .openGallery(PictureMimeType.ofImage())//全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()、音频.ofAudio()

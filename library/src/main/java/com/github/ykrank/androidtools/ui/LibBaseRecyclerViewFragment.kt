@@ -2,11 +2,11 @@ package com.github.ykrank.androidtools.ui
 
 import android.os.Bundle
 import android.os.SystemClock
-import android.support.annotation.CallSuper
-import android.support.annotation.MainThread
-import android.support.annotation.StringRes
-import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.widget.RecyclerView
+import androidx.annotation.CallSuper
+import androidx.annotation.MainThread
+import androidx.annotation.StringRes
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -85,7 +85,7 @@ abstract class LibBaseRecyclerViewFragment<D> : LibBaseFragment() {
             return lastTime > PULL_REFRESH_COLD_TIME
         }
 
-    protected val recyclerView: RecyclerView
+    protected val recyclerView: androidx.recyclerview.widget.RecyclerView
         get() = mLoadingViewModelBindingDelegate.recyclerView
 
 

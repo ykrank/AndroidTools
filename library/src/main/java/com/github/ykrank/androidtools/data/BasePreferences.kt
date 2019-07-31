@@ -2,8 +2,8 @@ package com.github.ykrank.androidtools.data
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.support.annotation.BoolRes
-import android.support.annotation.StringRes
+import androidx.annotation.BoolRes
+import androidx.annotation.StringRes
 import android.text.TextUtils
 import com.github.ykrank.androidtools.extension.resBool
 import com.github.ykrank.androidtools.extension.resStr
@@ -15,11 +15,11 @@ import kotlin.reflect.KProperty
  */
 abstract class BasePreferences(val mContext: Context, val preferences: SharedPreferences) {
 
-    fun getPrefString(@StringRes keyResId: Int, @StringRes defValueResId: Int): String {
+    fun getPrefString(@StringRes keyResId: Int, @StringRes defValueResId: Int): String? {
         return getPrefString(keyResId, mContext.getString(defValueResId))
     }
 
-    fun getPrefString(@StringRes keyResId: Int, defValue: String): String {
+    fun getPrefString(@StringRes keyResId: Int, defValue: String): String? {
         val pref = preferences.getString(mContext.getString(keyResId), defValue)
         if (TextUtils.isEmpty(pref)) {
             return defValue
@@ -130,7 +130,7 @@ class PrefInt(private val key: String?, private val defaultValue: Int) : ReadWri
 
 class PrefResIntStr(@StringRes private val key: Int?, @StringRes private val defaultValue: Int) : ReadWriteProperty<BasePreferences, Int> {
     override fun getValue(thisRef: BasePreferences, property: KProperty<*>): Int {
-        return thisRef.preferences.getString(key?.resStr(thisRef.mContext) ?: property.name, defaultValue.resStr(thisRef.mContext)).toInt()
+        return thisRef.preferences.getString(key?.resStr(thisRef.mContext) ?: property.name, defaultValue.resStr(thisRef.mContext))?.toInt()?:0
     }
 
     override fun setValue(thisRef: BasePreferences, property: KProperty<*>, value: Int) {
@@ -150,7 +150,7 @@ class PrefLong(private val key: String?, private val defaultValue: Long) : ReadW
 
 class PrefResLongStr(@StringRes private val key: Int?, @StringRes private val defaultValue: Int) : ReadWriteProperty<BasePreferences, Long> {
     override fun getValue(thisRef: BasePreferences, property: KProperty<*>): Long {
-        return thisRef.preferences.getString(key?.resStr(thisRef.mContext) ?: property.name, defaultValue.resStr(thisRef.mContext)).toLong()
+        return thisRef.preferences.getString(key?.resStr(thisRef.mContext) ?: property.name, defaultValue.resStr(thisRef.mContext))?.toLong()?:0
     }
 
     override fun setValue(thisRef: BasePreferences, property: KProperty<*>, value: Long) {

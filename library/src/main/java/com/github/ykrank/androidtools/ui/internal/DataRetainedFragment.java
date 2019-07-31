@@ -1,7 +1,7 @@
 package com.github.ykrank.androidtools.ui.internal;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 
 /**
  * Used to retain data when configuration changes.

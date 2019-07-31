@@ -3,7 +3,7 @@ package com.github.ykrank.androidtools.ui.dialog
 import android.app.Dialog
 import android.app.ProgressDialog
 import android.os.Bundle
-import android.support.annotation.CallSuper
+import androidx.annotation.CallSuper
 import com.github.ykrank.androidautodispose.AndroidRxDispose
 import com.github.ykrank.androidlifecycle.event.FragmentEvent
 import com.github.ykrank.androidtools.GlobalData

@@ -1,9 +1,9 @@
 package com.github.ykrank.androidtools.ui
 
 import android.os.Bundle
-import android.support.annotation.CallSuper
-import android.support.v4.app.FragmentManager
-import android.support.v4.view.ViewPager
+import androidx.annotation.CallSuper
+import androidx.fragment.app.FragmentManager
+import androidx.viewpager.widget.ViewPager
 import android.view.*
 import com.github.ykrank.androidtools.GlobalData
 import com.github.ykrank.androidtools.R
@@ -16,7 +16,7 @@ import com.github.ykrank.androidtools.widget.TagFragmentStatePagerAdapter
  */
 abstract class LibBaseViewPagerFragment : LibBaseFragment(), PagerCallback, PageJumpDialogFragment.OnPageJumpedListener {
 
-    private lateinit var mViewPager: ViewPager
+    private lateinit var mViewPager: androidx.viewpager.widget.ViewPager
     protected lateinit var mAdapter: BaseFragmentStatePagerAdapter<*>
     protected var mTotalPages: Int = 0
 
@@ -96,9 +96,9 @@ abstract class LibBaseViewPagerFragment : LibBaseFragment(), PagerCallback, Page
         outState.putInt(STATE_TOTAL_PAGES, mTotalPages)
     }
 
-    abstract fun getPagerAdapter(fragmentManager: FragmentManager): BaseFragmentStatePagerAdapter<*>
+    abstract fun getPagerAdapter(fragmentManager: androidx.fragment.app.FragmentManager): BaseFragmentStatePagerAdapter<*>
 
-    open fun findViewPager(rootView: View): ViewPager {
+    open fun findViewPager(rootView: View): androidx.viewpager.widget.ViewPager {
         return rootView.findViewById(R.id.view_pager)
     }
 
@@ -153,7 +153,7 @@ abstract class LibBaseViewPagerFragment : LibBaseFragment(), PagerCallback, Page
     /**
      * A base [TagFragmentStatePagerAdapter] wraps some implement.
      */
-    abstract inner class BaseFragmentStatePagerAdapter<T : LibBaseRecyclerViewFragment<*>>(fm: FragmentManager) : TagFragmentStatePagerAdapter<T>(fm) {
+    abstract inner class BaseFragmentStatePagerAdapter<T : LibBaseRecyclerViewFragment<*>>(fm: androidx.fragment.app.FragmentManager) : TagFragmentStatePagerAdapter<T>(fm) {
 
         var currentFragment: T? = null
             private set

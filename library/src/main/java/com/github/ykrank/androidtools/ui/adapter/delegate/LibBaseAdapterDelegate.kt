@@ -1,14 +1,14 @@
 package com.github.ykrank.androidtools.ui.adapter.delegate
 
 import android.content.Context
-import android.support.annotation.CallSuper
-import android.support.v7.widget.RecyclerView
+import androidx.annotation.CallSuper
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 
 import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
 
 
-abstract class LibBaseAdapterDelegate<T, in VH : RecyclerView.ViewHolder>
+abstract class LibBaseAdapterDelegate<T, in VH : androidx.recyclerview.widget.RecyclerView.ViewHolder>
 (context: Context, protected val entityClass: Class<T>? = null) : AdapterDelegate<MutableList<Any>>() {
     protected val mLayoutInflater: LayoutInflater = LayoutInflater.from(context)
 
@@ -18,7 +18,7 @@ abstract class LibBaseAdapterDelegate<T, in VH : RecyclerView.ViewHolder>
     }
 
     @CallSuper
-    override fun onBindViewHolder(items: MutableList<Any>, position: Int, holder: RecyclerView.ViewHolder, payloads: List<Any>) {
+    override fun onBindViewHolder(items: MutableList<Any>, position: Int, holder: androidx.recyclerview.widget.RecyclerView.ViewHolder, payloads: List<Any>) {
         onBindViewHolderData(items[position] as T, position, holder as VH, payloads)
     }
 

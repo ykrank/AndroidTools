@@ -1,14 +1,14 @@
 package com.github.ykrank.androidtools.ui.internal
 
-import android.support.annotation.StringRes
-import android.support.design.widget.CoordinatorLayout
-import android.support.design.widget.Snackbar
+import androidx.annotation.StringRes
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import com.google.android.material.snackbar.Snackbar
 import android.view.View
 import android.widget.Toast
 import com.google.common.base.Optional
 import com.github.ykrank.androidtools.ui.UiGlobalData
 
-abstract class CoordinatorLayoutAnchorDelegateBaseImpl(private val mCoordinatorLayout: CoordinatorLayout) : CoordinatorLayoutAnchorDelegate {
+abstract class CoordinatorLayoutAnchorDelegateBaseImpl(private val mCoordinatorLayout: androidx.coordinatorlayout.widget.CoordinatorLayout) : CoordinatorLayoutAnchorDelegate {
 
     private val actLifeCallback = UiGlobalData.provider?.actLifeCallback
 

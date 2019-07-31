@@ -2,9 +2,11 @@ package com.github.ykrank.androidtools.widget.uploadimg
 
 import io.reactivex.Single
 import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.jackson.JacksonConverterFactory
@@ -37,7 +39,7 @@ class ImageUploadManager(private val _okHttpClient: OkHttpClient? = null) {
      * Force upload to sm.ms
      */
     fun forceUploadSmms(imageFile: File): Single<ImageUpload> {
-        val requestFile = RequestBody.create(MediaType.parse("image/*"), imageFile)
+        val requestFile = imageFile.asRequestBody("image/*".toMediaTypeOrNull())
         val body = MultipartBody.Part.createFormData("smfile", imageFile.name, requestFile)
         return uploadApiService.postSmmsImage(body)
     }

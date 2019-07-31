@@ -8,8 +8,8 @@ package com.github.ykrank.androidtools.widget.glide.viewtarget;
 
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.Nullable;
-import android.support.v4.view.ViewCompat;
+import androidx.annotation.Nullable;
+import androidx.core.view.ViewCompat;
 import android.view.View;
 
 import com.bumptech.glide.request.target.ViewTarget;

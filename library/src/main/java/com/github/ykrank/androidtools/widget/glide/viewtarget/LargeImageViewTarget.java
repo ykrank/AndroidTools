@@ -7,8 +7,8 @@ package com.github.ykrank.androidtools.widget.glide.viewtarget;
  */
 
 import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.bumptech.glide.request.transition.Transition;
 import com.shizhefei.view.largeimage.LargeImageView;

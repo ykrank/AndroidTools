@@ -1,10 +1,10 @@
 package com.github.ykrank.androidtools.ui.adapter.simple
 
 import android.content.Context
-import android.databinding.DataBindingUtil
-import android.databinding.ViewDataBinding
-import android.support.annotation.LayoutRes
-import android.support.v7.widget.RecyclerView
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
+import androidx.annotation.LayoutRes
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.github.ykrank.androidtools.GlobalData
@@ -27,13 +27,13 @@ open class SimpleAdapterDelegate constructor(context: Context, @param:LayoutRes 
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup): androidx.recyclerview.widget.RecyclerView.ViewHolder {
         val binding = DataBindingUtil.inflate<ViewDataBinding>(mLayoutInflater, layoutRes, parent, false)
         createViewHolderCallback?.invoke(binding)
         return SimpleRecycleViewHolder(binding)
     }
 
-    override fun onBindViewHolder(items: MutableList<Any>, position: Int, holder: RecyclerView.ViewHolder, payloads: List<Any>) {
+    override fun onBindViewHolder(items: MutableList<Any>, position: Int, holder: androidx.recyclerview.widget.RecyclerView.ViewHolder, payloads: List<Any>) {
         val binding = (holder as SimpleRecycleViewHolder<*>).binding
         binding.setVariable(GlobalData.provider.itemModelBRid, items[position])
         bindViewHolderCallback?.onBindViewHolder(position, binding)

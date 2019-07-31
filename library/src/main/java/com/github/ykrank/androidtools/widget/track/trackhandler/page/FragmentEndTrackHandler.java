@@ -1,6 +1,6 @@
 package com.github.ykrank.androidtools.widget.track.trackhandler.page;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.github.ykrank.androidtools.util.ContextUtils;
 import com.github.ykrank.androidtools.widget.track.TrackAgent;

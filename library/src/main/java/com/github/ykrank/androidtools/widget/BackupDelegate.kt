@@ -4,9 +4,9 @@ import android.annotation.SuppressLint
 import android.app.Fragment
 import android.content.Context
 import android.content.Intent
-import android.support.annotation.IntDef
-import android.support.annotation.StringRes
-import android.support.annotation.WorkerThread
+import androidx.annotation.IntDef
+import androidx.annotation.StringRes
+import androidx.annotation.WorkerThread
 import com.github.ykrank.androidtools.R
 import com.github.ykrank.androidtools.extension.toast
 import com.github.ykrank.androidtools.util.*

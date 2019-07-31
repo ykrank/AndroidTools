@@ -1,8 +1,8 @@
 package com.github.ykrank.androidtools.ui
 
 import android.os.Bundle
-import android.support.annotation.CallSuper
-import android.support.v7.widget.RecyclerView
+import androidx.annotation.CallSuper
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import com.github.ykrank.androidautodispose.AndroidRxDispose
 import com.github.ykrank.androidlifecycle.event.FragmentEvent
@@ -35,8 +35,8 @@ abstract class LibBaseLoadMoreRecycleViewFragment<D> : LibBaseRecyclerViewFragme
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+        recyclerView.addOnScrollListener(object : androidx.recyclerview.widget.RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: androidx.recyclerview.widget.RecyclerView, newState: Int) {
                 if (!isPullUpToRefresh
                         && pageNum < mPageCount
                         && !isLoading
