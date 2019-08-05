@@ -1,10 +1,11 @@
 package com.github.ykrank.androidtools.widget.hostcheck;
 
 
+import android.text.TextUtils;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
-import android.text.TextUtils;
 
 import com.github.ykrank.androidtools.util.LooperUtil;
 
@@ -15,7 +16,7 @@ import java.util.List;
 
 import okhttp3.Dns;
 
-public class HttpDns implements Dns {
+public class BaseDns implements Dns {
     private static final Dns SYSTEM = Dns.SYSTEM;
 
     private final BaseHostUrl baseHostUrl;
@@ -23,12 +24,13 @@ public class HttpDns implements Dns {
     private List<InetAddress> inetAddressList;
     private String forceHostIp;
 
-    public HttpDns(BaseHostUrl baseHostUrl) {
+    public BaseDns(BaseHostUrl baseHostUrl) {
         this.baseHostUrl = baseHostUrl;
     }
 
+    @NonNull
     @Override
-    public List<InetAddress> lookup(String hostname) throws UnknownHostException {
+    public List<InetAddress> lookup(@NonNull String hostname) throws UnknownHostException {
         try {
             checkInetAddress();
             if (inetAddressList != null && inetAddressList.size() > 0 && baseHostUrl.getBaseHttpUrl() != null
