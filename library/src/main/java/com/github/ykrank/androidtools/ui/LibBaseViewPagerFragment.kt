@@ -1,10 +1,9 @@
 package com.github.ykrank.androidtools.ui
 
 import android.os.Bundle
-import androidx.annotation.CallSuper
-import androidx.fragment.app.FragmentManager
-import androidx.viewpager.widget.ViewPager
 import android.view.*
+import androidx.annotation.CallSuper
+import androidx.viewpager.widget.ViewPager
 import com.github.ykrank.androidtools.GlobalData
 import com.github.ykrank.androidtools.R
 import com.github.ykrank.androidtools.ui.dialog.PageJumpDialogFragment
@@ -16,7 +15,7 @@ import com.github.ykrank.androidtools.widget.TagFragmentStatePagerAdapter
  */
 abstract class LibBaseViewPagerFragment : LibBaseFragment(), PagerCallback, PageJumpDialogFragment.OnPageJumpedListener {
 
-    private lateinit var mViewPager: androidx.viewpager.widget.ViewPager
+    private lateinit var mViewPager: ViewPager
     protected lateinit var mAdapter: BaseFragmentStatePagerAdapter<*>
     protected var mTotalPages: Int = 0
 
@@ -133,6 +132,10 @@ abstract class LibBaseViewPagerFragment : LibBaseFragment(), PagerCallback, Page
     @CallSuper
     override fun onPageJumped(position: Int) {
         mViewPager.currentItem = position
+    }
+
+    fun moveToNext(moved: Int = 1) {
+        mViewPager.currentItem = mViewPager.currentItem + moved
     }
 
     /**
