@@ -17,7 +17,7 @@ import java.lang.ref.WeakReference
 /**
  * Created by ykrank on 2017/10/27.
  */
-abstract class LibBaseFragment : androidx.fragment.app.Fragment() {
+abstract class LibBaseFragment : Fragment() {
     protected var mCoordinatorLayoutAnchorDelegate: CoordinatorLayoutAnchorDelegate? = null
     protected var mRetrySnackbar: WeakReference<Snackbar>? = null
     protected var mUserVisibleHint = false

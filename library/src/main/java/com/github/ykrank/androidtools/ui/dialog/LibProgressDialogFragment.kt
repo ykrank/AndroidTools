@@ -59,11 +59,11 @@ abstract class LibProgressDialogFragment<D> : LibBaseDialogFragment() {
      */
     private fun request() {
         getLibSourceObservable()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doAfterTerminate { this.finallyDo() }
-                .to(AndroidRxDispose.withSingle<D>(this, FragmentEvent.DESTROY))
-                .subscribe({ this.onNext(it) }, { this.onError(it) })
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doAfterTerminate { this.finallyDo() }
+            .to(AndroidRxDispose.withSingle<D>(this, FragmentEvent.DESTROY))
+            .subscribe({ this.onNext(it) }, { this.onError(it) })
     }
 
     /**
