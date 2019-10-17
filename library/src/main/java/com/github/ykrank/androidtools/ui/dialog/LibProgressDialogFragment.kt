@@ -49,10 +49,7 @@ abstract class LibProgressDialogFragment<D> : LibBaseDialogFragment() {
     @CallSuper
     override fun onDestroyView() {
         // see https://code.google.com/p/android/issues/detail?id=17423
-        val dialog = dialog
-        if (dialog != null) {
-            getDialog().setOnDismissListener(null)
-        }
+        dialog?.setOnDismissListener(null)
 
         super.onDestroyView()
     }

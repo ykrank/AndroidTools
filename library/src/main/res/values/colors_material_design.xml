@@ -284,18 +284,37 @@
     <color name="grey_800">#424242</color>
     <color name="grey_900">#212121</color>
 
+
     <color name="black_95p">#f3000000</color>
     <color name="black_87p">#de000000</color>
-    <color name="black_70p">#b2000000</color>
     <color name="black_54p">#8a000000</color>
     <color name="black_38p">#61000000</color>
-    <color name="black_30p">#4d000000</color>
     <color name="black_12p">#1f000000</color>
-    <color name="black_100p">#ff000000</color>
-    <color name="white_100p">#ffffff</color>
     <color name="white_95p">#f3ffffff</color>
-    <color name="white_70p">#b2ffffff</color>
-    <color name="white_50p">#80ffffff</color>
     <color name="white_12p">#13ffffff</color>
+
+    <color name="black_10p">#1a000000</color>
+    <color name="black_20p">#33000000</color>
+    <color name="black_30p">#4d000000</color>
+    <color name="black_40p">#66000000</color>
+    <color name="black_50p">#80000000</color>
+    <color name="black_60p">#99000000</color>
+    <color name="black_70p">#b3000000</color>
+    <color name="black_80p">#cc000000</color>
+    <color name="black_90p">#e6000000</color>
+    <color name="black_100p">#ff000000</color>
+    <color name="white_10p">#1affffff</color>
+    <color name="white_20p">#33ffffff</color>
+    <color name="white_30p">#4dffffff</color>
+    <color name="white_40p">#66ffffff</color>
+    <color name="white_50p">#80ffffff</color>
+    <color name="white_60p">#99ffffff</color>
+    <color name="white_70p">#b3ffffff</color>
+    <color name="white_80p">#ccffffff</color>
+    <color name="white_90p">#e6ffffff</color>
+    <color name="white_100p">#ffffffff</color>
+
+
+
 
 </resources>

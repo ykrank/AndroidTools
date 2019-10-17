@@ -23,7 +23,7 @@ abstract class LibBaseFragment : androidx.fragment.app.Fragment() {
     protected var mUserVisibleHint = false
 
     @CallSuper
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
         mCoordinatorLayoutAnchorDelegate = context as CoordinatorLayoutAnchorDelegate
     }

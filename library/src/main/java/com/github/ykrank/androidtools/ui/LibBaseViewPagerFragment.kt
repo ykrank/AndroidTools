@@ -49,11 +49,11 @@ abstract class LibBaseViewPagerFragment : LibBaseFragment(), PagerCallback, Page
         super.onActivityCreated(savedInstanceState)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater) {
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_jump_page, menu)
     }
 
-    override fun onPrepareOptionsMenu(menu: Menu?) {
+    override fun onPrepareOptionsMenu(menu: Menu) {
         super.onPrepareOptionsMenu(menu)
         mMenuPageJump = findMenuPageJump(menu)
         preparePageJumpMenu()
