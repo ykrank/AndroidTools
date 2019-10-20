@@ -25,3 +25,7 @@ fun Int.dp2px(context: Context): Int {
 fun Int.px2dp(context: Context): Int {
     return (this / context.resources.displayMetrics.density).toInt()
 }
+
+fun Int.sp2px(context: Context): Int {
+    return (context.resources.displayMetrics.scaledDensity * this + 0.5f).toInt()
+}

@@ -81,7 +81,7 @@ dependencies {
     api 'com.nononsenseapps:filepicker:4.1.0'
 
     //PictureSelector
-    compileOnly 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'
+    compileOnly 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.5'
 
     //PictureUpload
     compileOnly 'org.jsoup:jsoup:1.12.1'
