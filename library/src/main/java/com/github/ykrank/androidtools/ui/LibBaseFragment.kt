@@ -2,16 +2,17 @@ package com.github.ykrank.androidtools.ui
 
 import android.content.Context
 import android.os.Bundle
+import android.view.View
 import androidx.annotation.CallSuper
 import androidx.annotation.StringRes
-import com.google.android.material.snackbar.Snackbar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import android.view.View
 import com.github.ykrank.androidtools.R
 import com.github.ykrank.androidtools.ui.internal.CoordinatorLayoutAnchorDelegate
 import com.github.ykrank.androidtools.util.L
 import com.github.ykrank.androidtools.widget.track.event.page.FragmentEndEvent
 import com.github.ykrank.androidtools.widget.track.event.page.FragmentStartEvent
+import com.google.android.material.snackbar.Snackbar
 import java.lang.ref.WeakReference
 
 /**
@@ -21,6 +22,8 @@ abstract class LibBaseFragment : Fragment() {
     protected var mCoordinatorLayoutAnchorDelegate: CoordinatorLayoutAnchorDelegate? = null
     protected var mRetrySnackbar: WeakReference<Snackbar>? = null
     protected var mUserVisibleHint = false
+    val activity
+        get() = super.getActivity() as AppCompatActivity?
 
     @CallSuper
     override fun onAttach(context: Context) {
@@ -83,7 +86,8 @@ abstract class LibBaseFragment : Fragment() {
     fun showRetrySnackbar(text: CharSequence, onClickListener: View.OnClickListener) {
         mCoordinatorLayoutAnchorDelegate?.let {
             val snackbar = it.showLongSnackbarIfVisible(
-                    text, R.string.snackbar_action_retry, onClickListener)
+                text, R.string.snackbar_action_retry, onClickListener
+            )
             if (snackbar.isPresent) {
                 mRetrySnackbar = WeakReference(snackbar.get())
             }
@@ -116,7 +120,7 @@ abstract class LibBaseFragment : Fragment() {
         }
     }
 
-    protected fun leavePageMsg(msg:String){
+    protected fun leavePageMsg(msg: String) {
         L.leaveMsg(msg)
     }
 }
