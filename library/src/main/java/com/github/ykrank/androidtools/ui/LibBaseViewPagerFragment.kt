@@ -3,6 +3,7 @@ package com.github.ykrank.androidtools.ui
 import android.os.Bundle
 import android.view.*
 import androidx.annotation.CallSuper
+import androidx.fragment.app.FragmentManager
 import androidx.viewpager.widget.ViewPager
 import com.github.ykrank.androidtools.GlobalData
 import com.github.ykrank.androidtools.R
@@ -13,15 +14,20 @@ import com.github.ykrank.androidtools.widget.TagFragmentStatePagerAdapter
 /**
  * A base Fragment wraps [ViewPager] and provides related methods.
  */
-abstract class LibBaseViewPagerFragment : LibBaseFragment(), PagerCallback, PageJumpDialogFragment.OnPageJumpedListener {
+abstract class LibBaseViewPagerFragment : LibBaseFragment(), PagerCallback,
+    PageJumpDialogFragment.OnPageJumpedListener {
 
     private lateinit var mViewPager: ViewPager
-    protected lateinit var mAdapter: BaseFragmentStatePagerAdapter<*>
+    protected lateinit var mAdapter: LibBaseFragmentStatePagerAdapter<*>
     protected var mTotalPages: Int = 0
 
     private var mMenuPageJump: MenuItem? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         setHasOptionsMenu(true)
         return inflater.inflate(R.layout.fragment_view_pager, container, false)
     }
@@ -72,7 +78,8 @@ abstract class LibBaseViewPagerFragment : LibBaseFragment(), PagerCallback, Page
                     return true
                 }
                 PageJumpDialogFragment.newInstance(mTotalPages, currentPage).show(
-                        childFragmentManager, PageJumpDialogFragment.TAG)
+                    childFragmentManager, PageJumpDialogFragment.TAG
+                )
 
                 return true
             }
@@ -95,9 +102,9 @@ abstract class LibBaseViewPagerFragment : LibBaseFragment(), PagerCallback, Page
         outState.putInt(STATE_TOTAL_PAGES, mTotalPages)
     }
 
-    abstract fun getPagerAdapter(fragmentManager: androidx.fragment.app.FragmentManager): BaseFragmentStatePagerAdapter<*>
+    abstract fun getPagerAdapter(fragmentManager: FragmentManager): LibBaseFragmentStatePagerAdapter<*>
 
-    open fun findViewPager(rootView: View): androidx.viewpager.widget.ViewPager {
+    open fun findViewPager(rootView: View): ViewPager {
         return rootView.findViewById(R.id.view_pager)
     }
 
@@ -156,10 +163,8 @@ abstract class LibBaseViewPagerFragment : LibBaseFragment(), PagerCallback, Page
     /**
      * A base [TagFragmentStatePagerAdapter] wraps some implement.
      */
-    abstract inner class BaseFragmentStatePagerAdapter<T : LibBaseRecyclerViewFragment<*>>(fm: androidx.fragment.app.FragmentManager) : TagFragmentStatePagerAdapter<T>(fm) {
-
-        var currentFragment: T? = null
-            private set
+    abstract inner class FragmentStatePagerAdapter<T : LibBaseFragment>(fm: FragmentManager) :
+        LibBaseFragmentStatePagerAdapter<T>(fm) {
 
         override fun getCount(): Int {
             return mTotalPages
@@ -168,19 +173,9 @@ abstract class LibBaseViewPagerFragment : LibBaseFragment(), PagerCallback, Page
         @CallSuper
         override fun setPrimaryItem(container: ViewGroup, position: Int, fragment: T) {
             setTitleWithPosition(position)
-            if (currentFragment !== fragment) {
-                currentFragment = fragment
-            }
-
             super.setPrimaryItem(container, position, fragment)
         }
 
-        @CallSuper
-        override fun destroyItem(container: ViewGroup, position: Int, fragment: T?) {
-            fragment?.destroyRetainedFragment()
-
-            super.destroyItem(container, position, fragment)
-        }
     }
 
     companion object {

@@ -330,7 +330,7 @@ abstract class LibBaseRecyclerViewFragment<D> : LibBaseFragment() {
      * We must call this if used in [android.support.v4.view.ViewPager]
      * otherwise leads memory leak.
      */
-    fun destroyRetainedFragment() {
+    override fun destroyRetainedFragment() {
         fragmentManager?.let { it.beginTransaction().remove(retainedFragment).commitNowAllowingStateLoss() }
     }
 
