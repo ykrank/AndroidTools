@@ -46,10 +46,12 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':library')
     implementation project(path: ':videoplayer')
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.github.ykrank.AndroidTools:library:develop-SNAPSHOT:normal@aar"
+
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'

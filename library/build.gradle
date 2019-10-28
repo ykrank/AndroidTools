@@ -105,3 +105,22 @@ dependencies {
     compileOnly 'com.squareup.retrofit2:converter-jackson:2.6.2'
     compileOnly 'com.squareup.retrofit2:converter-scalars:2.6.2'
 }
+
+if (android.productFlavors.size() > 0) {
+    android.libraryVariants.all { variant ->
+        if (variant.name.toLowerCase().contains("debug")) {
+            return
+        }
+
+        def bundleTask = tasks["bundle${variant.name.capitalize()}"]
+
+        artifacts {
+            archives(bundleTask.archivePath) {
+                classifier variant.flavorName
+                builtBy bundleTask
+                name = project.name
+            }
+        }
+
+    }
+}
