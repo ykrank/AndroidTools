@@ -112,7 +112,7 @@ if (android.productFlavors.size() > 0) {
             return
         }
 
-        def bundleTask = tasks["bundle${variant.name.capitalize()}"]
+        def bundleTask = tasks["bundle${variant.name.capitalize()}Aar"]
 
         artifacts {
             archives(bundleTask.archivePath) {
