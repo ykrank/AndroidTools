@@ -1,9 +1,9 @@
 package com.github.ykrank.androidtools_demo
 
 import android.content.Intent
-import android.databinding.DataBindingUtil
+import androidx.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.github.ykrank.androidtools_demo.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

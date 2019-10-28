@@ -1,7 +1,7 @@
 package com.github.ykrank.androidtools_demo
 
 import android.app.Application
-import android.support.multidex.MultiDexApplication
+import androidx.multidex.MultiDexApplication
 import com.facebook.stetho.Stetho
 import com.github.ykrank.androidtools.AppDataProvider
 import com.github.ykrank.androidtools.DefaultAppDataProvider
