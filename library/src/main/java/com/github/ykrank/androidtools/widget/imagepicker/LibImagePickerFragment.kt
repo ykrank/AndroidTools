@@ -9,7 +9,7 @@ import com.luck.picture.lib.entity.LocalMedia
 
 
 abstract class LibImagePickerFragment : LibBaseFragment() {
-    private val pickImageRequestCode = PictureConfig.CHOOSE_REQUEST
+    protected val pickImageRequestCode = PictureConfig.CHOOSE_REQUEST
 
     open fun startPickImage() {
         ImagePicker.pickImage(this, pickImageRequestCode, 5, true)
