@@ -11,8 +11,8 @@ import com.luck.picture.lib.entity.LocalMedia
 abstract class LibImagePickerFragment : LibBaseFragment() {
     private val pickImageRequestCode = PictureConfig.CHOOSE_REQUEST
 
-    fun startPickImage(maxSelect: Int = 5, compress: Boolean = true) {
-        ImagePicker.pickImage(this, pickImageRequestCode, maxSelect, compress)
+    open fun startPickImage() {
+        ImagePicker.pickImage(this, pickImageRequestCode, 5, true)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

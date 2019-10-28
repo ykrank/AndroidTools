@@ -65,8 +65,8 @@ abstract class LibBaseViewPagerFragment : LibBaseFragment(), PagerCallback,
         preparePageJumpMenu()
     }
 
-    open fun findMenuPageJump(menu: Menu?): MenuItem? {
-        return menu?.findItem(R.id.menu_page_jump)
+    open fun findMenuPageJump(menu: Menu): MenuItem? {
+        return menu.findItem(R.id.menu_page_jump)
     }
 
     @CallSuper

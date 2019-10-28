@@ -87,7 +87,7 @@ dependencies {
     api 'com.github.ykrank:androidautodispose:0.4.0'
     api 'com.hannesdorfmann:adapterdelegates3:3.1.0'
 
-    playApi 'com.tencent.bugly:crashreport:3.0.0'
+    playApi 'com.tencent.bugly:crashreport:3.0.1'
     normalApi 'com.tencent.bugly:crashreport_upgrade:1.4.1'
 
     api 'com.orhanobut:logger:2.2.0'
