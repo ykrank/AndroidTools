@@ -26,6 +26,9 @@ android {
     dataBinding {
         enabled = true
     }
+
+    defaultPublishConfig "normalRelease"
+
     flavorDimensions "market"
     productFlavors {
         play{
@@ -39,6 +42,15 @@ android {
 
 kapt {
     mapDiagnosticLocations = true
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from android.sourceSets.main.javaDirectories
+}
+
+artifacts {
+    archives sourcesJar
 }
 
 dependencies {
