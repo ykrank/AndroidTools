@@ -22,7 +22,7 @@ abstract class LibBaseFragment : Fragment() {
     protected var mCoordinatorLayoutAnchorDelegate: CoordinatorLayoutAnchorDelegate? = null
     protected var mRetrySnackbar: WeakReference<Snackbar>? = null
     protected var mUserVisibleHint = false
-    val activity
+    val mActivity
         get() = super.getActivity() as AppCompatActivity?
 
     @CallSuper
