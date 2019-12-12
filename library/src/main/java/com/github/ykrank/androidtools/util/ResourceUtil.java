@@ -71,18 +71,38 @@ public final class ResourceUtil {
         Resources resources = context.getResources();
         DisplayMetrics displayMetrics = resources.getDisplayMetrics();
         Resources sysResources = Resources.getSystem();
-
         Configuration config = resources.getConfiguration();
         float sysFontScale = sysResources.getConfiguration().fontScale;
-//        if (config.fontScale != sysFontScale * scale) {
-        config.fontScale = sysFontScale * scale;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+        float fontScale = sysFontScale * scale;
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N) {
+            config.fontScale = fontScale;
             return context.createConfigurationContext(config);
         } else {
-            resources.updateConfiguration(config, displayMetrics);
+            if (config.fontScale != fontScale) {
+                resources.updateConfiguration(config, displayMetrics);
+            }
         }
-//        }
         return context;
+    }
+
+    /**
+     * Use in activity getResource override
+     *
+     * @param resources
+     * @param scale
+     */
+    public static void updateResourceScaledDensity(Resources resources, float scale) {
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.N) {
+            DisplayMetrics displayMetrics = resources.getDisplayMetrics();
+            Resources sysResources = Resources.getSystem();
+            Configuration config = resources.getConfiguration();
+            float sysFontScale = sysResources.getConfiguration().fontScale;
+            float fontScale = sysFontScale * scale;
+            if (fontScale != config.fontScale) {
+                config.fontScale = fontScale;
+                resources.updateConfiguration(config, displayMetrics);
+            }
+        }
     }
 
     /**
