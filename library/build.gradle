@@ -59,8 +59,9 @@ dependencies {
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     //For jackson
     api "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.10.2'
 
-    api "com.google.android.material:material:1.1.0-beta01"
+    api "com.google.android.material:material:1.2.0-alpha04"
     api "androidx.cardview:cardview:$rootProject.androdiXVersion"
     api "androidx.percentlayout:percentlayout:$rootProject.androdiXVersion"
     api "androidx.legacy:legacy-preference-v14:$rootProject.androdiXVersion"
@@ -69,17 +70,17 @@ dependencies {
 
     api 'androidx.multidex:multidex:2.0.1'
 
-    debugApi 'com.squareup.leakcanary:leakcanary-android:1.6.3'
+    debugApi 'com.squareup.leakcanary:leakcanary-android:2.1'
     releaseApi 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.3'
     api 'org.apache.commons:commons-lang3:3.9'
-    api 'com.google.guava:guava:28.1-android'
+    api 'com.google.guava:guava:28.2-android'
 
-    api 'io.reactivex.rxjava2:rxjava:2.2.13'
+    api 'io.reactivex.rxjava2:rxjava:2.2.17'
     api 'io.reactivex.rxjava2:rxandroid:2.1.1'
     api 'io.reactivex.rxjava2:rxkotlin:2.4.0'
 
-    api 'com.github.bumptech.glide:glide:4.10.0'
-    api 'com.github.bumptech.glide:okhttp3-integration:4.10.0'
+    api 'com.github.bumptech.glide:glide:4.11.0'
+    api 'com.github.bumptech.glide:okhttp3-integration:4.11.0'
     //okhttp 3.12.0 have bug https://github.com/square/okhttp/issues/4395
     api 'com.squareup.okhttp3:okhttp:4.2.2'
 
@@ -88,7 +89,7 @@ dependencies {
     api 'com.hannesdorfmann:adapterdelegates3:3.1.0'
 
     playApi 'com.tencent.bugly:crashreport:3.0.1'
-    normalApi 'com.tencent.bugly:crashreport_upgrade:1.4.1'
+    normalApi 'com.tencent.bugly:crashreport_upgrade:1.4.2'
 
     api 'com.orhanobut:logger:2.2.0'
 
@@ -100,10 +101,10 @@ dependencies {
 
     //PictureUpload
     compileOnly 'org.jsoup:jsoup:1.12.1'
-    compileOnly 'com.squareup.retrofit2:retrofit:2.6.2'
-    compileOnly 'com.squareup.retrofit2:adapter-rxjava2:2.6.2'
-    compileOnly 'com.squareup.retrofit2:converter-jackson:2.6.2'
-    compileOnly 'com.squareup.retrofit2:converter-scalars:2.6.2'
+    compileOnly 'com.squareup.retrofit2:retrofit:2.7.1'
+    compileOnly 'com.squareup.retrofit2:adapter-rxjava2:2.7.1'
+    compileOnly 'com.squareup.retrofit2:converter-jackson:2.7.1'
+    compileOnly 'com.squareup.retrofit2:converter-scalars:2.7.1'
 }
 
 if (android.productFlavors.size() > 0) {
