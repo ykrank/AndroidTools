@@ -7,10 +7,11 @@ import com.luck.picture.lib.config.PictureMimeType
 
 object ImagePicker {
 
-    fun pickImage(fragment: androidx.fragment.app.Fragment, requestCode: Int, maxSelect: Int = 9, compress: Boolean = false) {
+    fun pickImage(fragment: androidx.fragment.app.Fragment, requestCode: Int, maxSelect: Int = 9, compress: Boolean = true) {
         // 进入相册 以下是例子：用不到的api可以不写
         PictureSelector.create(fragment)
                 .openGallery(PictureMimeType.ofImage())//全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()、音频.ofAudio()
+                .loadImageEngine(GlideEngine.createGlideEngine())
 //                .theme()//主题样式(不设置为默认样式) 也可参考demo values/styles下 例如：R.style.picture.white.style
                 .maxSelectNum(maxSelect)// 最大图片选择数量 int
 //                .minSelectNum()// 最小选择数量 int
@@ -38,8 +39,9 @@ object ImagePicker {
                 .openClickSound(false)// 是否开启点击声音 true or false
 //                .selectionMedia()// 是否传入已选图片 List<LocalMedia> list
                 .previewEggs(true)// 预览图片时 是否增强左右滑动图片体验(图片滑动一半即可看到上一张是否选中) true or false
-                .cropCompressQuality(80)// 裁剪压缩质量 默认90 int
+                .cutOutQuality(90)// 裁剪压缩质量 默认90 int
                 .minimumCompressSize(100)// 小于100kb的图片不压缩
+                .compressQuality(80)
                 .synOrAsy(false)//同步true或异步false 压缩 默认同步
 //                .cropWH()// 裁剪宽高比，设置如果大于图片本身宽高则无效 int
 //                .rotateEnabled() // 裁剪是否可旋转图片 true or false

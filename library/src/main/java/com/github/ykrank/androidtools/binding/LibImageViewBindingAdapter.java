@@ -25,6 +25,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 import com.github.ykrank.androidtools.GlobalData;
 import com.github.ykrank.androidtools.R;
+import com.github.ykrank.androidtools.util.L;
 import com.github.ykrank.androidtools.widget.glide.downsamplestrategy.GlMaxTextureSizeDownSampleStrategy;
 
 public final class LibImageViewBindingAdapter {
@@ -114,6 +115,7 @@ public final class LibImageViewBindingAdapter {
                     @Override
                     public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
                         //stop thumnal animatable like gif
+                        L.e(e);
                         target.onStop();
                         target.onLoadFailed(ContextCompat.getDrawable(imageView.getContext(), error));
                         return true;
