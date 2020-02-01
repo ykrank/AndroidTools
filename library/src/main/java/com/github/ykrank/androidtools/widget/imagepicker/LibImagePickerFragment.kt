@@ -26,5 +26,10 @@ abstract class LibImagePickerFragment : LibBaseFragment() {
         }
     }
 
+    override fun onDestroy() {
+        ImagePicker.clearCache(context!!)
+        super.onDestroy()
+    }
+
     abstract fun afterPickImage(medias: List<LocalMedia>)
 }

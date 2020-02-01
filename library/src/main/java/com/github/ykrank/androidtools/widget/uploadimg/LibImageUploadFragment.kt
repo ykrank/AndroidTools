@@ -12,7 +12,9 @@ import com.github.ykrank.androidtools.extension.toast
 import com.github.ykrank.androidtools.util.L
 import com.github.ykrank.androidtools.util.RxJavaUtil
 import com.github.ykrank.androidtools.widget.imagepicker.LibImagePickerFragment
+import com.luck.picture.lib.config.PictureConfig
 import com.luck.picture.lib.entity.LocalMedia
+import com.luck.picture.lib.tools.PictureFileUtils
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.internal.schedulers.ExecutorScheduler
@@ -111,19 +113,18 @@ open class LibImageUploadFragment : LibImagePickerFragment() {
                         it.first.state = ModelImageUpload.STATE_DONE
                         it.first.url = it.second.url
                         it.first.deleteUrl = it.second.deleteUrl
-
-                        adapter.dataSet.indexOf(it.first).also { index ->
-                            if (index >= 0) {
-                                adapter.notifyItemChanged(index)
-                            } else {
-                                //If image removed from list, remove it from server
-                                delPickedImage(it.first)
-                            }
-                        }
                     } else {
                         it.first.state = ModelImageUpload.STATE_ERROR
                         context?.toast(it.second.msg)
                         L.report(ImageUploadError("Upload image error: ${it.first}, ${it.second}"))
+                    }
+                    adapter.dataSet.indexOf(it.first).also { index ->
+                        if (index >= 0) {
+                            adapter.notifyItemChanged(index)
+                        } else {
+                            //If image removed from list, remove it from server
+                            delPickedImage(it.first)
+                        }
                     }
                 }, L::report)
 

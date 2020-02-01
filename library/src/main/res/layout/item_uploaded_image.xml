@@ -43,9 +43,10 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_close"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_margin="@dimen/spacing_micro"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="8dp"
+            android:background="@color/black_12p"
             app:layout_constraintRight_toRightOf="@id/image"
             app:layout_constraintTop_toTopOf="@id/image"
             app:srcCompat="@drawable/ic_close_color_accent" />

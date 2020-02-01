@@ -2,16 +2,17 @@ package com.github.ykrank.androidtools.binding;
 
 import android.annotation.SuppressLint;
 import android.content.res.ColorStateList;
-import androidx.databinding.BindingAdapter;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
 import android.os.Build;
+import android.text.TextUtils;
+import android.widget.ImageView;
+
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
-import android.text.TextUtils;
-import android.widget.ImageView;
+import androidx.databinding.BindingAdapter;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
@@ -46,7 +47,6 @@ public final class LibImageViewBindingAdapter {
             imageView.setImageDrawable(drawable);
         }
     }
-
 
 
     @BindingAdapter("roundAvatar")
@@ -92,6 +92,7 @@ public final class LibImageViewBindingAdapter {
         RequestOptions requestOptions = new RequestOptions()
                 .diskCacheStrategy(DiskCacheStrategy.DATA)
                 .downsample(new GlMaxTextureSizeDownSampleStrategy())
+                .error(error)
                 .fitCenter()
                 .priority(Priority.HIGH);
 

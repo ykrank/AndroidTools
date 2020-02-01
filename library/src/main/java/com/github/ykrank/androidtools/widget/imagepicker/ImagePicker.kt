@@ -1,9 +1,11 @@
 package com.github.ykrank.androidtools.widget.imagepicker
 
+import android.content.Context
 import androidx.fragment.app.Fragment
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import com.luck.picture.lib.config.PictureMimeType
+import com.luck.picture.lib.tools.PictureFileUtils
 
 object ImagePicker {
 
@@ -52,5 +54,9 @@ object ImagePicker {
 //                .recordVideoSecond()//视频秒数录制 默认60s int
 //                .isDragFrame(false)// 是否可拖动裁剪框(固定)
                 .forResult(requestCode)//结果回调onActivityResult code
+    }
+
+    fun clearCache(context: Context){
+        PictureFileUtils.deleteCacheDirFile(context, PictureConfig.TYPE_IMAGE)
     }
 }
