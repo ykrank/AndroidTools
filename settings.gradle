@@ -1,1 +1,1 @@
-include ':library', ':demo', ':videoplayer', ':renameRid', ':JKeyboardPanelSwitch'
+include ':library', ':demo', ':renameRid', ':JKeyboardPanelSwitch'

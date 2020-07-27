@@ -47,7 +47,6 @@ android {
 
 dependencies {
     implementation project(path: ':library')
-    implementation project(path: ':videoplayer')
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -60,12 +59,12 @@ dependencies {
 
     implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'
 
-    implementation 'org.jsoup:jsoup:1.12.1'
-    implementation 'com.squareup.retrofit2:retrofit:2.6.2'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.6.2'
-    implementation 'com.squareup.retrofit2:converter-jackson:2.6.2'
-    implementation 'com.squareup.retrofit2:converter-scalars:2.6.2'
+    implementation 'org.jsoup:jsoup:1.13.1'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-jackson:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.9.0'
 
-    implementation 'com.facebook.stetho:stetho:1.5.0'
-    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.0'
+    implementation 'com.facebook.stetho:stetho:1.5.1'
+    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
 }

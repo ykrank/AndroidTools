@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
 
 group='com.github.ykrank.AndroidTools'
 
@@ -21,4 +20,4 @@ android {
     }
 }
 
-version = '1.0.0'
+version = '1.1.0'
