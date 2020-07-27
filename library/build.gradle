@@ -9,7 +9,7 @@ android {
 	buildToolsVersion rootProject.ext.buildToolsVersion
 	
     defaultConfig {
-        minSdkVersion 15
+        minSdkVersion 19
         targetSdkVersion 27
         versionCode 1
         versionName "1.1.0"
@@ -86,7 +86,7 @@ dependencies {
     api 'com.nononsenseapps:filepicker:4.1.0'
 
     //PictureSelector
-    compileOnly 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.5'
+    compileOnly 'com.github.LuckSiege.PictureSelector:picture_library:v2.5.8'
 
     //PictureUpload
     compileOnly 'org.jsoup:jsoup:1.13.1'

@@ -1,9 +1,10 @@
 package com.github.ykrank.androidtools.util;
 
 import android.content.Context;
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import android.util.Log;
 
 import com.github.ykrank.androidtools.BuildConfig;
 import com.github.ykrank.androidtools.GlobalData;
@@ -23,11 +24,11 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class L {
     static AtomicBoolean init = new AtomicBoolean(false);
     static boolean showLog = false;
-    private static String TAG = BuildConfig.APPLICATION_ID;
+    private static String TAG = BuildConfig.LIBRARY_PACKAGE_NAME;
 
     public static void init(@NonNull Context context) {
         TAG = GlobalData.provider.getLogTag();
-        
+
         FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()
                 .showThreadInfo(true)  // (Optional) Whether to show thread info or not. Default true
                 .methodCount(0)         // (Optional) How many method line to show. Default 2

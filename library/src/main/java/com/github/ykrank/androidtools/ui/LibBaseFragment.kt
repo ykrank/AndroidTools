@@ -60,7 +60,6 @@ abstract class LibBaseFragment : Fragment() {
         L.leaveMsg("${this.javaClass.simpleName} onDestroy")
 
         super.onDestroy()
-        UiGlobalData.provider?.refWatcher?.watch(this)
     }
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {

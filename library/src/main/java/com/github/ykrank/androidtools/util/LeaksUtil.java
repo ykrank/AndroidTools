@@ -3,16 +3,14 @@ package com.github.ykrank.androidtools.util;
 import android.app.Application;
 import android.app.Dialog;
 import android.content.DialogInterface;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 
-import com.squareup.leakcanary.RefWatcher;
-
-
 public class LeaksUtil {
 
-    public static RefWatcher install(Application application) {
-        return LeaksUtilEx.install(application);
+    public static void install(Application application) {
+
     }
 
     /**
