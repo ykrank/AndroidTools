@@ -6,6 +6,7 @@ import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import com.luck.picture.lib.config.PictureMimeType
 import com.luck.picture.lib.language.LanguageConfig
+import com.luck.picture.lib.tools.PictureFileUtils
 
 object ImagePicker {
 
@@ -94,6 +95,6 @@ object ImagePicker {
     }
 
     fun clearCache(context: Context){
-        PictureFileUtils.deleteCacheDirFile(context, PictureConfig.TYPE_IMAGE)
+        PictureFileUtils.deleteAllCacheDirFile(context)
     }
 }
