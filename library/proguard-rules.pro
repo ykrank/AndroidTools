@@ -39,8 +39,8 @@
 -dontwarn dagger.**
 
 # Jackson Model
--keep public class com.github.ykrank.androidtools.widget.uploadimg.ImageDelete { *; }
--keep public class com.github.ykrank.androidtools.widget.uploadimg.ImageUpload** { *; }
+-keep public class com.github.ykrank.androidtools.widget.uploadimg.SmmsImageDelete { *; }
+-keep public class com.github.ykrank.androidtools.widget.uploadimg.SmmsImageUpload** { *; }
 
 #Jackson
 -dontwarn com.fasterxml.jackson.databind.ext.**
@@ -65,12 +65,13 @@
 # A resource is loaded with a relative path so the package of this class must be preserved.
 -keepnames class okhttp3.internal.publicsuffix.PublicSuffixDatabase
 
-# Glide
+# Glide 4.11
 # https://github.com/bumptech/glide#user-content-proguard
 -keep public class * implements com.bumptech.glide.module.GlideModule
--keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
-    **[] $VALUES;
-    public *;
+-keep public class * extends com.bumptech.glide.module.AppGlideModule
+-keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
+  **[] $VALUES;
+  public *;
 }
 
 # Gradle Retrolambda Plugin

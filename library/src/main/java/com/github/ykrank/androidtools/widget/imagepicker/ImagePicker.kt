@@ -1,5 +1,6 @@
 package com.github.ykrank.androidtools.widget.imagepicker
 
+import android.content.Context
 import com.github.ykrank.androidtools.R
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
@@ -8,7 +9,7 @@ import com.luck.picture.lib.language.LanguageConfig
 
 object ImagePicker {
 
-    fun pickImage(fragment: androidx.fragment.app.Fragment, requestCode: Int, maxSelect: Int = 9, compress: Boolean = false) {
+    fun pickImage(fragment: androidx.fragment.app.Fragment, requestCode: Int, maxSelect: Int = 9, compress: Boolean = true) {
         // 进入相册 以下是例子：用不到的api可以不写
         PictureSelector.create(fragment)
                 .openGallery(PictureMimeType.ofImage())//相册 媒体类型 PictureMimeType.ofAll()、ofImage()、ofVideo()、ofAudio()
@@ -90,5 +91,9 @@ object ImagePicker {
 //                .setOutputCameraPath()// 自定义相机输出目录只针对Android Q以下版本，具体参考Demo
                 .imageEngine(GlideEngine.createGlideEngine())
                 .forResult(requestCode);//结果回调分两种方式onActivityResult()和OnResultCallbackListener方式
+    }
+
+    fun clearCache(context: Context){
+        PictureFileUtils.deleteCacheDirFile(context, PictureConfig.TYPE_IMAGE)
     }
 }

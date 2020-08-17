@@ -1,12 +1,10 @@
 package com.github.ykrank.androidtools.widget.uploadimg
 
 import android.os.Bundle
-import androidx.annotation.MainThread
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.MainThread
 import com.github.ykrank.androidautodispose.AndroidRxDispose
 import com.github.ykrank.androidlifecycle.event.FragmentEvent
 import com.github.ykrank.androidtools.databinding.FragmentUploadedImageBinding
@@ -14,11 +12,12 @@ import com.github.ykrank.androidtools.extension.toast
 import com.github.ykrank.androidtools.util.L
 import com.github.ykrank.androidtools.util.RxJavaUtil
 import com.github.ykrank.androidtools.widget.imagepicker.LibImagePickerFragment
+import com.luck.picture.lib.config.PictureConfig
 import com.luck.picture.lib.entity.LocalMedia
+import com.luck.picture.lib.tools.PictureFileUtils
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.internal.schedulers.ExecutorScheduler
-import okhttp3.OkHttpClient
 import java.io.File
 import java.util.concurrent.LinkedBlockingDeque
 import java.util.concurrent.ThreadPoolExecutor
@@ -58,7 +57,7 @@ open class LibImageUploadFragment : LibImagePickerFragment() {
         }
         refreshDataSet()
 
-        imageUploadManager = ImageUploadManager(provideOkHttpClient())
+        imageUploadManager = provideImageUploadManager()
 
         return binding.root
     }
@@ -93,8 +92,8 @@ open class LibImageUploadFragment : LibImagePickerFragment() {
                 }
     }
 
-    open fun provideOkHttpClient(): OkHttpClient? {
-        return null
+    open fun provideImageUploadManager(): ImageUploadManager {
+        return SmmsImageUploadManager()
     }
 
     private fun uploadPickedImage() {
@@ -102,7 +101,7 @@ open class LibImageUploadFragment : LibImagePickerFragment() {
                 .filter { it.state == ModelImageUpload.STATE_INIT }
                 .flatMapSingle { model ->
                     model.state = ModelImageUpload.STATE_UPLOADING
-                    imageUploadManager.forceUploadSmms(File(model.path))
+                    imageUploadManager.uploadImage(File(model.path))
                             .map { Pair(model, it) }
                 }
                 .subscribeOn(uploadScheduler)
@@ -112,21 +111,20 @@ open class LibImageUploadFragment : LibImagePickerFragment() {
                     L.d(it.second.toString())
                     if (it.second.success) {
                         it.first.state = ModelImageUpload.STATE_DONE
-                        it.first.url = it.second.data?.url
-                        it.first.deleteUrl = it.second.data?.delete
-
-                        adapter.dataSet.indexOf(it.first).also { index ->
-                            if (index >= 0) {
-                                adapter.notifyItemChanged(index)
-                            } else {
-                                //If image removed from list, remove it from server
-                                delPickedImage(it.first)
-                            }
-                        }
+                        it.first.url = it.second.url
+                        it.first.deleteUrl = it.second.deleteUrl
                     } else {
                         it.first.state = ModelImageUpload.STATE_ERROR
-                        context?.toast(it.second.code)
+                        context?.toast(it.second.msg)
                         L.report(ImageUploadError("Upload image error: ${it.first}, ${it.second}"))
+                    }
+                    adapter.dataSet.indexOf(it.first).also { index ->
+                        if (index >= 0) {
+                            adapter.notifyItemChanged(index)
+                        } else {
+                            //If image removed from list, remove it from server
+                            delPickedImage(it.first)
+                        }
                     }
                 }, L::report)
 
@@ -139,7 +137,7 @@ open class LibImageUploadFragment : LibImagePickerFragment() {
             if (deleteUrl == null) {
                 removeUploadedImage(model)
             } else {
-                imageUploadManager.delUploadedSmms(deleteUrl)
+                imageUploadManager.delUploadedImage(deleteUrl)
                         .compose(RxJavaUtil.iOSingleTransformer())
                         .doAfterTerminate {
                             RxJavaUtil.workInMainThread {
