@@ -40,7 +40,7 @@ object ImagePicker {
                 .isPreviewImage(true)//是否预览图片
 //                .isPreviewVideo()//是否预览视频
 //                .enablePreviewAudio()//是否预览音频
-                .isEnableCrop(true)//是否开启裁剪
+                .isEnableCrop(false)//是否开启裁剪
 //                .cropImageWideHigh()// 裁剪宽高比，设置如果大于图片本身宽高则无效
 //                .withAspectRatio()//裁剪比例
                 .cutOutQuality(90)// 裁剪输出质量 默认100
