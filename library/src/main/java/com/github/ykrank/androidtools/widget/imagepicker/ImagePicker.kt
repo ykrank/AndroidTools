@@ -63,7 +63,7 @@ object ImagePicker {
                 .minimumCompressSize(100)// 小于多少kb的图片不压缩
 //                .videoQuality()//视频录制质量 0 or 1
                 .compressQuality(90)//图片压缩后输出质量
-                .synOrAsy(false)//开启同步or异步压缩
+                .synOrAsy(true)//开启同步or异步压缩
 //                .queryMaxFileSize()//查询指定大小内的图片、视频、音频大小，单位M
 //                .compressSavePath()//自定义压缩图片保存地址，注意Q版本下的适配
 //                .sizeMultiplier()//glide加载大小，已废弃
@@ -72,7 +72,7 @@ object ImagePicker {
 //                .isMultipleRecyclerAnimation()// 多图裁剪底部列表显示动画效果
 //                .querySpecifiedFormatSuffix()//只查询指定后缀的资源，PictureMimeType.ofJPEG() ...
                 .isReturnEmpty(false)//未选择数据时按确定是否可以退出
-                .isAndroidQTransform(true)//Android Q版本下是否需要拷贝文件至应用沙盒内
+                .isAndroidQTransform(false)//Android Q版本下是否需要拷贝文件至应用沙盒内
 //                .setRequestedOrientation()//屏幕旋转方向 ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED ...
 //                .isOriginalImageControl()//开启原图选项
 //                .bindCustomPlayVideoCallback()//自定义视频播放拦截
