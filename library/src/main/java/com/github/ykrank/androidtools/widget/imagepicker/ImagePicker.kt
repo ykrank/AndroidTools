@@ -45,9 +45,9 @@ object ImagePicker {
                 .isEnableCrop(false)//是否开启裁剪
 //                .cropImageWideHigh()// 裁剪宽高比，设置如果大于图片本身宽高则无效
 //                .withAspectRatio()//裁剪比例
-                .cutOutQuality(90)// 裁剪输出质量 默认100
-                .freeStyleCropEnabled(true)//裁剪框是否可拖拽
-                .circleDimmedLayer(false)// 是否开启圆形裁剪
+//                .cutOutQuality(90)// 裁剪输出质量 默认100
+//                .freeStyleCropEnabled(true)//裁剪框是否可拖拽
+//                .circleDimmedLayer(false)// 是否开启圆形裁剪
 //                .setCircleDimmedColor()//设置圆形裁剪背景色值
 //                .setCircleDimmedBorderColor()//设置圆形裁剪边框色值
 //                .setCircleStrokeWidth()//设置圆形裁剪边框粗细

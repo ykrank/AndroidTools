@@ -2,8 +2,9 @@ package com.github.ykrank.androidtools.widget.uglyfix;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import androidx.appcompat.widget.AppCompatTextView;
 import android.util.AttributeSet;
+
+import androidx.appcompat.widget.AppCompatTextView;
 
 import com.github.ykrank.androidtools.util.L;
 
@@ -30,7 +31,6 @@ public class FixTextView extends AppCompatTextView {
             return super.performLongClick();
         } catch (Exception e) {
             L.leaveMsg("FixTextView:" + this.getText());
-            L.report(e);
             return false;
         }
     }

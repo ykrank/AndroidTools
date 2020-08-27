@@ -27,8 +27,8 @@ class ModelImageUpload(val media: LocalMedia) : DiffSameItem, Parcelable, Stable
     var state: Int = STATE_INIT
 
     val path: String
-        get() = if (media.path?.endsWith(".gif") == true || !media.isCompressed) {
-            media.path
+        get() = if (media.realPath?.endsWith(".gif") == true || !media.isCompressed) {
+            media.realPath
         } else {
             media.compressPath
         }
