@@ -6,6 +6,7 @@ import okhttp3.Request
 import okhttp3.Response
 import java.io.IOException
 import java.net.ProtocolException
+import java.util.concurrent.TimeUnit
 
 /**
  * Self-adaption multi host
@@ -31,7 +32,7 @@ open class MultiHostInterceptor<T : BaseHostUrl>(private val baseHostUrl: T, pri
 
         val response: Response = proceedRequest(chain, newRequest) {
             if (newRequest != originRequest) {
-                return proceedRequest(chain, originRequest) { throw it }
+                return proceedRequest(chain.withReadTimeout(chain.readTimeoutMillis(), TimeUnit.MILLISECONDS), originRequest) { throw it }
             } else {
                 throw it
             }
