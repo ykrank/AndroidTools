@@ -17,7 +17,6 @@ public final class NetworkUtil {
      *
      * @return {@code true} if the Wi-FI network connectivity exists, {@code false} otherwise.
      */
-    @SuppressWarnings("deprecation")
     public static boolean isWifiConnected(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(
                 Context.CONNECTIVITY_SERVICE);
