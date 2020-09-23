@@ -8,7 +8,6 @@ import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
-import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.View;
 
@@ -69,17 +68,17 @@ public final class ResourceUtil {
     @SuppressLint("RestrictedApi")
     public static Context setScaledDensity(Context context, float scale) {
         Resources resources = context.getResources();
-        DisplayMetrics displayMetrics = resources.getDisplayMetrics();
         Resources sysResources = Resources.getSystem();
         Configuration config = resources.getConfiguration();
         float sysFontScale = sysResources.getConfiguration().fontScale;
         float fontScale = sysFontScale * scale;
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N) {
-            config.fontScale = fontScale;
-            return context.createConfigurationContext(config);
-        } else {
-            if (config.fontScale != fontScale) {
-                resources.updateConfiguration(config, displayMetrics);
+        if (config.fontScale != fontScale) {
+            Configuration newConfig = new Configuration(config);
+            newConfig.fontScale = fontScale;
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N) {
+                return context.createConfigurationContext(newConfig);
+            } else {
+                resources.updateConfiguration(newConfig, null);
             }
         }
         return context;
@@ -93,14 +92,14 @@ public final class ResourceUtil {
      */
     public static void updateResourceScaledDensity(Resources resources, float scale) {
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.N) {
-            DisplayMetrics displayMetrics = resources.getDisplayMetrics();
             Resources sysResources = Resources.getSystem();
             Configuration config = resources.getConfiguration();
             float sysFontScale = sysResources.getConfiguration().fontScale;
             float fontScale = sysFontScale * scale;
             if (fontScale != config.fontScale) {
-                config.fontScale = fontScale;
-                resources.updateConfiguration(config, displayMetrics);
+                Configuration newConfig = new Configuration(config);
+                newConfig.fontScale = fontScale;
+                resources.updateConfiguration(newConfig, null);
             }
         }
     }
