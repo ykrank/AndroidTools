@@ -39,9 +39,9 @@ public class FixTextView extends AppCompatTextView {
     protected void onDraw(Canvas canvas) {
         try {
             super.onDraw(canvas);
-        } catch (IndexOutOfBoundsException e){
-            //java.lang.IndexOutOfBoundsException in meizu 8.1.0
-            L.report(e);
+        } catch (IndexOutOfBoundsException e) {
+            //java.lang.IndexOutOfBoundsException in meizu
+            L.leaveMsg("FixTextView onDraw IndexOutOfBoundsException");
         }
     }
 }
